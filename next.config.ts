@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { source: "/about", destination: "/company-profile", permanent: true },
       { source: "/industries", destination: "/products", permanent: false },
       { source: "/quality", destination: "/infrastructure", permanent: false },
+      { source: "/ready-stock", destination: "/contact", permanent: false },
     ];
   },
   cacheComponents: true,

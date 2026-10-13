@@ -1,31 +1,45 @@
-import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 import MainNav from "@/components/MainNav";
 import { SITE } from "@/lib/site";
 
 export default function SiteHeader() {
   return (
     <>
-      <div className="bg-ink text-xs text-steel-200">
-        <div className="wrap flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2">
-          <div className="flex flex-wrap gap-x-5 gap-y-1">
-            <a href="tel:+919412236335" className="hover:text-white">
-              +91 9412236335
+      <div className="border-b border-white/10 bg-ink text-xs text-steel-200">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
+          {/* Left: Phone numbers */}
+          <div className="flex items-center gap-x-3 sm:gap-x-4 whitespace-nowrap">
+            <a
+              href="tel:+919412236335"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <Phone className="h-3.5 w-3.5 text-brass" />
+              <span>+91 9412236335</span>
             </a>
-            <a href="tel:+919458771652" className="hover:text-white">
-              +91 9458771652
+            <span className="text-white/20">|</span>
+            <a
+              href="tel:+919458771652"
+              className="hidden sm:inline-flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <Phone className="h-3.5 w-3.5 text-brass" />
+              <span>+91 9458771652</span>
             </a>
-            <a href={`mailto:${SITE.email}`} className="hover:text-white">
-              {SITE.email}
-            </a>
-            <span className="hidden md:inline">{SITE.addressShort}</span>
           </div>
-          <div className="flex gap-4">
-            <Link href="/ready-stock" className="font-semibold text-brass hover:text-white">
-              Live ready stock
-            </Link>
-            <Link href="/products" className="hover:text-white">
-              Product catalogue
-            </Link>
+
+          {/* Right: Email and Address */}
+          <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-4 whitespace-nowrap">
+            <a
+              href={`mailto:${SITE.email}`}
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <Mail className="h-3.5 w-3.5 text-brass" />
+              <span>{SITE.email}</span>
+            </a>
+            <span className="hidden md:inline text-white/20">|</span>
+            <span className="hidden md:inline-flex items-center gap-1.5 text-steel-400">
+              <MapPin className="h-3.5 w-3.5 text-brass" />
+              <span>{SITE.addressShort}</span>
+            </span>
           </div>
         </div>
       </div>

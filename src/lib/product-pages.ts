@@ -311,7 +311,7 @@ export const productPages: Record<ProductSlug, ProductPageContent> = {
     ],
     advantages: [
       {
-        title: "44+ years craft lineage",
+        title: "39+ years craft lineage",
         description: "Deep experience in Moradabad stainless hollowware manufacturing.",
       },
       {

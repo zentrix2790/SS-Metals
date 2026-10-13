@@ -11,8 +11,8 @@ export default function ProductsPage() {
 
   return (
     <>
-      <section className="bg-ink text-white">
-        <div className="wrap py-14 sm:py-16">
+      <section className="bg-ink text-white overflow-hidden">
+        <div className="wrap py-14 sm:py-16" data-aos="fade-down">
           <h1 className="h-page">Products catalogue</h1>
           <p className="mt-4 max-w-2xl text-lg text-steel-200">
             Unfinished Kalvat utensils, barware, bathware and kitchenware. Ask for custom sizes and
@@ -20,8 +20,8 @@ export default function ProductsPage() {
           </p>
         </div>
       </section>
-      <section className="section">
-        <div className="wrap">
+      <section className="section overflow-hidden">
+        <div className="wrap" data-aos="fade-up">
           <Suspense fallback={<ProductCatalogue products={products} initialCategory="All" />}>
             <ProductCatalogueFromQuery products={products} />
           </Suspense>

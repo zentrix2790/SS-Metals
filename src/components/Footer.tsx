@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { footerProductLinks, navLinks, site } from "@/lib/site-data";
@@ -7,18 +8,20 @@ export function Footer() {
     <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div className="sm:col-span-2 lg:col-span-1">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-700 text-sm font-bold text-white">
-              SS
-            </span>
-            <div>
-              <p className="font-semibold text-white">{site.name}</p>
-              <p className="text-xs text-slate-400">Since {site.established}</p>
-            </div>
+          <div className="mb-4">
+            <Link href="/" className="inline-block rounded-xl bg-white p-3 sm:p-3.5 shadow-md transition-opacity hover:opacity-95">
+              <Image
+                src="/logo.png"
+                alt={site.name}
+                width={260}
+                height={88}
+                className="h-16 w-auto object-contain sm:h-20"
+              />
+            </Link>
           </div>
           <p className="text-sm leading-relaxed text-slate-400">
             Leading manufacturer and exporter of pipes & tubes, flanges,
-            fasteners, round bars, sheets, plates & coils with ready stock and
+            fasteners, round bars, sheets, plates & coils with Urgent Requirement and
             customized solutions.
           </p>
         </div>
@@ -29,7 +32,7 @@ export function Footer() {
           </h3>
           <ul className="space-y-2 text-sm">
             {navLinks.map((link) => (
-              <li key={link.href}>
+              <li key={`${link.label}-${link.href}`}>
                 <Link
                   href={link.href}
                   className="transition hover:text-amber-400"
@@ -38,6 +41,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/faq"
+                className="transition hover:text-amber-400"
+              >
+                FAQs
+              </Link>
+            </li>
           </ul>
         </div>
 

@@ -23,18 +23,18 @@ const FACTS: [string, string][] = [
 export default function CompanyProfilePage() {
   return (
     <>
-      <section className="bg-ink text-white">
-        <div className="wrap py-14 sm:py-16">
+      <section className="bg-ink text-white overflow-hidden">
+        <div className="wrap py-14 sm:py-16" data-aos="fade-down">
           <h1 className="h-page">Company profile</h1>
           <p className="mt-4 max-w-2xl text-lg text-steel-200">
-            Over two decades of manufacturing stainless steelware in the brass city of Moradabad.
+            Over 39 years of manufacturing stainless steelware in the brass city of Moradabad.
           </p>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section overflow-hidden">
         <div className="wrap grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-          <div className="space-y-4 text-steel-700">
+          <div className="space-y-4 text-steel-700" data-aos="fade-right">
             <SmartImage
               src="/about/ss-metals-showcase.jpg"
               alt={`${SITE.name} overview`}
@@ -59,7 +59,7 @@ export default function CompanyProfilePage() {
               <strong className="text-ink">We also supply</strong> below.
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded border border-brass/30 bg-brass-light/30 p-4 text-sm">
+              <div className="rounded border border-brass/30 bg-brass-light/30 p-4 text-sm" data-aos="zoom-in" data-aos-delay="100">
                 <p className="font-display text-lg font-semibold text-ink">We manufacture</p>
                 <ul className="mt-2 list-inside list-disc space-y-1">
                   {MANUFACTURED_LINES.map((l) => (
@@ -67,7 +67,7 @@ export default function CompanyProfilePage() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded border border-steel-200 bg-steel-50 p-4 text-sm">
+              <div className="rounded border border-steel-200 bg-steel-50 p-4 text-sm" data-aos="zoom-in" data-aos-delay="200">
                 <p className="font-display text-lg font-semibold text-ink">We also supply</p>
                 <ul className="mt-2 list-inside list-disc space-y-1">
                   {SUPPLIED_LINES.map((l) => (
@@ -81,9 +81,9 @@ export default function CompanyProfilePage() {
             </Link>
           </div>
 
-          <dl className="divide-y divide-steel-200 rounded border border-steel-200 bg-white">
-            {FACTS.map(([k, v]) => (
-              <div key={k} className="grid grid-cols-[120px_1fr] gap-3 px-4 py-3 text-sm">
+          <dl className="divide-y divide-steel-200 rounded border border-steel-200 bg-white shadow-xs" data-aos="fade-left">
+            {FACTS.map(([k, v], idx) => (
+              <div key={k} data-aos="fade-left" data-aos-delay={idx * 40} className="grid grid-cols-[120px_1fr] gap-3 px-4 py-3 text-sm">
                 <dt className="font-semibold text-steel-700">{k}</dt>
                 <dd>{v}</dd>
               </div>

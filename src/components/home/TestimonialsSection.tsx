@@ -36,11 +36,8 @@ export function TestimonialsSection() {
     setActive((i) => (i >= maxIndex ? 0 : i + 1));
   }, [maxIndex]);
 
-  useEffect(() => {
-    if (active > maxIndex) setActive(maxIndex);
-  }, [active, maxIndex]);
-
-  const visible = testimonials.slice(active, active + visibleCount);
+  const currentIndex = Math.min(active, maxIndex);
+  const visible = testimonials.slice(currentIndex, currentIndex + visibleCount);
 
   return (
     <section

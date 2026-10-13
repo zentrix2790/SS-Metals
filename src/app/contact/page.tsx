@@ -9,27 +9,27 @@ export const metadata: Metadata = { title: "Enquiry & Contact" };
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-ink text-white">
-        <div className="wrap py-14 sm:py-16">
-          <h1 className="h-page">Enquiry and contact</h1>
+      <section className="bg-ink text-white overflow-hidden">
+        <div className="wrap py-14 sm:py-16" data-aos="fade-down">
+          <h1 className="h-page">Contact</h1>
           <p className="mt-4 max-w-2xl text-lg text-steel-200">
             Tell us what you need. We reply with specifications, pricing and dispatch time.
           </p>
         </div>
       </section>
-      <section className="section">
+      <section className="section overflow-hidden">
         <div className="wrap grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-          <div>
+          <div data-aos="fade-right">
             <Suspense fallback={<ContactForm />}>
               <ContactFormFromQuery />
             </Suspense>
           </div>
-          <aside className="space-y-5 text-sm">
-            <div className="rounded border border-steel-200 bg-white p-5">
+          <aside className="space-y-5 text-sm" data-aos="fade-left">
+            <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="100">
               <h2 className="font-display text-xl font-semibold">Factory and office</h2>
               <address className="mt-2 not-italic text-steel-700">{SITE.address}</address>
             </div>
-            <div className="rounded border border-steel-200 bg-white p-5">
+            <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="200">
               <h2 className="font-display text-xl font-semibold">Call us</h2>
               <p className="mt-2">
                 <a className="text-brand hover:underline" href="tel:+919412236335">
@@ -48,9 +48,11 @@ export default function ContactPage() {
                 </a>
               </p>
             </div>
-            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
-              Chat on WhatsApp
-            </a>
+            <div data-aos="fade-left" data-aos-delay="300">
+              <a href={waLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
+                Chat on WhatsApp
+              </a>
+            </div>
           </aside>
         </div>
       </section>

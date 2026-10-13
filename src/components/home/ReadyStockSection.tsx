@@ -1,4 +1,4 @@
-import Link from "next/link";
+/*import Link from "next/link";
 import { readyStockItems } from "@/lib/site-data";
 
 export function ReadyStockSection() {
@@ -12,7 +12,7 @@ export function ReadyStockSection() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-emerald-800">
-                Ready stock
+                Urgent Requirement
               </p>
               <h2 className="mt-1 text-2xl font-semibold text-slate-900 sm:text-3xl">
                 Immediate delivery inventory
@@ -52,11 +52,10 @@ export function ReadyStockSection() {
                     <td className="px-4 py-3 text-slate-600">{row.grade}</td>
                     <td className="px-4 py-3">
                       <span
-                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                          row.status === "In stock"
+                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${row.status === "In stock"
                             ? "bg-emerald-100 text-emerald-800"
                             : "bg-amber-100 text-amber-900"
-                        }`}
+                          }`}
                       >
                         {row.status}
                       </span>
@@ -70,4 +69,4 @@ export function ReadyStockSection() {
       </div>
     </section>
   );
-}
+}*/

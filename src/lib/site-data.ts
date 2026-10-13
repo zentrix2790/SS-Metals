@@ -1,7 +1,7 @@
 export const site = {
   name: "SS Metals",
   tagline: "Utensils & Farma Manufacturers · Pipes, Tubes & Metal Suppliers",
-  established: "2000",
+  established: "1987",
   proprietor: "Mr. Pradeep Kumar Agarwal",
   specialty:
     "Manufacturers of stainless steel utensils and farma design; suppliers of pipes, tubes, flanges, round bars, non-ferrous metals, scrap, and related industrial products.",
@@ -20,13 +20,13 @@ export const aboutShowcase = {
 export const heroCarouselSlides = [
   {
     src: "/hero/pipes-tubes.jpg",
-    alt: "SS Metals — pipes and tubes warehouse and ready stock",
-    eyebrow: "Pipes & tubes · Ready stock",
+    alt: "SS Metals — pipes and tubes warehouse and Urgent Requirement",
+    eyebrow: "Pipes & tubes · Urgent Requirement",
     title: "Seamless, ERW & stainless piping",
     subtitle:
       "Carbon, alloy, and stainless pipes and tubes staged for oil & gas, power, and construction — with MTC-backed dispatch from Moradabad.",
     primaryCta: { label: "Browse pipes & tubes", href: "/products" },
-    secondaryCta: { label: "Ready stock list", href: "/ready-stock" },
+    secondaryCta: { label: "Urgent Requirement list", href: "/contact" },
   },
   {
     src: "/hero/flanges.jpg",
@@ -52,7 +52,7 @@ export const heroCarouselSlides = [
 
 export const marqueeItems = [
   "ISO-certified stainless supply",
-  "1500+ metric tonnes ready stock",
+  "1500+ metric tonnes Urgent Requirement",
   "Stainless coils & slit widths",
   "Sheets · circles · farma blanks",
   "Seamless pipes & ERW tubes",
@@ -70,7 +70,7 @@ export const marqueeItems = [
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Ready Stock", href: "/ready-stock" },
+  { label: "Urgent Requirement", href: "/contact" },
   { label: "Industries", href: "/industries" },
   { label: "Quality", href: "/quality" },
   { label: "Contact", href: "/contact" },
@@ -79,12 +79,12 @@ export const navLinks = [
 export const heroSpotlights = [
   {
     title: "Pipes & Tubes",
-    headline: "Supplier in India — ready stock",
+    headline: "Supplier in India — Urgent Requirement",
     description:
       "Alloy steel, Alloy 20, carbon steel seamless, 3LPE coated pipes, and stainless seamless lines for demanding industrial applications.",
     href: "/products",
     image: "/products/pipes-tubes.png",
-    imageAlt: "Stainless steel pipes and tubes ready stock",
+    imageAlt: "Stainless steel pipes and tubes Urgent Requirement",
   },
   {
     title: "Flanges",
@@ -120,12 +120,12 @@ export const highlights = [
   {
     title: "Best price",
     description:
-      "Ready stock on supplied lines and custom utensil/farma programs at competitive pricing with reliable dispatch.",
+      "Urgent Requirement on supplied lines and custom utensil/farma programs at competitive pricing with reliable dispatch.",
   },
 ] as const;
 
 export const stats = [
-  { value: "26+", label: "Years of experience" },
+  { value: "39+", label: "Years of experience" },
   { value: "40+", label: "Countries served worldwide" },
   { value: "1500+", label: "Metric tonnes in stock" },
   { value: "50+", label: "Industries served" },
@@ -326,7 +326,7 @@ export const featuredProductLines = [
     name: "Pipes & Tubes",
     description: "Seamless, ERW, welded tubes, and hollow sections",
     image: "/products/pipes-tubes.png",
-    imageAlt: "Stainless steel pipes and tubes ready stock",
+    imageAlt: "Stainless steel pipes and tubes Urgent Requirement",
   },
   {
     name: "Round Bars",
@@ -382,10 +382,10 @@ export const readyStockItems = [
 ] as const;
 
 export const whyChooseUs = [
-  "26+ years serving Moradabad industry (since 2000)",
+  "39+ years serving Moradabad industry (since 1987)",
   "ISO 9001:2008 certified quality with strict testing",
   "Wide material range from carbon steel to exotic alloys",
-  "Ready stock for quick and immediate delivery",
+  "Urgent Requirement for quick and immediate delivery",
   "Custom farma design and utensil programs to drawing",
 ] as const;
 
@@ -417,7 +417,7 @@ export const excellenceCopy = {
 } as const;
 
 export const infrastructurePoints = [
-  "Ready stock of seamless pipes, ERW pipes, and hollow sections",
+  "Urgent Requirement of seamless pipes, ERW pipes, and hollow sections",
   "Warehouse staging for flanges, bars, sheets, and coils",
   "MTC documentation and inbound quality testing",
   "Pan-India logistics and export-ready dispatch",
@@ -462,7 +462,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Their ready stock on 304 sheets helped us meet a tight OEM deadline. Packing and labeling were export-ready without extra follow-ups.",
+      "Their Urgent Requirement on 304 sheets helped us meet a tight OEM deadline. Packing and labeling were export-ready without extra follow-ups.",
     name: "Neha Gupta",
     role: "Supply Chain Lead",
   },
@@ -500,13 +500,13 @@ export const howItWorksSteps = [
 export const appDownload = {
   title: "Order steel on the go",
   subtitle:
-    "Download the SS Metals app to browse ready stock, request quotes, track dispatches, and reorder favourite SKUs in seconds.",
+    "Download the SS Metals app to browse Urgent Requirement, request quotes, track dispatches, and reorder favourite SKUs in seconds.",
   iosLabel: "Download on the App Store",
   androidLabel: "Get it on Google Play",
   iosUrl: "#",
   androidUrl: "#",
   features: [
-    "Live ready stock & grades",
+    "Live Urgent Requirement & grades",
     "Instant quote requests",
     "Order & dispatch tracking",
     "Repeat PO in one tap",
@@ -525,9 +525,9 @@ export const faqs = [
       "Yes. MTC and dimensional reports are provided with material as per your purchase specification. Share your required standards (ASTM, ASME, etc.) when requesting a quote.",
   },
   {
-    question: "Is ready stock available for immediate dispatch?",
+    question: "Is Urgent Requirement available for immediate dispatch?",
     answer:
-      "We maintain ready stock on popular pipe schedules, coils, flanges, and utensil lines. Confirm SKU, grade, and quantity with our sales team for current availability and lead time.",
+      "We maintain Urgent Requirement on popular pipe schedules, coils, flanges, and utensil lines. Confirm SKU, grade, and quantity with our sales team for current availability and lead time.",
   },
   {
     question: "Which grades do you stock?",

@@ -32,9 +32,11 @@ export function NavMenuDropdown({
     (pathPrefix && pathname.startsWith(pathPrefix)) ||
     items.some((i) => pathname === i.href || pathname.startsWith(`${i.href}?`));
 
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -68,8 +70,8 @@ export function NavMenuDropdown({
     >
       <button
         type="button"
-        className={`inline-flex items-center gap-1 rounded px-3 py-2 text-sm font-medium ${
-          active ? "bg-brand-light text-brand-dark" : "text-steel-700 hover:text-brand"
+        className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors xl:px-3 xl:py-2 ${
+          active ? "bg-brand-light text-brand-dark" : "text-steel-700 hover:bg-steel-50 hover:text-brand"
         }`}
         aria-expanded={open}
         aria-haspopup="true"

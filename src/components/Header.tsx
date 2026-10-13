@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ProductsDropdown } from "@/components/nav/ProductsDropdown";
@@ -35,24 +36,21 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:h-[4.25rem] sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-bold tracking-tight text-white shadow-md transition group-hover:bg-amber-700">
-            SS
-          </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-tight text-slate-900 sm:text-base">
-              {site.name}
-            </span>
-            <span className="hidden text-[11px] font-medium text-slate-500 sm:block">
-              Est. {site.established}
-            </span>
-          </span>
+        <Link href="/" className="group flex items-center py-1">
+          <Image
+            src="/logo.png"
+            alt={`${site.name} Logo`}
+            width={240}
+            height={80}
+            priority
+            className="h-12 w-auto object-contain sm:h-14 lg:h-16"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.slice(0, 2).map((link) => (
             <Link
-              key={link.href}
+              key={`${link.label}-${link.href}`}
               href={link.href}
               className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
             >
@@ -62,7 +60,7 @@ export function Header() {
           <ProductsDropdown />
           {navLinks.slice(2).map((link) => (
             <Link
-              key={link.href}
+              key={`${link.label}-${link.href}`}
               href={link.href}
               className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
             >
@@ -104,7 +102,7 @@ export function Header() {
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={`${link.label}-${link.href}`}
                 href={link.href}
                 className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
                 onClick={() => setOpen(false)}

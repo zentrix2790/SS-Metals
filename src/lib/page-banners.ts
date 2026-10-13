@@ -22,13 +22,13 @@ export const innerPageBanners: Record<
   products: {
     variant: "pipe",
     eyebrow: "Products",
-    title: "Full catalogue & ready stock",
+    title: "Full catalogue & Urgent Requirement",
     subtitle:
       "Browse pipes, coils, sheets, circles, utensils, farma, wire, rods, and more—with grades and specifications for industrial buyers.",
   },
   readyStock: {
     variant: "coil",
-    eyebrow: "Ready stock",
+    eyebrow: "Urgent Requirement",
     title: "Immediate delivery inventory",
     subtitle:
       "1500+ metric tonnes staged at Moradabad—seamless pipes, flanges, round bars, perforated sheets, and more with MTC-backed dispatch.",

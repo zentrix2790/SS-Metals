@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { CATALOGUE_STOCK, STOCK_LAST_UPDATED_LABEL } from "@/lib/catalogue-data";
 import { waLink } from "@/lib/site";
 import type { StockItem } from "@/lib/types";
 
-export const metadata: Metadata = { title: "Ready Stock Inventory" };
+export const metadata: Metadata = { title: "Urgent Requirement Inventory" };
 
 function status(i: StockItem) {
   if (i.quantity <= 0) return { label: "Out of stock", cls: "bg-red-100 text-red-800" };
@@ -85,12 +86,13 @@ function StockTable({
 }
 
 export default function ReadyStockPage() {
+  redirect("/contact");
   const all = CATALOGUE_STOCK;
   return (
     <>
       <section className="bg-ink text-white">
         <div className="wrap py-14 sm:py-16">
-          <h1 className="h-page">Ready stock inventory</h1>
+          <h1 className="h-page">Urgent Requirement inventory</h1>
           <p className="mt-4 max-w-2xl text-lg text-steel-200">
             Finished goods and raw material available for quick dispatch. Last updated{" "}
             {STOCK_LAST_UPDATED_LABEL}.

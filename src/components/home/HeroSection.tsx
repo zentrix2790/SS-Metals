@@ -17,10 +17,10 @@ export function HeroSection() {
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/ready-stock"
+            href="/contact?type=urgent"
             className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
           >
-            Check ready stock
+            Check Urgent Requirement
           </Link>
         </div>
       </div>

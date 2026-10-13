@@ -80,10 +80,12 @@ export default function ProductCatalogue({
         </p>
       ) : (
         <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {list.map((p) => (
+          {list.map((p, idx) => (
             <article
               key={p.id}
-              className="flex flex-col overflow-hidden rounded border border-steel-200 bg-white"
+              data-aos="fade-up"
+              data-aos-delay={(idx % 4) * 60}
+              className="flex flex-col overflow-hidden rounded border border-steel-200 bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <button
                 type="button"

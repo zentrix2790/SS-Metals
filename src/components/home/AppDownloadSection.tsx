@@ -88,7 +88,7 @@ export function AppDownloadSection() {
                   <Smartphone className="h-5 w-5 text-amber-600" />
                   <span className="text-sm font-bold">SS Metals</span>
                 </div>
-                <p className="mt-2 text-xs text-slate-500">Ready stock · Quotes · Track</p>
+                <p className="mt-2 text-xs text-slate-500">Urgent Requirement · Quotes · Track</p>
                 <div className="mt-6 space-y-3">
                   {["304 Coil", "SS Pipe", "Kalvat Mug"].map((line) => (
                     <div

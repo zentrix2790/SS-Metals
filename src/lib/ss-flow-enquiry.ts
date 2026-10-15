@@ -31,13 +31,30 @@ export function toSsFlowEnquiryBody(input: SiteEnquiryInput) {
   };
 }
 
-/** Desk app origin (SS-Flow). Defaults to local port 3000. */
-export function ssFlowApiBase() {
+export function isProductionDeployment() {
+  return process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
+}
+
+/**
+ * SS-Flow origin for server-side proxy (/api/enquiries → SS-Flow).
+ * Local dev defaults to port 3000; on Vercel/production SS_FLOW_API_URL is required.
+ */
+export function ssFlowApiBase(): string {
   const fromEnv =
     process.env.SS_FLOW_API_URL?.trim() ||
     process.env.SS_FLOW_INTERNAL_URL?.trim() ||
     "";
-  return fromEnv.replace(/\/$/, "") || "http://127.0.0.1:3000";
+
+  const normalized = fromEnv.replace(/\/$/, "");
+  if (normalized) return normalized;
+
+  if (isProductionDeployment()) {
+    throw new Error(
+      "SS_FLOW_API_URL is not set on this deployment. Add it to the SS-Metals website project on Vercel (e.g. https://ss-flow-opal.vercel.app), enable Production, then redeploy.",
+    );
+  }
+
+  return "http://127.0.0.1:3000";
 }
 
 /** Browser → local /api/enquiries → SS-Flow. */

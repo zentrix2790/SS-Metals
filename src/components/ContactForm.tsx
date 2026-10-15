@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitSiteEnquiry } from "@/lib/ss-flow-enquiry";
 
 export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -10,15 +11,18 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
     e.preventDefault();
     setState("sending");
     setError("");
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    const raw = Object.fromEntries(new FormData(e.currentTarget).entries());
+    const data = {
+      name: String(raw.name ?? ""),
+      company: String(raw.company ?? ""),
+      phone: String(raw.phone ?? ""),
+      email: String(raw.email ?? ""),
+      product_interest: String(raw.product_interest ?? ""),
+      message: String(raw.message ?? ""),
+      website: String(raw.website ?? ""),
+    };
     try {
-      const res = await fetch("/api/enquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || "Something went wrong. Please try again.");
+      await submitSiteEnquiry(data);
       setState("done");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");

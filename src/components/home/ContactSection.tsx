@@ -1,9 +1,35 @@
 "use client";
 
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useState } from "react";
+import { submitSiteEnquiry } from "@/lib/ss-flow-enquiry";
 import { site } from "@/lib/site-data";
 
 export function ContactSection() {
+  const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [error, setError] = useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setState("sending");
+    setError("");
+    const raw = Object.fromEntries(new FormData(e.currentTarget).entries());
+    try {
+      await submitSiteEnquiry({
+        name: String(raw.name ?? ""),
+        phone: String(raw.phone ?? ""),
+        email: String(raw.email ?? ""),
+        message: String(raw.message ?? ""),
+        website: String(raw.website ?? ""),
+      });
+      setState("done");
+      e.currentTarget.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setState("error");
+    }
+  }
+
   return (
     <section id="contact" className="scroll-mt-24 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -61,33 +87,56 @@ export function ContactSection() {
                   </a>
                 </li>
               </ul>
-              <form
-                className="mt-8 space-y-3"
-                onSubmit={(e) => e.preventDefault()}
-                aria-label="Quick enquiry form"
-              >
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
-                />
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
-                />
-                <textarea
-                  placeholder="Tell us about your requirement..."
-                  rows={3}
-                  className="w-full resize-none rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-amber-700 py-2.5 text-sm font-semibold text-white hover:bg-amber-600"
-                >
-                  Submit enquiry (wire up later)
-                </button>
-              </form>
+              {state === "done" ? (
+                <p className="mt-8 rounded-xl border border-emerald-700/50 bg-emerald-950/40 p-4 text-sm text-emerald-200">
+                  Enquiry received — our team will contact you shortly.
+                </p>
+              ) : (
+                <form className="mt-8 space-y-3" onSubmit={onSubmit} aria-label="Quick enquiry form">
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name *"
+                    className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  />
+                  <input
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="Phone / WhatsApp *"
+                    className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  />
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email address"
+                    className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  />
+                  <textarea
+                    name="message"
+                    required
+                    placeholder="Tell us about your requirement..."
+                    rows={3}
+                    className="w-full resize-none rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  />
+                  <div className="hidden" aria-hidden>
+                    <input name="website" tabIndex={-1} autoComplete="off" />
+                  </div>
+                  {state === "error" && (
+                    <p className="text-sm text-red-400" role="alert">
+                      {error}
+                    </p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={state === "sending"}
+                    className="w-full rounded-xl bg-amber-700 py-2.5 text-sm font-semibold text-white hover:bg-amber-600 disabled:opacity-60"
+                  >
+                    {state === "sending" ? "Sending…" : "Submit enquiry"}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

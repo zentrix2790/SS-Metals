@@ -12,5 +12,11 @@ export default function ProductCatalogueFromQuery({
   const searchParams = useSearchParams();
   const raw = searchParams.get("category");
   const initialCategory = raw ? decodeURIComponent(raw) : "All";
-  return <ProductCatalogue products={products} initialCategory={initialCategory} />;
+  return (
+    <ProductCatalogue
+      key={initialCategory}
+      products={products}
+      initialCategory={initialCategory}
+    />
+  );
 }

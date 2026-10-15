@@ -13,7 +13,7 @@ export const site = {
 } as const;
 
 export const aboutShowcase = {
-  src: "/about/ss-metals-showcase.jpg",
+  src: "/about/ss-metals-showcase.png",
   alt: "SS Metals — utensils and farma manufacturing, industrial metal supply",
 } as const;
 

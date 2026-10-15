@@ -12,6 +12,7 @@ interface FaqSectionProps {
   subtitle?: string;
   eyebrow?: string;
   layout?: "centered" | "split";
+  bgClassName?: string;
 }
 
 export function FaqSection({
@@ -21,13 +22,14 @@ export function FaqSection({
   subtitle = "Browse through our most frequent inquiries below. If you don't find what you are looking for, our team is always ready to assist.",
   eyebrow = "Help & Information",
   layout = "centered",
+  bgClassName = "bg-white",
 }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const items = typeof limit === "number" ? faqs.slice(0, limit) : faqs;
 
   if (layout === "split") {
     return (
-      <section id="faq" className="section bg-steel-50/60 overflow-hidden">
+      <section id="faq" className={`section ${bgClassName} overflow-hidden border-t border-steel-200/80`}>
         <div className="wrap">
           <div className="grid gap-10 lg:grid-cols-5 lg:gap-14">
             <div className="lg:col-span-2" data-aos="fade-right">
@@ -98,7 +100,7 @@ export function FaqSection({
 
   // Centered layout: Heading on TOP, FAQs BELOW
   return (
-    <section id="faq" className="section bg-steel-50/60 overflow-hidden">
+    <section id="faq" className={`section ${bgClassName} overflow-hidden border-t border-steel-200/80`}>
       <div className="wrap">
         {/* Top Header: Centered */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12" data-aos="fade-up">

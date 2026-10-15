@@ -1,9 +1,62 @@
 import Link from "next/link";
+import {
+  ArrowRight,
+  Boxes,
+  ChevronRight,
+  ClipboardList,
+  DraftingCompass,
+  Factory,
+  Layers,
+  Package,
+  PackageCheck,
+  ShieldCheck,
+  Truck,
+  Utensils,
+  Warehouse,
+} from "lucide-react";
 import CountUp from "@/components/CountUp";
 import FaqSection from "@/components/FaqSection";
 import SmartImage from "@/components/SmartImage";
 import { getPopularProducts } from "@/lib/static-catalog";
 import { GRADES, INFRA, MANUFACTURED_LINES, SITE, STATS, SUPPLIED_LINES, waLink } from "@/lib/site";
+
+const PROCESS_STEPS = [
+  {
+    step: "01",
+    title: "Planning & Requirement Analysis",
+    description:
+      "We understand your requirements, plan production, and select suitable materials to meet your specifications and industry standards.",
+    icon: ClipboardList,
+  },
+  {
+    step: "02",
+    title: "Precision Manufacturing",
+    description:
+      "Our experienced team uses established manufacturing processes to produce premium stainless steel kitchenware and industrial products with precision.",
+    icon: Factory,
+  },
+  {
+    step: "03",
+    title: "Quality Inspection",
+    description:
+      "Every product undergoes in-house testing for metallurgical properties, dimensional accuracy, and consistent quality before dispatch.",
+    icon: ShieldCheck,
+  },
+  {
+    step: "04",
+    title: "Packaging & Order Processing",
+    description:
+      "We ensure proper packaging, verify order specifications, and prepare products for safe and efficient transportation.",
+    icon: PackageCheck,
+  },
+  {
+    step: "05",
+    title: "On-Time Delivery",
+    description:
+      "We focus on timely order fulfillment, reliable logistics, and efficient delivery to customers across India and international markets.",
+    icon: Truck,
+  },
+];
 
 export default function HomePage() {
   const popular = getPopularProducts(8);
@@ -121,7 +174,9 @@ export default function HomePage() {
               className="aspect-[4/3] w-full rounded"
             />
             <div className="absolute -bottom-5 left-4 rounded bg-ink px-5 py-3 text-white shadow-lg" data-aos="zoom-in" data-aos-delay="200">
-              <p className="font-display text-3xl font-bold text-brass">35K+</p>
+              <p className="font-display text-3xl font-bold text-brass">
+                <CountUp to={35} suffix="K+" />
+              </p>
               <p className="text-xs text-steel-200">pieces produced daily</p>
             </div>
           </div>
@@ -214,23 +269,275 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 5-Step Production & Supply Workflow */}
+      <section className="section bg-steel-50/80 border-t border-steel-200 overflow-hidden">
+        <div className="wrap">
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
+            <h2 className="h-section mt-2 text-ink">
+              Our 5-Step Process
+            </h2>
+            <p className="mt-3 text-steel-600 text-sm sm:text-base leading-relaxed">
+              From requirement analysis and precision manufacturing to strict inspection and on-time dispatch.
+            </p>
+          </div>
+
+          {/* Row 1: Steps 01, 02, 03 (3 Large Cards) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {PROCESS_STEPS.slice(0, 3).map((s, idx) => (
+              <div
+                key={s.step}
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-200 bg-white p-7 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-xl"
+              >
+                {/* Large Background Watermark Number */}
+                <span className="absolute -top-1 right-5 select-none font-display text-7xl sm:text-8xl font-black text-steel-200/40 transition-colors duration-300 group-hover:text-brand/10">
+                  {s.step}
+                </span>
+
+                {/* Connecting arrow to next step (desktop) */}
+                {idx < 2 && (
+                  <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center rounded-full bg-white border border-steel-300 text-steel-500 shadow-md group-hover:border-brand group-hover:text-brand group-hover:scale-110 transition-all">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                )}
+
+                <div className="relative z-10">
+                  {/* Step Icon & Badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand ring-1 ring-brand/20 shadow-2xs transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
+                      <s.icon className="h-6 w-6 transition-colors" />
+                    </span>
+                    <span className="font-mono text-xs font-bold tracking-wider px-3 py-1 rounded-md bg-steel-100 text-steel-700 transition-colors group-hover:bg-brand group-hover:text-white">
+                      STEP {s.step}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm sm:text-base text-steel-600 leading-relaxed">
+                    {s.description}
+                  </p>
+                </div>
+
+                {/* Bottom progression indicator */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-steel-100 flex items-center justify-between text-xs font-semibold text-steel-500 group-hover:text-brand transition-colors">
+                  <span>Phase {s.step} of 05</span>
+                  <span className="inline-flex items-center gap-1">
+                    <span>Next step</span>
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Steps 04, 05 (2 Large Cards Centered) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto mt-6 lg:mt-8">
+            {PROCESS_STEPS.slice(3, 5).map((s, idx) => (
+              <div
+                key={s.step}
+                data-aos="fade-up"
+                data-aos-delay={(idx + 3) * 100}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-200 bg-white p-7 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-xl"
+              >
+                {/* Large Background Watermark Number */}
+                <span className="absolute -top-1 right-5 select-none font-display text-7xl sm:text-8xl font-black text-steel-200/40 transition-colors duration-300 group-hover:text-brand/10">
+                  {s.step}
+                </span>
+
+                {/* Connecting arrow to next step (desktop) */}
+                {idx === 0 && (
+                  <div className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center rounded-full bg-white border border-steel-300 text-steel-500 shadow-md group-hover:border-brand group-hover:text-brand group-hover:scale-110 transition-all">
+                    <ChevronRight className="h-4 w-4" />
+                  </div>
+                )}
+
+                <div className="relative z-10">
+                  {/* Step Icon & Badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand ring-1 ring-brand/20 shadow-2xs transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
+                      <s.icon className="h-6 w-6 transition-colors" />
+                    </span>
+                    <span className="font-mono text-xs font-bold tracking-wider px-3 py-1 rounded-md bg-steel-100 text-steel-700 transition-colors group-hover:bg-brand group-hover:text-white">
+                      STEP {s.step}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm sm:text-base text-steel-600 leading-relaxed">
+                    {s.description}
+                  </p>
+                </div>
+
+                {/* Bottom progression indicator */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-steel-100 flex items-center justify-between text-xs font-semibold text-steel-500 group-hover:text-brand transition-colors">
+                  <span>Phase {s.step} of 05</span>
+                  {idx === 0 ? (
+                    <span className="inline-flex items-center gap-1">
+                      <span>Next step</span>
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </span>
+                  ) : (
+                    <span className="text-emerald-600 font-bold">Guaranteed Delivery ✓</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section bg-white overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-2">
-          <div className="rounded border border-brass/40 bg-brass-light/40 p-6" data-aos="fade-right">
-            <p className="text-xs font-bold uppercase tracking-wider text-brass-dark">We manufacture</p>
-            <ul className="mt-4 space-y-2 text-sm text-steel-700">
-              {MANUFACTURED_LINES.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
+          {/* Card 1: We Manufacture */}
+          <div
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
+            data-aos="fade-right"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brass-dark via-brass to-brass-light" />
+
+            <div>
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brass/15 text-brass-dark ring-1 ring-brass/30 shadow-xs transition-transform duration-300 group-hover:scale-110">
+                    <Factory className="h-5 w-5 sm:h-6 sm:w-6" />
+                  </span>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Manufacture</h3>
+                </div>
+                <span className="badge bg-brass/25 text-brass-dark font-bold uppercase tracking-wider text-[11px]">
+                  In-House Manufacturing
+                </span>
+              </div>
+
+              <p className="mt-3 text-xs sm:text-sm text-steel-600">
+                Precision deep-drawn unfinished utensils, blanks and tooling produced in our Moradabad plant.
+              </p>
+
+              <div className="my-5 h-px bg-brass/20" />
+
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
+                    <Utensils className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink">Stainless Steel Utensils</span>
+                    <p className="text-xs text-steel-600 mt-0.5">
+                      Ice buckets, water jugs, barware, kitchenware & related export-grade products.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
+                    <DraftingCompass className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink">Farma Design & Tooling</span>
+                    <p className="text-xs text-steel-600 mt-0.5">
+                      Custom blanks, circles & profiles crafted to drawing for deep-draw and OEM programs.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-brass/20 flex items-center justify-between">
+              <span className="text-xs font-medium text-steel-500">100% Quality Inspected</span>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brass-dark hover:underline"
+              >
+                <span>Explore Utensils & Farma</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
-          <div className="rounded border border-steel-200 bg-steel-50 p-6" data-aos="fade-left">
-            <p className="text-xs font-bold uppercase tracking-wider text-brand">We also supply</p>
-            <ul className="mt-4 space-y-2 text-sm text-steel-700">
-              {SUPPLIED_LINES.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
+
+          {/* Card 2: We Also Supply */}
+          <div
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-300 bg-gradient-to-br from-steel-50 via-white to-steel-100/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-xl"
+            data-aos="fade-left"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-dark via-brand to-brand-light" />
+
+            <div>
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand ring-1 ring-brand/25 shadow-xs transition-transform duration-300 group-hover:scale-110">
+                    <Warehouse className="h-5 w-5 sm:h-6 sm:w-6" />
+                  </span>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Also Supply</h3>
+                </div>
+                <span className="badge bg-brand-light text-brand font-bold uppercase tracking-wider text-[11px]">
+                  Direct Stockist & Supplier
+                </span>
+              </div>
+
+              <p className="mt-3 text-xs sm:text-sm text-steel-600">
+                Ready industrial stock with mill test certificates (MTC) and prompt dispatch across India.
+              </p>
+
+              <div className="my-5 h-px bg-steel-200" />
+
+              <ul className="grid gap-3 sm:grid-cols-2 text-sm">
+                <li className="flex items-start gap-2.5 rounded-xl bg-white p-3 ring-1 ring-steel-200/80 shadow-xs transition-all hover:border-brand/50 hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20">
+                    <Boxes className="h-3.5 w-3.5" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink text-xs sm:text-sm">Pipes & Tubes</span>
+                    <p className="text-[11px] text-steel-500 mt-0.5">Seamless, ERW & hollow sections</p>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-2.5 rounded-xl bg-white p-3 ring-1 ring-steel-200/80 shadow-xs transition-all hover:border-brand/50 hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink text-xs sm:text-sm">Flanges & Bars</span>
+                    <p className="text-[11px] text-steel-500 mt-0.5">Forged flanges & round bars</p>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-2.5 rounded-xl bg-white p-3 ring-1 ring-steel-200/80 shadow-xs transition-all hover:border-brand/50 hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20">
+                    <Layers className="h-3.5 w-3.5" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink text-xs sm:text-sm">Sheets & Coils</span>
+                    <p className="text-[11px] text-steel-500 mt-0.5">Perforated sheets, patta & patti</p>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-2.5 rounded-xl bg-white p-3 ring-1 ring-steel-200/80 shadow-xs transition-all hover:border-brand/50 hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20">
+                    <Package className="h-3.5 w-3.5" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink text-xs sm:text-sm">Scrap & Non-Ferrous</span>
+                    <p className="text-[11px] text-steel-500 mt-0.5">Industrial scrap & alloys</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-steel-200 flex items-center justify-between">
+              <span className="text-xs font-medium text-steel-500">MTC Certified Dispatch</span>
+              <Link
+                href="/supplier"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+              >
+                <span>View Supply Catalog</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -261,7 +568,7 @@ export default function HomePage() {
       </section>
 
       {/* Frequently Asked Questions (Top 4) */}
-      <FaqSection limit={4} showViewAll />
+      <FaqSection limit={4} showViewAll bgClassName="bg-white" />
 
       <section className="bg-ink text-white overflow-hidden">
         <div className="wrap py-14 text-center" data-aos="zoom-in">

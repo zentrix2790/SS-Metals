@@ -5,9 +5,11 @@ import { useEffect, useRef, useState } from "react";
 export default function CountUp({
   to,
   suffix = "",
+  duration = 1400,
 }: {
   to: number;
   suffix?: string;
+  duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [n, setN] = useState(0);
@@ -25,7 +27,7 @@ export default function CountUp({
         if (!entry.isIntersecting) return;
         io.disconnect();
         const start = performance.now();
-        const dur = 1400;
+        const dur = duration;
         const tick = (t: number) => {
           const p = Math.min(1, (t - start) / dur);
           setN(Math.round(to * (1 - Math.pow(1 - p, 3))));
@@ -33,11 +35,11 @@ export default function CountUp({
         };
         requestAnimationFrame(tick);
       },
-      { threshold: 0.4 },
+      { threshold: 0.2 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [to]);
+  }, [to, duration]);
 
   return (
     <span ref={ref}>

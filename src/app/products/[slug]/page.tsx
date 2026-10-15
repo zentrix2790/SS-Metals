@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ProductPageView } from "@/components/products/ProductPageView";
 import {
   getProductSlugs,
@@ -29,11 +30,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: PageProps) {
+async function ProductPageContent({ params }: PageProps) {
   const { slug } = await params;
   if (!isProductSlug(slug)) {
     notFound();
   }
   const product = productPages[slug];
   return <ProductPageView product={product} />;
+}
+
+export default function ProductPage({ params }: PageProps) {
+  return (
+    <Suspense fallback={<div className="min-h-[50vh] bg-ink" />}>
+      <ProductPageContent params={params} />
+    </Suspense>
+  );
 }

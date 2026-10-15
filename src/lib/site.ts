@@ -48,7 +48,7 @@ export const STATS = [
 
 export const INFRA = [
   {
-    src: "/about/ss-metals-showcase.jpg",
+    src: "/about/ss-metals-showcase.png",
     caption: "Plant overview — Moradabad",
   },
   {

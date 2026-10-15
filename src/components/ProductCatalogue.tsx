@@ -23,6 +23,10 @@ export default function ProductCatalogue({
   const [q, setQ] = useState("");
   const [active, setActive] = useState<Product | null>(null);
 
+  useEffect(() => {
+    setCat(categories.includes(initialCategory) ? initialCategory : "All");
+  }, [initialCategory, categories]);
+
   const list = products.filter(
     (p) =>
       (cat === "All" || p.category === cat) &&
@@ -80,11 +84,10 @@ export default function ProductCatalogue({
         </p>
       ) : (
         <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {list.map((p, idx) => (
+          {list.map((p) => (
             <article
               key={p.id}
-              data-aos="fade-up"
-              data-aos-delay={(idx % 4) * 60}
+              suppressHydrationWarning
               className="flex flex-col overflow-hidden rounded border border-steel-200 bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <button

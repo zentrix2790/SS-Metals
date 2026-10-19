@@ -17,46 +17,9 @@ import {
 import CountUp from "@/components/CountUp";
 import FaqSection from "@/components/FaqSection";
 import SmartImage from "@/components/SmartImage";
+import ProcessCarousel from "@/components/home/ProcessCarousel";
 import { getPopularProducts } from "@/lib/static-catalog";
 import { GRADES, INFRA, MANUFACTURED_LINES, SITE, STATS, SUPPLIED_LINES, waLink } from "@/lib/site";
-
-const PROCESS_STEPS = [
-  {
-    step: "01",
-    title: "Planning & Requirement Analysis",
-    description:
-      "We understand your requirements, plan production, and select suitable materials to meet your specifications and industry standards.",
-    icon: ClipboardList,
-  },
-  {
-    step: "02",
-    title: "Precision Manufacturing",
-    description:
-      "Our experienced team uses established manufacturing processes to produce premium stainless steel kitchenware and industrial products with precision.",
-    icon: Factory,
-  },
-  {
-    step: "03",
-    title: "Quality Inspection",
-    description:
-      "Every product undergoes in-house testing for metallurgical properties, dimensional accuracy, and consistent quality before dispatch.",
-    icon: ShieldCheck,
-  },
-  {
-    step: "04",
-    title: "Packaging & Order Processing",
-    description:
-      "We ensure proper packaging, verify order specifications, and prepare products for safe and efficient transportation.",
-    icon: PackageCheck,
-  },
-  {
-    step: "05",
-    title: "On-Time Delivery",
-    description:
-      "We focus on timely order fulfillment, reliable logistics, and efficient delivery to customers across India and international markets.",
-    icon: Truck,
-  },
-];
 
 export default function HomePage() {
   const popular = getPopularProducts(8);
@@ -237,7 +200,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section overflow-hidden">
+      <section className="section bg-white overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div data-aos="fade-right">
             <h2 className="h-section">Direct raw material stockiest</h2>
@@ -269,126 +232,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5-Step Production & Supply Workflow */}
-      <section className="section bg-steel-50/80 border-t border-steel-200 overflow-hidden">
+      {/* 5-Step Production & Supply Workflow Carousel */}
+      <section className="section bg-steel-50 border-y border-steel-200 overflow-hidden">
         <div className="wrap">
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
-            <h2 className="h-section mt-2 text-ink">
-              Our 5-Step Process
-            </h2>
-            <p className="mt-3 text-steel-600 text-sm sm:text-base leading-relaxed">
-              From requirement analysis and precision manufacturing to strict inspection and on-time dispatch.
-            </p>
-          </div>
-
-          {/* Row 1: Steps 01, 02, 03 (3 Large Cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {PROCESS_STEPS.slice(0, 3).map((s, idx) => (
-              <div
-                key={s.step}
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-200 bg-white p-7 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-xl"
-              >
-                {/* Large Background Watermark Number */}
-                <span className="absolute -top-1 right-5 select-none font-display text-7xl sm:text-8xl font-black text-steel-200/40 transition-colors duration-300 group-hover:text-brand/10">
-                  {s.step}
-                </span>
-
-                {/* Connecting arrow to next step (desktop) */}
-                {idx < 2 && (
-                  <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center rounded-full bg-white border border-steel-300 text-steel-500 shadow-md group-hover:border-brand group-hover:text-brand group-hover:scale-110 transition-all">
-                    <ChevronRight className="h-4 w-4" />
-                  </div>
-                )}
-
-                <div className="relative z-10">
-                  {/* Step Icon & Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand ring-1 ring-brand/20 shadow-2xs transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
-                      <s.icon className="h-6 w-6 transition-colors" />
-                    </span>
-                    <span className="font-mono text-xs font-bold tracking-wider px-3 py-1 rounded-md bg-steel-100 text-steel-700 transition-colors group-hover:bg-brand group-hover:text-white">
-                      STEP {s.step}
-                    </span>
-                  </div>
-
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink leading-snug">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-steel-600 leading-relaxed">
-                    {s.description}
-                  </p>
-                </div>
-
-                {/* Bottom progression indicator */}
-                <div className="relative z-10 mt-6 pt-4 border-t border-steel-100 flex items-center justify-between text-xs font-semibold text-steel-500 group-hover:text-brand transition-colors">
-                  <span>Phase {s.step} of 05</span>
-                  <span className="inline-flex items-center gap-1">
-                    <span>Next step</span>
-                    <ChevronRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: Steps 04, 05 (2 Large Cards Centered) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto mt-6 lg:mt-8">
-            {PROCESS_STEPS.slice(3, 5).map((s, idx) => (
-              <div
-                key={s.step}
-                data-aos="fade-up"
-                data-aos-delay={(idx + 3) * 100}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-200 bg-white p-7 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-xl"
-              >
-                {/* Large Background Watermark Number */}
-                <span className="absolute -top-1 right-5 select-none font-display text-7xl sm:text-8xl font-black text-steel-200/40 transition-colors duration-300 group-hover:text-brand/10">
-                  {s.step}
-                </span>
-
-                {/* Connecting arrow to next step (desktop) */}
-                {idx === 0 && (
-                  <div className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center rounded-full bg-white border border-steel-300 text-steel-500 shadow-md group-hover:border-brand group-hover:text-brand group-hover:scale-110 transition-all">
-                    <ChevronRight className="h-4 w-4" />
-                  </div>
-                )}
-
-                <div className="relative z-10">
-                  {/* Step Icon & Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand ring-1 ring-brand/20 shadow-2xs transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
-                      <s.icon className="h-6 w-6 transition-colors" />
-                    </span>
-                    <span className="font-mono text-xs font-bold tracking-wider px-3 py-1 rounded-md bg-steel-100 text-steel-700 transition-colors group-hover:bg-brand group-hover:text-white">
-                      STEP {s.step}
-                    </span>
-                  </div>
-
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink leading-snug">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-steel-600 leading-relaxed">
-                    {s.description}
-                  </p>
-                </div>
-
-                {/* Bottom progression indicator */}
-                <div className="relative z-10 mt-6 pt-4 border-t border-steel-100 flex items-center justify-between text-xs font-semibold text-steel-500 group-hover:text-brand transition-colors">
-                  <span>Phase {s.step} of 05</span>
-                  {idx === 0 ? (
-                    <span className="inline-flex items-center gap-1">
-                      <span>Next step</span>
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </span>
-                  ) : (
-                    <span className="text-emerald-600 font-bold">Guaranteed Delivery ✓</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProcessCarousel />
         </div>
       </section>
 
@@ -398,6 +245,7 @@ export default function HomePage() {
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
             data-aos="fade-right"
+            suppressHydrationWarning
           >
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brass-dark via-brass to-brass-light" />
 
@@ -463,6 +311,7 @@ export default function HomePage() {
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-300 bg-gradient-to-br from-steel-50 via-white to-steel-100/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-xl"
             data-aos="fade-left"
+            suppressHydrationWarning
           >
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-dark via-brand to-brand-light" />
 
@@ -544,7 +393,7 @@ export default function HomePage() {
 
       <section className="section overflow-hidden">
         <div className="wrap">
-          <div data-aos="fade-up">
+          <div data-aos="fade-up" suppressHydrationWarning>
             <h2 className="h-section">Manufacturing infrastructure</h2>
             <p className="mt-3 max-w-2xl text-steel-700">
               High-tonnage hydraulic deep draw presses, automatic beading and trimming lines, and a
@@ -553,13 +402,13 @@ export default function HomePage() {
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[INFRA[0], INFRA[2], INFRA[3]].map((i, idx) => (
-              <figure key={i.src} data-aos="fade-up" data-aos-delay={idx * 100}>
+              <figure key={i.src} data-aos="fade-up" data-aos-delay={idx * 100} suppressHydrationWarning>
                 <SmartImage src={i.src} alt={i.caption} className="aspect-[4/3] w-full rounded" />
                 <figcaption className="mt-2 text-sm text-steel-700">{i.caption}</figcaption>
               </figure>
             ))}
           </div>
-          <div className="mt-8" data-aos="fade-up">
+          <div className="mt-8" data-aos="fade-up" suppressHydrationWarning>
             <Link href="/infrastructure" className="btn btn-outline">
               View full infrastructure gallery
             </Link>
@@ -571,7 +420,7 @@ export default function HomePage() {
       <FaqSection limit={4} showViewAll bgClassName="bg-white" />
 
       <section className="bg-ink text-white overflow-hidden">
-        <div className="wrap py-14 text-center" data-aos="zoom-in">
+        <div className="wrap py-14 text-center" data-aos="zoom-in" suppressHydrationWarning>
           <h2 className="h-section mx-auto max-w-2xl">
             Partner with India&apos;s leading Kalvat manufacturer
           </h2>

@@ -103,7 +103,7 @@ export function FaqSection({
     <section id="faq" className={`section ${bgClassName} overflow-hidden border-t border-steel-200/80`}>
       <div className="wrap">
         {/* Top Header: Centered */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12" data-aos="fade-up">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12" data-aos="fade-up" suppressHydrationWarning>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brass/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brass-dark">
             <HelpCircle className="h-3.5 w-3.5 text-brass-dark" />
             {eyebrow}
@@ -117,7 +117,7 @@ export function FaqSection({
         </div>
 
         {/* FAQ Accordion: Centered Below Heading */}
-        <div className="max-w-4xl mx-auto w-full" data-aos="fade-up" data-aos-delay="100">
+        <div className="max-w-4xl mx-auto w-full" data-aos="fade-up" data-aos-delay="100" suppressHydrationWarning>
           <div className="space-y-3">
             {items.map((item, index) => {
               const open = openIndex === index;
@@ -169,7 +169,7 @@ export function FaqSection({
           </div>
 
           {showViewAll && (
-            <div className="mt-8 text-center" data-aos="fade-up">
+            <div className="mt-8 text-center" data-aos="fade-up" suppressHydrationWarning>
               <Link
                 href="/faq"
                 className="btn btn-outline inline-flex items-center gap-2 border-steel-300 bg-white text-ink hover:border-brand hover:text-brand shadow-2xs"

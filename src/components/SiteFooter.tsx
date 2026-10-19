@@ -6,8 +6,9 @@ import { supplierNavItems } from "@/lib/supplier-pages";
 export default function SiteFooter() {
   return (
     <footer className="bg-ink text-steel-300 overflow-hidden">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 grid gap-8 py-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        <div data-aos="fade-up" data-aos-delay="50">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 grid grid-cols-2 gap-x-6 gap-y-8 py-12 lg:grid-cols-5 lg:gap-8">
+        {/* 1. Logo & Bio (Full width on mobile, 1 col on desktop) */}
+        <div className="col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="50" suppressHydrationWarning>
           <Link href="/" className="mb-4 inline-block rounded-xl bg-white p-3 sm:p-3.5 shadow-md transition-opacity hover:opacity-95">
             <Image
               src="/logo.png"
@@ -23,9 +24,11 @@ export default function SiteFooter() {
             pipes, tubes, flanges, and industrial metals.
           </p>
         </div>
-        <div data-aos="fade-up" data-aos-delay="100">
-          <h4 className="font-display text-base font-semibold text-white">Quick links</h4>
-          <ul className="mt-3 space-y-2 text-sm">
+
+        {/* 2. Quick links (Left on mobile) */}
+        <div className="col-span-1" data-aos="fade-up" data-aos-delay="100" suppressHydrationWarning>
+          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Quick links</h4>
+          <ul className="mt-3 space-y-2 text-xs sm:text-sm">
             {NAV.map((n) => (
               <li key={`${n.label}-${n.href}`}>
                 <Link href={n.href} className="hover:text-white transition-colors">
@@ -40,9 +43,11 @@ export default function SiteFooter() {
             </li>
           </ul>
         </div>
-        <div data-aos="fade-up" data-aos-delay="150">
-          <h4 className="font-display text-base font-semibold text-white">Manufactured ranges</h4>
-          <ul className="mt-3 space-y-2 text-sm">
+
+        {/* 3. Manufactured ranges (Right on mobile) */}
+        <div className="col-span-1" data-aos="fade-up" data-aos-delay="150" suppressHydrationWarning>
+          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Manufactured ranges</h4>
+          <ul className="mt-3 space-y-2 text-xs sm:text-sm">
             {FOOTER_RANGES.map((r) => (
               <li key={r}>
                 <Link
@@ -55,9 +60,11 @@ export default function SiteFooter() {
             ))}
           </ul>
         </div>
-        <div data-aos="fade-up" data-aos-delay="200">
-          <h4 className="font-display text-base font-semibold text-white">Supplier lines</h4>
-          <ul className="mt-3 space-y-2 text-sm">
+
+        {/* 4. Supplier lines (Left on mobile) */}
+        <div className="col-span-1" data-aos="fade-up" data-aos-delay="200" suppressHydrationWarning>
+          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Supplier lines</h4>
+          <ul className="mt-3 space-y-2 text-xs sm:text-sm">
             {supplierNavItems.map((r) => (
               <li key={r.slug}>
                 <Link href={`/supplier/${r.slug}`} className="hover:text-white transition-colors">
@@ -67,25 +74,26 @@ export default function SiteFooter() {
             ))}
           </ul>
         </div>
-        <div className="text-sm" data-aos="fade-up" data-aos-delay="250">
-          <h4 className="font-display text-base font-semibold text-white">Factory & contact</h4>
+
+        {/* 5. Factory & contact (Right on mobile) */}
+        <div className="col-span-1 text-xs sm:text-sm" data-aos="fade-up" data-aos-delay="250" suppressHydrationWarning>
+          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Factory & contact</h4>
           <address className="mt-3 not-italic leading-relaxed">{SITE.address}</address>
           <p className="mt-3">
-            <a href="tel:+919412236335" className="hover:text-white transition-colors">
+            <a href="tel:+919412236335" className="hover:text-white transition-colors block">
               +91 9412236335
             </a>
-            <br />
-            <a href="tel:+919458771652" className="hover:text-white transition-colors">
+            <a href="tel:+919458771652" className="hover:text-white transition-colors block mt-1">
               +91 9458771652
             </a>
           </p>
           <p className="mt-2 text-steel-400">{SITE.proprietor}</p>
           <p className="mt-3">
-            <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors">
+            <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors break-all">
               {SITE.email}
             </a>
           </p>
-          <Link href="/contact" className="btn btn-dark-outline mt-4 !py-2">
+          <Link href="/contact" className="btn btn-dark-outline mt-4 !py-2 w-full sm:w-auto text-center">
             Send enquiry
           </Link>
         </div>

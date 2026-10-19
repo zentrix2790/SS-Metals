@@ -72,7 +72,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
   const isSupplierActive = path.startsWith("/supplier");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-steel-200 bg-white">
+    <div className="border-b border-steel-200 bg-white">
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
         {/* Left: Brand Logo */}
         <Link href="/" className="flex shrink-0 items-center py-1" onClick={() => setOpen(false)}>
@@ -167,7 +167,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
 
           <nav
             id="mobile-nav"
-            className="relative z-40 max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain border-t border-steel-200 bg-white shadow-xl touch-pan-y lg:hidden"
+            className="relative z-40 max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain border-t border-steel-200 bg-white shadow-xl touch-pan-y lg:hidden"
             aria-label="Mobile"
           >
             <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 py-3 pb-12 sm:px-6">
@@ -334,7 +334,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         </nav>
       </>
     ) : null}
-    </header>
+    </div>
   );
 }
 

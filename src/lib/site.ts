@@ -11,7 +11,9 @@ export const SITE = {
     "Sri Radha Krishna Complex, Old Rampur Road, Near Bus Stand, Moradabad, Uttar Pradesh 244001, India",
   addressShort: "Old Rampur Road, Moradabad, UP",
   whatsapp: "919412236335",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3001"),
   proprietor: "Mr. Pradeep Kumar Agarwal",
 };
 

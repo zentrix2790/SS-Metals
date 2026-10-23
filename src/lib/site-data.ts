@@ -124,6 +124,13 @@ export const highlights = [
   },
 ] as const;
 
+export const stats = [
+  { value: "39+", label: "Years of experience" },
+  { value: "50+", label: "Export clients" },
+  { value: "35,000+", label: "Pieces produced per day" },
+  { value: "40+", label: "OEM brands served" },
+] as const;
+
 export const materialStandards = [
   "ASTM",
   "ASME",
@@ -539,7 +546,7 @@ export const faqs = [
   },
   {
     question: "Where is SS Metals located?",
-    answers:  
-         "Our office is in Chitragupt Nagar, Shivpuri, Moradabad, Uttar Pradesh, with our works at Virpur Industrial Area, Sambhal Road, Moradabad.",
+    answer:
+      "Our office is in Chitragupt Nagar, Shivpuri, Moradabad, Uttar Pradesh, with our works at Virpur Industrial Area, Sambhal Road, Moradabad.",
   },
 ] as const;

@@ -39,7 +39,7 @@ export const NAV = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export const GRADES = ["JSLU", "J4", "304", "316", "410", "430"];
+export const GRADES = ["JSLU - DD", "JSLU - SDM", "JT", "CU 204", "304", "316","430","MIRROR FINISH", "MATE FINISH"];
 
 export const STATS = [
   { value: 50, suffix: "+", label: "Export clients" },

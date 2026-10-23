@@ -79,8 +79,8 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
           <Image
             src="/logo.png"
             alt={`${SITE.name} Logo`}
-            width={240}
-            height={80}
+            width={120}
+            height={120}
             priority
             className="h-12 w-auto object-contain sm:h-14 lg:h-16"
           />
@@ -177,9 +177,9 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
                 <Image
                   src="/logo.png"
                   alt={`${SITE.name} Logo`}
-                  width={140}
-                  height={48}
-                  className="h-8 w-auto object-contain"
+                  width={96}
+                  height={96}
+                  className="h-10 w-auto object-contain"
                 />
               </Link>
               <button

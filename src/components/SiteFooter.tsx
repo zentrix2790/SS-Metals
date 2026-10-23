@@ -9,13 +9,13 @@ export default function SiteFooter() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 grid grid-cols-2 gap-x-6 gap-y-8 py-12 lg:grid-cols-5 lg:gap-8">
         {/* 1. Logo & Bio (Full width on mobile, 1 col on desktop) */}
         <div className="col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="50" suppressHydrationWarning>
-          <Link href="/" className="mb-4 inline-block rounded-xl bg-white p-3 sm:p-3.5 shadow-md transition-opacity hover:opacity-95">
+          <Link href="/" className="mb-4 inline-block rounded-full overflow-hidden transition-opacity hover:opacity-95">
             <Image
               src="/logo.png"
               alt={`${SITE.name} Logo`}
-              width={260}
-              height={88}
-              className="h-16 w-auto object-contain sm:h-20"
+              width={160}
+              height={160}
+              className="h-16 w-16 rounded-full object-contain sm:h-20 sm:w-20"
             />
           </Link>
           <p className="mt-3 text-xs sm:text-sm leading-relaxed text-steel-400">

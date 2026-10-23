@@ -124,13 +124,6 @@ export const highlights = [
   },
 ] as const;
 
-export const stats = [
-  { value: "39+", label: "Years of experience" },
-  { value: "40+", label: "Countries served worldwide" },
-  { value: "1500+", label: "Metric tonnes in stock" },
-  { value: "50+", label: "Industries served" },
-] as const;
-
 export const materialStandards = [
   "ASTM",
   "ASME",
@@ -517,31 +510,36 @@ export const faqs = [
   {
     question: "What products does SS Metals supply?",
     answer:
-      "We supply stainless and alloy pipes, coils, sheets, circles, rods, design wire, farma blanks, unfinished utensils (kalvat), and related stock items. Custom cut sizes and grades are available on request.",
+      "We supply stainless steel coils, sheets, rods, wires, circles, patta, patti, and decorative sheets in various grades.",
   },
   {
     question: "Do you provide mill test certificates (MTC)?",
     answer:
-      "Yes. MTC and dimensional reports are provided with material as per your purchase specification. Share your required standards (ASTM, ASME, etc.) when requesting a quote.",
+      "Mill Test Certificates can be provided for applicable materials, subject to availability.",
   },
   {
-    question: "Is Urgent Requirement available for immediate dispatch?",
+    question: "Can I place bulk or urgent orders?",
     answer:
-      "We maintain Urgent Requirement on popular pipe schedules, coils, flanges, and utensil lines. Confirm SKU, grade, and quantity with our sales team for current availability and lead time.",
+      "Yes, we cater to bulk requirements and urgent orders, subject to stock availability and delivery schedules.",
   },
   {
-    question: "Which grades do you stock?",
+    question: "Which stainless steel grades do you stock?",
     answer:
-      "Common grades include 304, 316/L, J4, JSLU, 410, 430, carbon and alloy pipe grades, and duplex options on select programs. Exotic alloys are sourced against confirmed orders.",
+      "We deal in grades including JSLU - DD, JSLU - SDM, JT, CU 204, 304, 316 and 430.",
   },
   {
-    question: "Do you export outside India?",
+    question: "What stainless steel utensils do you manufacture?",
     answer:
-      "Yes. We serve domestic and export buyers with export-oriented packing, labeling, and documentation support for container and LCL shipments.",
+      "We manufacture unfinished (Kalvat) utensils, including ice buckets, canisters, jugs, and related products.",
   },
   {
-    question: "How do I request a quotation?",
+    question: "Do you supply products for export markets?",
     answer:
-      "Use the contact form on this site, email enquiry@ssmetals.in, or message us on WhatsApp with product type, grade, size/dimension, quantity, and delivery location for a tailored quote.",
+      "Yes, our raw materials and unfinished stainless steel utensils can serve domestic and export-market requirements.",
+  },
+  {
+    question: "Where is SS Metals located?",
+    answers:  
+         "Our office is in Chitragupt Nagar, Shivpuri, Moradabad, Uttar Pradesh, with our works at Virpur Industrial Area, Sambhal Road, Moradabad.",
   },
 ] as const;

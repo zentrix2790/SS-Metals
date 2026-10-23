@@ -28,9 +28,9 @@ export default function HomePage() {
   return (
     <>
       <section className="bg-ink text-white overflow-hidden">
-        <div className="wrap grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr]">
+        <div className="wrap grid items-center gap-8 pt-6 pb-12 sm:py-16 lg:py-20 lg:grid-cols-[1.3fr_1fr]">
           <div data-aos="fade-right">
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">
               <p className="inline-flex items-center justify-center gap-2 rounded bg-brass px-3.5 py-2 text-[clamp(14.5px,3.8vw,24px)] font-semibold tracking-tight text-ink whitespace-nowrap sm:px-5 sm:py-3">
                 Established {SITE.est} · {yearsTrust}+ years of trust
               </p>
@@ -71,7 +71,7 @@ export default function HomePage() {
               href="/contact"
               className="mt-4 inline-block text-sm font-semibold text-white underline underline-offset-4"
             >
-              Any Other Grade
+              Any Other Grade ?
             </Link>
           </div>
         </div>

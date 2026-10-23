@@ -81,7 +81,10 @@ export function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-              <span>{site.address}</span>
+              <div className="space-y-1">
+                <p><strong className="text-white">Office:</strong> {site.officeAddress}</p>
+                <p><strong className="text-white">Works:</strong> {site.worksAddress}</p>
+              </div>
             </li>
             {site.phones.map((phone) => (
               <li key={phone} className="flex items-center gap-2">

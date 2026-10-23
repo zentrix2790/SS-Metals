@@ -5,11 +5,13 @@ export const site = {
   proprietor: "Mr. Pradeep Kumar Agarwal",
   specialty:
     "Manufacturers of stainless steel utensils and farma design; suppliers of pipes, tubes, flanges, round bars, non-ferrous metals, scrap, and related industrial products.",
-  email: "enquiry@ssmetals.in",
-  phones: ["+91 9412236335", "+91 9458771652"],
+  email: "ssmetalsm@gmail.com",
+  phones: ["+91 9410480440"],
+  officeAddress: "Chitraguptnagar, Shivpuri, Moradabad-244001 (U.P.) INDIA",
+  worksAddress: "Virpur Industrial Area, Sambhal Road, Moradabad-244301 (U.P.) INDIA",
   address:
-    "Sri Radha Krishna Complex, Old Rampur Road, Near Bus Stand, Moradabad, Uttar Pradesh 244001, India",
-  whatsapp: "919412236335",
+    "Office: Chitraguptnagar, Shivpuri, Moradabad-244001 (U.P.) INDIA | Works: Virpur Industrial Area, Sambhal Road, Moradabad-244301 (U.P.) INDIA",
+  whatsapp: "+91 9410480440",
 } as const;
 
 export const aboutShowcase = {
@@ -547,6 +549,6 @@ export const faqs = [
   {
     question: "Where is SS Metals located?",
     answer:
-      "Our office is in Chitragupt Nagar, Shivpuri, Moradabad, Uttar Pradesh, with our works at Virpur Industrial Area, Sambhal Road, Moradabad.",
+      "Our office is at Chitraguptnagar, Shivpuri, Moradabad-244001 (U.P.), with our works at Virpur Industrial Area, Sambhal Road, Moradabad-244301 (U.P.) INDIA.",
   },
 ] as const;

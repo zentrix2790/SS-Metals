@@ -43,9 +43,9 @@ const FACT_CARDS = [
   },
   {
     icon: MapPin,
-    label: "Factory & Office",
+    label: "Office & Works",
     value: "Moradabad, Uttar Pradesh",
-    sub: SITE.address,
+    sub: `Office: ${SITE.officeAddress}\nWorks: ${SITE.worksAddress}`,
   },
   {
     icon: Utensils,
@@ -176,7 +176,7 @@ export default function CompanyProfilePage() {
                       {item.value}
                     </p>
                     {item.sub && (
-                      <p className="text-xs text-steel-600 mt-1 leading-relaxed">
+                      <p className="text-xs text-steel-600 mt-1 leading-relaxed whitespace-pre-line">
                         {item.sub}
                       </p>
                     )}

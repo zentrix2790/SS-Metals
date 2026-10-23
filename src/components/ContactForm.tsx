@@ -35,7 +35,7 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
       <div className="rounded border border-emerald-300 bg-emerald-50 p-6" role="status">
         <h2 className="font-display text-2xl font-semibold text-emerald-900">Enquiry received</h2>
         <p className="mt-1 text-sm text-emerald-900">
-          Thank you. Our team will contact you shortly. For urgent requests, call +91 9412236335.
+          Thank you. Our team will contact you shortly. For urgent requests, call +91 9410480440.
         </p>
       </div>
     );

@@ -100,7 +100,7 @@ export default function FaqPage() {
                 className="btn btn-outline w-full sm:w-auto inline-flex items-center justify-center gap-2 border-steel-300 bg-white text-ink shadow-2xs hover:bg-steel-50 hover:text-brand !py-2.5"
               >
                 <Phone className="h-4 w-4 text-brass-dark shrink-0" />
-                <span>+91 9412236335</span>
+                <span>+91 9410480440</span>
               </a>
 
               <a

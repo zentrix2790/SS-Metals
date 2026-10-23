@@ -75,16 +75,22 @@ export default function SiteFooter() {
           </ul>
         </div>
 
-        {/* 5. Factory & contact (Right on mobile) */}
+        {/* 5. Office, Works & contact (Right on mobile) */}
         <div className="col-span-1 text-xs sm:text-sm" data-aos="fade-up" data-aos-delay="250" suppressHydrationWarning>
-          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Factory & contact</h4>
-          <address className="mt-3 not-italic leading-relaxed">{SITE.address}</address>
+          <h4 className="font-display text-sm sm:text-base font-semibold text-white">Office & Works</h4>
+          <div className="mt-3 space-y-2.5 not-italic leading-relaxed text-steel-300">
+            <div>
+              <p className="font-semibold text-white">Office:</p>
+              <p className="text-steel-300">{SITE.officeAddress}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-white">Works:</p>
+              <p className="text-steel-300">{SITE.worksAddress}</p>
+            </div>
+          </div>
           <p className="mt-3">
-            <a href="tel:+919412236335" className="hover:text-white transition-colors block">
-              +91 9412236335
-            </a>
-            <a href="tel:+919458771652" className="hover:text-white transition-colors block mt-1">
-              +91 9458771652
+            <a href="tel:+919410480440" className="hover:text-white transition-colors block">
+              +91 9410480440
             </a>
           </p>
           <p className="mt-2 text-steel-400">{SITE.proprietor}</p>

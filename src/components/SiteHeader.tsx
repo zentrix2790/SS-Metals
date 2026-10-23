@@ -17,15 +17,7 @@ export default function SiteHeader() {
                 className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
               >
                 <Phone className="h-3.5 w-3.5 text-brass" />
-                <span>+91 9412236335</span>
-              </a>
-              <span className="text-white/20">|</span>
-              <a
-                href="tel:+919458771652"
-                className="hidden sm:inline-flex items-center gap-1.5 transition-colors hover:text-white"
-              >
-                <Phone className="h-3.5 w-3.5 text-brass" />
-                <span>+91 9458771652</span>
+                <span>+91 9410480440</span>
               </a>
             </div>
 
@@ -41,7 +33,7 @@ export default function SiteHeader() {
               <span className="hidden md:inline text-white/20">|</span>
               <span className="hidden md:inline-flex items-center gap-1.5 text-steel-400">
                 <MapPin className="h-3.5 w-3.5 text-brass" />
-                <span>{SITE.addressShort}</span>
+                <span>Office: {SITE.officeAddressShort}</span>
               </span>
             </div>
           </div>

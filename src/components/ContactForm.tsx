@@ -44,10 +44,7 @@ function productKey(product: Product) {
 }
 
 function productLabel(product: Product) {
-  const specs = product.specifications
-    .filter((spec) => spec.value)
-    .map((spec) => `${spec.label} ${spec.value}${spec.unit ? ` ${spec.unit}` : ""}`);
-  return [product.name, product.code, ...specs].join(" · ");
+  return product.name;
 }
 
 export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }) {

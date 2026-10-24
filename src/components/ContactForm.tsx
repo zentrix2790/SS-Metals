@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { submitSiteEnquiry } from "@/lib/ss-flow-enquiry";
 
-type ProductSpec = { key: string; label: string; unit?: string; required: boolean; value: string; type?: "select" | "number" | "text" };
+type ProductSpec = { key: string; label: string; unit?: string; required: boolean; value: string; type?: "select" | "number" | "text"; options?: string[] };
 type Product = {
   id: string;
   name: string;
   code: string;
   productVariantId: string | null;
   uom: { id: string | null; code: string; name: string };
+  uomOptions?: { id: string | null; code: string; name: string; isDefault?: boolean }[];
   specifications: ProductSpec[];
 };
 type Line = {
@@ -69,6 +70,25 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
         if (page > 1000) throw new Error("The product catalog returned too many pages.");
       }
       setProducts(loaded);
+      if (defaultProduct) {
+        const needle = defaultProduct.trim().toLowerCase();
+        const matched = loaded.find((p) =>
+          p.id.toLowerCase() === needle ||
+          p.code.toLowerCase() === needle ||
+          p.name.toLowerCase() === needle ||
+          `${p.name} ${p.code}`.toLowerCase().includes(needle)
+        );
+        if (matched) {
+          setLines((current) => current.map((l, i) => i === 0 && !l.productId ? {
+            ...l,
+            productId: matched.id,
+            productVariantId: matched.productVariantId ?? "",
+            selectedProduct: matched,
+            uom: matched.uom.code,
+            specifications: Object.fromEntries(matched.specifications.filter((s) => s.value).map((s) => [s.key, s.value])),
+          } : l));
+        }
+      }
       setState("ready");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Product options are temporarily unavailable.");
@@ -176,10 +196,75 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
             const chosen = line.selectedProduct;
             return <fieldset key={line.key} className="space-y-4 rounded-lg border border-steel-200 bg-white p-4 sm:p-5"><legend className="px-1 font-semibold text-ink">Item {index + 1}</legend>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="sm:col-span-2"><label className="label" htmlFor={`product-${line.key}`}>Product *</label><select id={`product-${line.key}`} className="field" value={chosen ? productKey(chosen) : ""} disabled={state !== "ready" || !products.length} onChange={(event) => chooseProduct(line, event.target.value)}><option value="">Choose a product</option>{products.map((product) => <option key={productKey(product)} value={productKey(product)}>{productLabel(product)}</option>)}</select></div>
-                {chosen?.specifications.map((spec) => <div key={spec.key}><label className="label" htmlFor={`${spec.key}-${line.key}`}>{spec.label}{spec.unit ? ` (${spec.unit})` : ""}{spec.required ? " *" : ""}</label><input id={`${spec.key}-${line.key}`} className="field" type={spec.type === "number" ? "number" : "text"} min={spec.type === "number" ? "0.001" : undefined} step={spec.type === "number" ? "any" : undefined} value={line.specifications[spec.key] ?? ""} readOnly={Boolean(spec.value)} required={spec.required} onChange={(event) => updateLine(line.key, { specifications: { ...line.specifications, [spec.key]: event.target.value } })} /></div>)}
+                <div className="sm:col-span-2">
+                  <label className="label" htmlFor={`product-${line.key}`}>Product *</label>
+                  <select
+                    id={`product-${line.key}`}
+                    className="field"
+                    value={chosen ? productKey(chosen) : ""}
+                    disabled={state !== "ready" || !products.length}
+                    onChange={(event) => chooseProduct(line, event.target.value)}
+                  >
+                    <option value="">Choose a product</option>
+                    {products.map((product) => (
+                      <option key={productKey(product)} value={productKey(product)}>
+                        {productLabel(product)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {chosen?.specifications.map((spec) => (
+                  <div key={spec.key}>
+                    <label className="label" htmlFor={`${spec.key}-${line.key}`}>
+                      {spec.label}{spec.unit ? ` (${spec.unit})` : ""}{spec.required ? " *" : ""}
+                    </label>
+                    {spec.options && spec.options.length > 1 ? (
+                      <select
+                        id={`${spec.key}-${line.key}`}
+                        className="field"
+                        value={line.specifications[spec.key] ?? spec.value ?? ""}
+                        required={spec.required}
+                        onChange={(event) => updateLine(line.key, { specifications: { ...line.specifications, [spec.key]: event.target.value } })}
+                      >
+                        <option value="">{`Select ${spec.label.toLowerCase()}`}</option>
+                        {spec.options.map((opt) => (
+                          <option key={opt} value={opt}>{opt}</option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        id={`${spec.key}-${line.key}`}
+                        className="field"
+                        type={spec.type === "number" ? "number" : "text"}
+                        min={spec.type === "number" ? "0.001" : undefined}
+                        step={spec.type === "number" ? "any" : undefined}
+                        value={line.specifications[spec.key] ?? spec.value ?? ""}
+                        readOnly={Boolean(spec.value)}
+                        required={spec.required}
+                        onChange={(event) => updateLine(line.key, { specifications: { ...line.specifications, [spec.key]: event.target.value } })}
+                        placeholder={spec.value ? "" : (spec.required ? `Enter ${spec.label.toLowerCase()}` : "Optional")}
+                      />
+                    )}
+                  </div>
+                ))}
                 <div><label className="label" htmlFor={`quantity-${line.key}`}>Quantity *</label><input id={`quantity-${line.key}`} className="field" required type="number" min="0.001" step="0.001" value={line.quantity} onChange={(event) => updateLine(line.key, { quantity: event.target.value })} /></div>
-                <div><label className="label" htmlFor={`uom-${line.key}`}>Unit</label><input id={`uom-${line.key}`} className="field" value={line.uom} readOnly aria-readonly="true" /></div>
+                <div>
+                  <label className="label" htmlFor={`uom-${line.key}`}>Unit</label>
+                  {chosen?.uomOptions && chosen.uomOptions.length > 1 ? (
+                    <select
+                      id={`uom-${line.key}`}
+                      className="field"
+                      value={line.uom}
+                      onChange={(event) => updateLine(line.key, { uom: event.target.value })}
+                    >
+                      {chosen.uomOptions.map((opt) => (
+                        <option key={opt.code} value={opt.code}>{opt.name || opt.code}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input id={`uom-${line.key}`} className="field" value={line.uom} readOnly aria-readonly="true" />
+                  )}
+                </div>
                 <div className="sm:col-span-2"><label className="label" htmlFor={`description-${line.key}`}>Additional requirements</label><textarea id={`description-${line.key}`} className="field" rows={2} maxLength={500} value={line.description} onChange={(event) => updateLine(line.key, { description: event.target.value })} /></div>
                 <div className="sm:col-span-2"><label className="label" htmlFor={`notes-${line.key}`}>Item notes (optional)</label><input id={`notes-${line.key}`} className="field" maxLength={500} value={line.notes} onChange={(event) => updateLine(line.key, { notes: event.target.value })} /></div>
               </div>
@@ -191,8 +276,8 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
 
       <section className="space-y-4"><h2 className="font-display text-xl font-semibold text-ink">Delivery and other details</h2><div className="grid gap-4 sm:grid-cols-2"><div><label className="label" htmlFor="deliveryDate">Required delivery date (optional)</label><input id="deliveryDate" name="deliveryDate" type="date" className="field" /></div><div className="sm:col-span-2"><label className="label" htmlFor="remarks">Commercial remarks (optional)</label><textarea id="remarks" name="remarks" className="field" rows={3} maxLength={1000} /></div></div></section>
       <div className="hidden" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      {state === "error" && products.length > 0 && <p className="text-sm font-medium text-red-700" role="alert">{error}</p>}
-      <button className="btn btn-primary" disabled={state === "sending" || state === "loading"} type="submit">{state === "sending" ? "Sending…" : "Send enquiry"}</button>
+      {state === "error" && Boolean(error) && <p className="text-sm font-medium text-red-700" role="alert">{error}</p>}
+      <button className="btn btn-primary" disabled={state === "sending" || state === "loading" || !products.length} type="submit">{state === "sending" ? "Sending…" : "Send enquiry"}</button>
     </form>
   );
 }

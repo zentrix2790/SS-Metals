@@ -12,7 +12,6 @@ export type SiteEnquiryInput = {
   requiredDeliveryDate?: string;
   commercialRemarks?: string;
   items?: Array<{
-    categoryId?: string;
     productId?: string;
     productVariantId?: string;
     quantity: string;

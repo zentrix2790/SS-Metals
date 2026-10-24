@@ -145,9 +145,6 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
     }
   }
 
-<<<<<<< HEAD
-  if (state === "done") return <div className="rounded border border-emerald-300 bg-emerald-50 p-6" role="status"><h2 className="font-display text-2xl font-semibold text-emerald-900">Enquiry received</h2><p className="mt-1 text-sm text-emerald-900">Thank you. Our team will contact you shortly. For urgent requests, call +91 9412236335.</p></div>;
-=======
   if (state === "done") {
     return (
       <div className="rounded border border-emerald-300 bg-emerald-50 p-6" role="status">
@@ -158,7 +155,6 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
       </div>
     );
   }
->>>>>>> 2b11f0aad774cc23ae22aca7cd90a3c8c74217ce
 
   return (
     <form onSubmit={onSubmit} className="space-y-7">

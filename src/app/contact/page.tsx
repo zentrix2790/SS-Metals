@@ -33,21 +33,26 @@ export default function ContactPage() {
           </div>
           <aside className="space-y-5 text-sm" data-aos="fade-left">
             <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="100">
-              <h2 className="font-display text-xl font-semibold">Factory and office</h2>
-              <address className="mt-2 not-italic text-steel-700">{SITE.address}</address>
+              <h2 className="font-display text-xl font-semibold">Office & Works</h2>
+              <div className="mt-3 space-y-3 text-steel-700">
+                <div>
+                  <span className="font-semibold text-ink">Office:</span>
+                  <p className="mt-0.5 leading-relaxed">{SITE.officeAddress}</p>
+                </div>
+                <div className="pt-2 border-t border-steel-100">
+                  <span className="font-semibold text-ink">Works:</span>
+                  <p className="mt-0.5 leading-relaxed">{SITE.worksAddress}</p>
+                </div>
+              </div>
             </div>
             <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="200">
               <h2 className="font-display text-xl font-semibold">Call us</h2>
               <p className="mt-2">
-                <a className="text-brand hover:underline" href="tel:+919412236335">
-                  +91 9412236335
+                <a className="text-brand hover:underline" href="tel:+919410480440">
+                  +91 9410480440
                 </a>
               </p>
-              <p className="mt-1">
-                <a className="text-brand hover:underline" href="tel:+919458771652">
-                  +91 9458771652
-                </a>
-              </p>
+              
               <p className="mt-2 text-steel-600">{SITE.proprietor}</p>
               <p className="mt-3">
                 <a className="text-brand hover:underline" href={`mailto:${SITE.email}`}>
@@ -74,11 +79,12 @@ export default function ContactPage() {
                 Find Us On Google Maps
               </span>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-                Visit Our Factory & Office
+                Visit Our Works & Office
               </h2>
-              <p className="mt-1 text-sm text-steel-600 max-w-xl">
-                {SITE.address}
-              </p>
+              <div className="mt-2 space-y-1 text-sm text-steel-600 max-w-xl">
+                <p><strong className="text-ink font-semibold">Office:</strong> {SITE.officeAddress}</p>
+                <p><strong className="text-ink font-semibold">Works:</strong> {SITE.worksAddress}</p>
+              </div>
             </div>
             <a
               href={GOOGLE_MAPS_DIRECT_URL}

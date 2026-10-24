@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { usePathname } from "next/navigation";
 
 export default function AosInit() {
   const pathname = usePathname();
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    // Delay AOS.init until React has finished hydration to prevent className mismatches
-    const timer = setTimeout(() => {
+    // Wait until React has completely finished hydration across all trees
+    const runInit = () => {
       AOS.init({
         duration: 700,
         easing: "ease-out-cubic",
@@ -18,18 +19,59 @@ export default function AosInit() {
         offset: 50,
         delay: 50,
       });
-    }, 150);
+      isInitialized.current = true;
+    };
 
-    return () => clearTimeout(timer);
+    let idleId: number | undefined;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        runInit,
+        { timeout: 1000 }
+      );
+    } else {
+      timerId = setTimeout(runInit, 500);
+    }
+
+    return () => {
+      if (idleId !== undefined && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+      }
+      if (timerId !== undefined) {
+        clearTimeout(timerId);
+      }
+    };
   }, []);
 
   useEffect(() => {
-    // Refresh AOS instances after route transition completes
-    const timer = setTimeout(() => {
-      AOS.refresh();
-    }, 150);
+    // Only refresh on client-side route transitions, not during initial hydration
+    if (!isInitialized.current) return;
 
-    return () => clearTimeout(timer);
+    let idleId: number | undefined;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
+
+    const runRefresh = () => {
+      AOS.refresh();
+    };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        runRefresh,
+        { timeout: 500 }
+      );
+    } else {
+      timerId = setTimeout(runRefresh, 300);
+    }
+
+    return () => {
+      if (idleId !== undefined && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+      }
+      if (timerId !== undefined) {
+        clearTimeout(timerId);
+      }
+    };
   }, [pathname]);
 
   return null;

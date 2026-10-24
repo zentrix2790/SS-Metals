@@ -6,10 +6,14 @@ export const SITE = {
   tagline: "Utensils & Farma Manufacturers · Industrial Metal Suppliers — Moradabad",
   description:
     "SS Metals (Est. 1987) — manufacturers of stainless steel utensils and farma design; wholesalers and suppliers of pipes, tubes, flanges, round bars, fasteners, perforated sheets, coils, scrap, and non-ferrous metals in Moradabad.",
-  email: "enquiry@ssmetals.in",
+  email: "ssmetalsm@gmail.com",
+  officeAddress: "Chitraguptnagar, Shivpuri, Moradabad-244001 (U.P.) INDIA",
+  officeAddressShort: "Chitraguptnagar, Shivpuri, Moradabad",
+  worksAddress: "Virpur Industrial Area, Sambhal Road, Moradabad-244301 (U.P.) INDIA",
+  worksAddressShort: "Virpur Industrial Area, Sambhal Road, Moradabad",
   address:
-    "Sri Radha Krishna Complex, Old Rampur Road, Near Bus Stand, Moradabad, Uttar Pradesh 244001, India",
-  addressShort: "Old Rampur Road, Moradabad, UP",
+    "Office: Chitraguptnagar, Shivpuri, Moradabad-244001 (U.P.) INDIA | Works: Virpur Industrial Area, Sambhal Road, Moradabad-244301 (U.P.) INDIA",
+  addressShort: "Chitraguptnagar, Shivpuri, Moradabad",
   whatsapp: "919412236335",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -39,7 +43,7 @@ export const NAV = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export const GRADES = ["JSLU", "J4", "304", "316", "410", "430"];
+export const GRADES = ["JSLU - DD", "JSLU - SDM", "JT", "CU 204", "304", "316","430","MIRROR FINISH", "MATE FINISH"];
 
 export const STATS = [
   { value: 50, suffix: "+", label: "Export clients" },

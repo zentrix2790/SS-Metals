@@ -80,7 +80,7 @@ export function HeroCarousel() {
               aria-hidden={i !== index}
             >
               <div
-                className={`pointer-events-auto mx-auto max-w-3xl text-center ${
+                className={`pointer-events-auto mx-auto max-w- 2xl text-center ${
                   i === index ? "" : "pointer-events-none"
                 }`}
               >

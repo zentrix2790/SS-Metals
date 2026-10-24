@@ -9,13 +9,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div className="sm:col-span-2 lg:col-span-1">
           <div className="mb-4">
-            <Link href="/" className="inline-block rounded-xl bg-white p-3 sm:p-3.5 shadow-md transition-opacity hover:opacity-95">
+            <Link href="/" className="inline-block rounded-full overflow-hidden transition-opacity hover:opacity-95">
               <Image
                 src="/logo.png"
                 alt={site.name}
-                width={260}
-                height={88}
-                className="h-16 w-auto object-contain sm:h-20"
+                width={160}
+                height={160}
+                className="h-16 w-16 rounded-full object-contain sm:h-20 sm:w-20"
               />
             </Link>
           </div>
@@ -81,7 +81,10 @@ export function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-              <span>{site.address}</span>
+              <div className="space-y-1">
+                <p><strong className="text-white">Office:</strong> {site.officeAddress}</p>
+                <p><strong className="text-white">Works:</strong> {site.worksAddress}</p>
+              </div>
             </li>
             {site.phones.map((phone) => (
               <li key={phone} className="flex items-center gap-2">

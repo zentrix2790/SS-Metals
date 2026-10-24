@@ -70,7 +70,10 @@ export function ContactSection() {
               <ul className="mt-6 space-y-4 text-sm text-slate-300">
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                  {site.address}
+                  <div className="space-y-1">
+                    <p><strong className="text-white">Office:</strong> {site.officeAddress}</p>
+                    <p><strong className="text-white">Works:</strong> {site.worksAddress}</p>
+                  </div>
                 </li>
                 {site.phones.map((phone) => (
                   <li key={phone} className="flex items-center gap-3">

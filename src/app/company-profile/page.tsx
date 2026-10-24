@@ -43,9 +43,9 @@ const FACT_CARDS = [
   },
   {
     icon: MapPin,
-    label: "Factory & Office",
+    label: "Office & Works",
     value: "Moradabad, Uttar Pradesh",
-    sub: SITE.address,
+    sub: `Office: ${SITE.officeAddress}\nWorks: ${SITE.worksAddress}`,
   },
   {
     icon: Utensils,
@@ -176,7 +176,7 @@ export default function CompanyProfilePage() {
                       {item.value}
                     </p>
                     {item.sub && (
-                      <p className="text-xs text-steel-600 mt-1 leading-relaxed">
+                      <p className="text-xs text-steel-600 mt-1 leading-relaxed whitespace-pre-line">
                         {item.sub}
                       </p>
                     )}
@@ -191,75 +191,10 @@ export default function CompanyProfilePage() {
       {/* Row 3: We Manufacture & We Also Supply (Updated Version from Home) */}
       <section className="border-t border-steel-200 bg-white py-14 sm:py-16 overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-2">
-          {/* Card 1: We Manufacture */}
-          <div
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
-            data-aos="fade-right"
-          >
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brass-dark via-brass to-brass-light" />
-
-            <div>
-              <div className="flex items-center justify-between gap-3 flex-wrap">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brass/15 text-brass-dark ring-1 ring-brass/30 shadow-xs transition-transform duration-300 group-hover:scale-110">
-                    <Factory className="h-5 w-5 sm:h-6 sm:w-6" />
-                  </span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Manufacture</h3>
-                </div>
-                <span className="badge bg-brass/25 text-brass-dark font-bold uppercase tracking-wider text-[11px]">
-                  In-House Manufacturing
-                </span>
-              </div>
-
-              <p className="mt-3 text-xs sm:text-sm text-steel-600">
-                Precision deep-drawn unfinished utensils, blanks and tooling produced in our Moradabad plant.
-              </p>
-
-              <div className="my-5 h-px bg-brass/20" />
-
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
-                    <Utensils className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <span className="font-semibold text-ink">Stainless Steel Utensils</span>
-                    <p className="text-xs text-steel-600 mt-0.5">
-                      Ice buckets, water jugs, barware, kitchenware & related export-grade products.
-                    </p>
-                  </div>
-                </li>
-
-                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
-                    <DraftingCompass className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <span className="font-semibold text-ink">Farma Design & Tooling</span>
-                    <p className="text-xs text-steel-600 mt-0.5">
-                      Custom blanks, circles & profiles crafted to drawing for deep-draw and OEM programs.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-brass/20 flex items-center justify-between">
-              <span className="text-xs font-medium text-steel-500">100% Quality Inspected</span>
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brass-dark hover:underline"
-              >
-                <span>Explore Utensils & Farma</span>
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 2: We Also Supply */}
+          {/* Card 1: We Also Supply */}
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-300 bg-gradient-to-br from-steel-50 via-white to-steel-100/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-xl"
-            data-aos="fade-left"
+            data-aos="fade-right"
           >
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-dark via-brand to-brand-light" />
 
@@ -332,6 +267,71 @@ export default function CompanyProfilePage() {
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
               >
                 <span>View Supply Catalog</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 2: We Manufacture */}
+          <div
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
+            data-aos="fade-left"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brass-dark via-brass to-brass-light" />
+
+            <div>
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brass/15 text-brass-dark ring-1 ring-brass/30 shadow-xs transition-transform duration-300 group-hover:scale-110">
+                    <Factory className="h-5 w-5 sm:h-6 sm:w-6" />
+                  </span>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Manufacture</h3>
+                </div>
+                <span className="badge bg-brass/25 text-brass-dark font-bold uppercase tracking-wider text-[11px]">
+                  In-House Manufacturing
+                </span>
+              </div>
+
+              <p className="mt-3 text-xs sm:text-sm text-steel-600">
+                Precision deep-drawn unfinished utensils, blanks and tooling produced in our Moradabad plant.
+              </p>
+
+              <div className="my-5 h-px bg-brass/20" />
+
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
+                    <Utensils className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink">Stainless Steel Utensils</span>
+                    <p className="text-xs text-steel-600 mt-0.5">
+                      Ice buckets, water jugs, barware, kitchenware & related export-grade products.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
+                    <DraftingCompass className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink">Farma Design & Tooling</span>
+                    <p className="text-xs text-steel-600 mt-0.5">
+                      Custom blanks, circles & profiles crafted to drawing for deep-draw and OEM programs.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-brass/20 flex items-center justify-between">
+              <span className="text-xs font-medium text-steel-500">100% Quality Inspected</span>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brass-dark hover:underline"
+              >
+                <span>Explore Utensils & Farma</span>
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>

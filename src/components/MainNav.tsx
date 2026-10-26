@@ -73,16 +73,16 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
 
   return (
     <div className="border-b border-steel-200 bg-white">
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
         {/* Left: Brand Logo */}
-        <Link href="/" className="flex shrink-0 items-center py-1" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex shrink-0 items-center py-0.5" onClick={() => setOpen(false)}>
           <Image
             src="/logo.png"
             alt={`${SITE.name} Logo`}
             width={120}
             height={120}
             priority
-            className="h-12 w-auto object-contain sm:h-14 lg:h-16"
+            className="h-8.5 w-auto object-contain sm:h-9.5 lg:h-10"
           />
         </Link>
 
@@ -93,7 +93,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors xl:px-3 xl:py-2 ${
+              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${
                 active(n.href)
                   ? "bg-brand-light text-brand-dark"
                   : "text-steel-700 hover:bg-steel-50 hover:text-brand"
@@ -121,7 +121,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors xl:px-3 xl:py-2 ${
+              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${
                 active(n.href)
                   ? "bg-brand-light text-brand-dark"
                   : "text-steel-700 hover:bg-steel-50 hover:text-brand"
@@ -136,7 +136,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         <div className="hidden shrink-0 items-center lg:flex">
           <a
             href="tel:+919412236335"
-            className="group inline-flex min-w-[100px] items-center justify-center gap-2 rounded-lg bg-brand-light px-4 py-2 text-sm font-semibold text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white active:scale-[0.98]"
+            className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-light px-3.5 py-1.5 text-xs font-semibold text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white active:scale-[0.98] sm:text-sm"
           >
             <Phone className="h-3.5 w-3.5 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
             <span>Call</span>
@@ -146,7 +146,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         {/* Mobile menu 3-bar icon button */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-steel-300 bg-white text-steel-700 transition hover:bg-steel-50 hover:text-brand focus:outline-hidden lg:hidden"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-steel-300 bg-white text-steel-700 transition hover:bg-steel-50 hover:text-brand focus:outline-hidden lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -167,7 +167,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
 
           <nav
             id="mobile-nav"
-            className="relative z-40 max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain border-t border-steel-200 bg-white shadow-xl touch-pan-y lg:hidden"
+            className="relative z-40 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-steel-200 bg-white shadow-xl touch-pan-y lg:hidden"
             aria-label="Mobile"
           >
             <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 py-3 pb-12 sm:px-6">
@@ -179,16 +179,16 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
                   alt={`${SITE.name} Logo`}
                   width={96}
                   height={96}
-                  className="h-10 w-auto object-contain"
+                  className="h-8 w-auto object-contain"
                 />
               </Link>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-steel-300 bg-steel-50 text-steel-700 transition hover:bg-steel-100 hover:text-ink active:scale-95"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-steel-300 bg-steel-50 text-steel-700 transition hover:bg-steel-100 hover:text-ink active:scale-95"
                 aria-label="Close menu"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4.5 w-4.5" />
               </button>
             </div>
 

@@ -70,7 +70,7 @@ export function NavMenuDropdown({
     >
       <button
         type="button"
-        className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors xl:px-3 xl:py-2 ${
+        className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${
           active ? "bg-brand-light text-brand-dark" : "text-steel-700 hover:bg-steel-50 hover:text-brand"
         }`}
         aria-expanded={open}
@@ -78,7 +78,7 @@ export function NavMenuDropdown({
         onClick={() => setOpen((v) => !v)}
       >
         {label}
-        <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open ? (
         <div className="absolute left-0 top-full z-50 pt-1.5">

@@ -240,15 +240,46 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
         <div className="space-y-4">
           {lines.map((line, index) => {
             const chosen = line.selectedProduct;
-            const categoryOptions = [...new Map(products.map((product) => [product.category.id, product.category])).values()].sort((a, b) => {
-              const labelA = categoryDisplayLabel(a.name);
-              const labelB = categoryDisplayLabel(b.name);
-              const orderA = labelA.startsWith("Trading") ? 1 : labelA.startsWith("Manufactured") ? 2 : 3;
-              const orderB = labelB.startsWith("Trading") ? 1 : labelB.startsWith("Manufactured") ? 2 : 3;
-              if (orderA !== orderB) return orderA - orderB;
-              return labelA.localeCompare(b.name);
-            });
-            const parentOptions = [...new Map(products.filter((product) => !line.categoryId || product.category.id === line.categoryId).map((product) => [product.id, product])).values()];
+            const categoryOptions = (() => {
+              const seen = new Set<string>();
+              const list: { id: string; name: string }[] = [];
+              for (const product of products) {
+                const norm = product.category.name.trim().toLowerCase();
+                const isTrading = norm.includes("trading") || norm.includes("steel") || norm.includes("raw");
+                const isMfg = norm.includes("manufactur") || norm.includes("semi") || norm.includes("utensil") || norm.includes("finished");
+                const kind = isTrading ? "trading" : isMfg ? "manufactured" : null;
+                if (kind && !seen.has(kind)) {
+                  seen.add(kind);
+                  list.push({
+                    id: product.category.id,
+                    name: kind === "trading"
+                      ? "Trading Products (Raw Materials)"
+                      : "Manufactured Products (Finished & Semi-Finished Utensils)",
+                  });
+                }
+              }
+              return list.sort((a) => (a.name.startsWith("Trading") ? -1 : 1));
+            })();
+            const chosenCat = categoryOptions.find((c) => c.id === line.categoryId);
+            const isTradingSelected = chosenCat?.name.startsWith("Trading");
+            const isMfgSelected = chosenCat?.name.startsWith("Manufactured");
+
+            const parentOptions = [...new Map(
+              products
+                .filter((product) => {
+                  if (!line.categoryId) return true;
+                  if (product.category.id === line.categoryId) return true;
+                  const prodNorm = product.category.name.trim().toLowerCase();
+                  if (isTradingSelected) {
+                    return prodNorm.includes("trading") || prodNorm.includes("steel") || prodNorm.includes("raw");
+                  }
+                  if (isMfgSelected) {
+                    return prodNorm.includes("manufactur") || prodNorm.includes("semi") || prodNorm.includes("utensil") || prodNorm.includes("finished");
+                  }
+                  return false;
+                })
+                .map((product) => [product.id, product])
+            ).values()];
             const variants = products.filter((product) => product.id === line.parentProductId && product.productVariantId);
             const standardSpecOrder = ["grade", "finish", "thickness", "width", "length", "diameter"];
             const specKeys = [...new Set(variants.flatMap((product) => product.specifications.filter((spec) => spec.value).map((spec) => spec.key)))].sort((a, b) => {
@@ -274,7 +305,7 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
                     <option value="">Select product type</option>
                     {categoryOptions.map((category) => (
                       <option key={category.id} value={category.id}>
-                        {categoryDisplayLabel(category.name)}
+                        {category.name}
                       </option>
                     ))}
                   </select>

@@ -8,6 +8,18 @@ export type SiteEnquiryInput = {
   product_interest?: string;
   message?: string;
   website?: string;
+  address?: string;
+  requiredDeliveryDate?: string;
+  commercialRemarks?: string;
+  items?: Array<{
+    productId?: string;
+    productVariantId?: string;
+    quantity: string;
+    uom?: string;
+    itemDescription?: string;
+    specifications?: Record<string, string>;
+    notes?: string;
+  }>;
 };
 
 export function toSsFlowEnquiryBody(input: SiteEnquiryInput) {
@@ -23,6 +35,10 @@ export function toSsFlowEnquiryBody(input: SiteEnquiryInput) {
     phone,
     email: String(input.email ?? "").trim() || undefined,
     companyName: String(input.company ?? "").trim() || undefined,
+    address: String(input.address ?? "").trim() || undefined,
+    requiredDeliveryDate: input.requiredDeliveryDate || undefined,
+    commercialRemarks: String(input.commercialRemarks ?? "").trim() || undefined,
+    items: input.items,
     itemDescription,
     quantity: "1" as const,
     uom: "PCS" as const,

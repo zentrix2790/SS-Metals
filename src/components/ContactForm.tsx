@@ -9,13 +9,17 @@ type Product = {
   id: string;
   name: string;
   code: string;
+  category: { id: string; name: string };
   productVariantId: string | null;
+  displayName?: string | null;
   uom: { id: string | null; code: string; name: string };
   uomOptions?: { id: string | null; code: string; name: string; isDefault?: boolean }[];
   specifications: ProductSpec[];
 };
 type Line = {
   key: string;
+  categoryId: string;
+  parentProductId: string;
   productId: string;
   productVariantId: string;
   selectedProduct?: Product;
@@ -27,7 +31,7 @@ type Line = {
 };
 
 function newLine(description = "", key = "initial-item"): Line {
-  return { key, productId: "", productVariantId: "", quantity: "1", uom: "", description, specifications: {}, notes: "" };
+  return { key, categoryId: "", parentProductId: "", productId: "", productVariantId: "", quantity: "1", uom: "", description, specifications: {}, notes: "" };
 }
 
 async function readResponse<T>(response: Response): Promise<T> {
@@ -39,12 +43,23 @@ async function readResponse<T>(response: Response): Promise<T> {
   return body.data as T;
 }
 
-function productKey(product: Product) {
-  return `${product.id}:${product.productVariantId ?? ""}`;
-}
-
 function productLabel(product: Product) {
   return product.name;
+}
+
+function specificationValue(product: Product, key: string) {
+  return product.specifications.find((spec) => spec.key === key)?.value ?? "";
+}
+
+function categoryDisplayLabel(name: string): string {
+  const normalized = name.trim().toLowerCase();
+  if (normalized.includes("trading")) {
+    return "Trading Products (Raw Materials)";
+  }
+  if (normalized.includes("manufactur")) {
+    return "Manufactured Products (Finished & Semi-Finished Utensils)";
+  }
+  return name;
 }
 
 export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }) {
@@ -78,6 +93,8 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
         if (matched) {
           setLines((current) => current.map((l, i) => i === 0 && !l.productId ? {
             ...l,
+            categoryId: matched.category.id,
+            parentProductId: matched.id,
             productId: matched.id,
             productVariantId: matched.productVariantId ?? "",
             selectedProduct: matched,
@@ -102,17 +119,42 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
   }
 
   function chooseProduct(line: Line, value: string) {
-    const product = products.find((option) => productKey(option) === value);
-    if (!product) {
-      updateLine(line.key, { productId: "", productVariantId: "", selectedProduct: undefined, uom: "", specifications: {} });
+    const parent = products.find((option) => option.id === value);
+    if (!parent) {
+      updateLine(line.key, { parentProductId: "", productId: "", productVariantId: "", selectedProduct: undefined, uom: "", specifications: {} });
       return;
     }
+    const variants = products.filter((option) => option.id === parent.id && option.productVariantId);
+    const product = variants.length === 1 ? variants[0] : undefined;
     updateLine(line.key, {
-      productId: product.id,
-      productVariantId: product.productVariantId ?? "",
+      categoryId: parent.category.id,
+      parentProductId: parent.id,
+      productId: parent.id,
+      productVariantId: product?.productVariantId ?? "",
       selectedProduct: product,
-      uom: product.uom.code,
-      specifications: Object.fromEntries(product.specifications.filter((spec) => spec.value).map((spec) => [spec.key, spec.value])),
+      uom: product?.uom.code ?? "",
+      specifications: Object.fromEntries((product?.specifications ?? []).filter((spec) => spec.value).map((spec) => [spec.key, spec.value])),
+    });
+  }
+
+  function chooseCategory(line: Line, categoryId: string) {
+    updateLine(line.key, { categoryId, parentProductId: "", productId: "", productVariantId: "", selectedProduct: undefined, uom: "", specifications: {} });
+  }
+
+  function chooseSpecification(line: Line, variants: Product[], keys: string[], key: string, value: string) {
+    const next = { ...line.specifications };
+    const index = keys.indexOf(key);
+    for (const later of keys.slice(index + 1)) delete next[later];
+    if (value) next[key] = value;
+    else delete next[key];
+    const matches = variants.filter((product) => keys.every((specKey) => specificationValue(product, specKey) === (next[specKey] ?? "")));
+    const exact = matches.length === 1 ? matches[0] : undefined;
+    updateLine(line.key, {
+      specifications: next,
+      selectedProduct: exact,
+      productId: line.parentProductId,
+      productVariantId: exact?.productVariantId ?? "",
+      uom: exact?.uom.code ?? "",
     });
   }
 
@@ -120,8 +162,13 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
     event.preventDefault();
     setError("");
     for (const [index, line] of lines.entries()) {
-      if (!line.productId) {
-        setError(`Choose a product for item ${index + 1}.`);
+      if (!line.categoryId) {
+        setError(`Please select what type of product you are looking for for item ${index + 1}.`);
+        setState("error");
+        return;
+      }
+      if (!line.parentProductId || !line.productVariantId || !line.selectedProduct) {
+        setError(`Choose a saved, complete product specification for item ${index + 1}.`);
         setState("error");
         return;
       }
@@ -150,7 +197,9 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
         commercialRemarks: String(form.get("remarks") ?? ""),
         website: String(form.get("website") ?? ""),
         items: lines.map((line) => ({
+          categoryId: line.categoryId,
           productId: line.productId,
+          parentProductId: line.parentProductId,
           productVariantId: line.productVariantId || undefined,
           quantity: line.quantity,
           uom: line.uom,
@@ -191,76 +240,58 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
         <div className="space-y-4">
           {lines.map((line, index) => {
             const chosen = line.selectedProduct;
+            const categoryOptions = [...new Map(products.map((product) => [product.category.id, product.category])).values()].sort((a, b) => {
+              const labelA = categoryDisplayLabel(a.name);
+              const labelB = categoryDisplayLabel(b.name);
+              const orderA = labelA.startsWith("Trading") ? 1 : labelA.startsWith("Manufactured") ? 2 : 3;
+              const orderB = labelB.startsWith("Trading") ? 1 : labelB.startsWith("Manufactured") ? 2 : 3;
+              if (orderA !== orderB) return orderA - orderB;
+              return labelA.localeCompare(b.name);
+            });
+            const parentOptions = [...new Map(products.filter((product) => !line.categoryId || product.category.id === line.categoryId).map((product) => [product.id, product])).values()];
+            const variants = products.filter((product) => product.id === line.parentProductId && product.productVariantId);
+            const standardSpecOrder = ["grade", "finish", "thickness", "width", "length", "diameter"];
+            const specKeys = [...new Set(variants.flatMap((product) => product.specifications.filter((spec) => spec.value).map((spec) => spec.key)))].sort((a, b) => {
+              const ai = standardSpecOrder.indexOf(a); const bi = standardSpecOrder.indexOf(b);
+              if (ai >= 0 || bi >= 0) return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi);
+              return a.localeCompare(b);
+            });
+            const specMeta = new Map(variants.flatMap((product) => product.specifications.map((spec) => [spec.key, spec] as const)));
             return <fieldset key={line.key} className="space-y-4 rounded-lg border border-steel-200 bg-white p-4 sm:p-5"><legend className="px-1 font-semibold text-ink">Item {index + 1}</legend>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
-                  <label className="label" htmlFor={`product-${line.key}`}>Product *</label>
+                  <label className="label" htmlFor={`category-${line.key}`}>
+                    What type of product are you looking for? *
+                  </label>
                   <select
-                    id={`product-${line.key}`}
+                    id={`category-${line.key}`}
                     className="field"
-                    value={chosen ? productKey(chosen) : ""}
-                    disabled={state !== "ready" || !products.length}
-                    onChange={(event) => chooseProduct(line, event.target.value)}
+                    required
+                    value={line.categoryId}
+                    disabled={state !== "ready" || !categoryOptions.length}
+                    onChange={(event) => chooseCategory(line, event.target.value)}
                   >
-                    <option value="">Choose a product</option>
-                    {products.map((product) => (
-                      <option key={productKey(product)} value={productKey(product)}>
-                        {productLabel(product)}
+                    <option value="">Select product type</option>
+                    {categoryOptions.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {categoryDisplayLabel(category.name)}
                       </option>
                     ))}
                   </select>
                 </div>
-                {chosen?.specifications.map((spec) => (
-                  <div key={spec.key}>
-                    <label className="label" htmlFor={`${spec.key}-${line.key}`}>
-                      {spec.label}{spec.unit ? ` (${spec.unit})` : ""}{spec.required ? " *" : ""}
-                    </label>
-                    {spec.options && spec.options.length > 1 ? (
-                      <select
-                        id={`${spec.key}-${line.key}`}
-                        className="field"
-                        value={line.specifications[spec.key] ?? spec.value ?? ""}
-                        required={spec.required}
-                        onChange={(event) => updateLine(line.key, { specifications: { ...line.specifications, [spec.key]: event.target.value } })}
-                      >
-                        <option value="">{`Select ${spec.label.toLowerCase()}`}</option>
-                        {spec.options.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
-                      </select>
-                    ) : (
-                      <input
-                        id={`${spec.key}-${line.key}`}
-                        className="field"
-                        type={spec.type === "number" ? "number" : "text"}
-                        min={spec.type === "number" ? "0.001" : undefined}
-                        step={spec.type === "number" ? "any" : undefined}
-                        value={line.specifications[spec.key] ?? spec.value ?? ""}
-                        readOnly={Boolean(spec.value)}
-                        required={spec.required}
-                        onChange={(event) => updateLine(line.key, { specifications: { ...line.specifications, [spec.key]: event.target.value } })}
-                        placeholder={spec.value ? "" : (spec.required ? `Enter ${spec.label.toLowerCase()}` : "Optional")}
-                      />
-                    )}
-                  </div>
-                ))}
+                <div className="sm:col-span-2"><label className="label" htmlFor={`product-${line.key}`}>Product *</label><select id={`product-${line.key}`} className="field" value={line.parentProductId} disabled={state !== "ready" || !line.categoryId} onChange={(event) => chooseProduct(line, event.target.value)}><option value="">Choose a product</option>{parentOptions.map((product) => <option key={product.id} value={product.id}>{productLabel(product)}</option>)}</select></div>
+                {line.parentProductId && !variants.length ? <p className="sm:col-span-2 text-sm text-amber-800">No active specifications are available for this product. Please contact SS-Metals for assistance.</p> : null}
+                {specKeys.map((key) => {
+                  const meta = specMeta.get(key)!;
+                  const options = [...new Set(variants.filter((product) => specKeys.every((otherKey) => otherKey === key || !line.specifications[otherKey] || specificationValue(product, otherKey) === line.specifications[otherKey])).map((product) => specificationValue(product, key)).filter(Boolean))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+                  return <div key={key}><label className="label" htmlFor={`${key}-${line.key}`}>{meta.label}{meta.unit ? ` (${meta.unit})` : ""}{meta.required ? " *" : ""}</label><select id={`${key}-${line.key}`} className="field" value={line.specifications[key] ?? ""} required={meta.required} disabled={!variants.length} onChange={(event) => chooseSpecification(line, variants, specKeys, key, event.target.value)}><option value="">Select {meta.label.toLowerCase()}</option>{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></div>;
+                })}
+                {line.parentProductId && variants.length > 1 && !line.productVariantId ? <p className="sm:col-span-2 text-sm text-steel-600">Select a valid combination of the available specifications.</p> : null}
+                {chosen?.displayName ? <p className="sm:col-span-2 text-sm font-medium text-ink">Selected specification: {chosen.displayName}</p> : null}
                 <div><label className="label" htmlFor={`quantity-${line.key}`}>Quantity *</label><input id={`quantity-${line.key}`} className="field" required type="number" min="0.001" step="0.001" value={line.quantity} onChange={(event) => updateLine(line.key, { quantity: event.target.value })} /></div>
                 <div>
                   <label className="label" htmlFor={`uom-${line.key}`}>Unit</label>
-                  {chosen?.uomOptions && chosen.uomOptions.length > 1 ? (
-                    <select
-                      id={`uom-${line.key}`}
-                      className="field"
-                      value={line.uom}
-                      onChange={(event) => updateLine(line.key, { uom: event.target.value })}
-                    >
-                      {chosen.uomOptions.map((opt) => (
-                        <option key={opt.code} value={opt.code}>{opt.name || opt.code}</option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input id={`uom-${line.key}`} className="field" value={line.uom} readOnly aria-readonly="true" />
-                  )}
+                  <input id={`uom-${line.key}`} className="field" value={line.uom || "Select a complete specification"} readOnly aria-readonly="true" />
                 </div>
                 <div className="sm:col-span-2"><label className="label" htmlFor={`description-${line.key}`}>Additional requirements</label><textarea id={`description-${line.key}`} className="field" rows={2} maxLength={500} value={line.description} onChange={(event) => updateLine(line.key, { description: event.target.value })} /></div>
                 <div className="sm:col-span-2"><label className="label" htmlFor={`notes-${line.key}`}>Item notes (optional)</label><input id={`notes-${line.key}`} className="field" maxLength={500} value={line.notes} onChange={(event) => updateLine(line.key, { notes: event.target.value })} /></div>

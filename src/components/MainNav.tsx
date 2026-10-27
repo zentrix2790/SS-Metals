@@ -93,11 +93,10 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${
-                active(n.href)
+              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${active(n.href)
                   ? "bg-brand-light text-brand-dark"
                   : "text-steel-700 hover:bg-steel-50 hover:text-brand"
-              }`}
+                }`}
             >
               {n.label}
             </Link>
@@ -121,11 +120,10 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${
-                active(n.href)
+              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${active(n.href)
                   ? "bg-brand-light text-brand-dark"
                   : "text-steel-700 hover:bg-steel-50 hover:text-brand"
-              }`}
+                }`}
             >
               {n.label}
             </Link>
@@ -135,7 +133,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         {/* Right: Actions */}
         <div className="hidden shrink-0 items-center lg:flex">
           <a
-            href="tel:+919412236335"
+            href="tel:+919410480440"
             className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-light px-3.5 py-1.5 text-xs font-semibold text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white active:scale-[0.98] sm:text-sm"
           >
             <Phone className="h-3.5 w-3.5 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
@@ -171,169 +169,159 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
             aria-label="Mobile"
           >
             <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 py-3 pb-12 sm:px-6">
-            {/* Mobile Drawer Top Header: Logo & Cut/Close Button */}
-            <div className="flex items-center justify-between border-b border-steel-200 pb-3 pt-1">
-              <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt={`${SITE.name} Logo`}
-                  width={96}
-                  height={96}
-                  className="h-8 w-auto object-contain"
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-steel-300 bg-steel-50 text-steel-700 transition hover:bg-steel-100 hover:text-ink active:scale-95"
-                aria-label="Close menu"
-              >
-                <X className="h-4.5 w-4.5" />
-              </button>
-            </div>
+              {/* Mobile Drawer Top Header: Logo & Cut/Close Button */}
+              <div className="flex items-center justify-between border-b border-steel-200 pb-3 pt-1">
+                <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
+                  <Image
+                    src="/logo.png"
+                    alt={`${SITE.name} Logo`}
+                    width={96}
+                    height={96}
+                    className="h-8 w-auto object-contain"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-steel-300 bg-steel-50 text-steel-700 transition hover:bg-steel-100 hover:text-ink active:scale-95"
+                  aria-label="Close menu"
+                >
+                  <X className="h-4.5 w-4.5" />
+                </button>
+              </div>
 
-            {/* 1. Home & 2. Company Profile */}
-            {NAV.slice(0, 2).map((n) => (
-              <Link
-                key={`${n.label}-${n.href}`}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className={`border-b border-steel-100 py-3 text-base font-medium transition-colors ${
-                  active(n.href) ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
-                }`}
-              >
-                {n.label}
-              </Link>
-            ))}
-
-            {/* 3. Products Accordion Dropdown */}
-            <div className="border-b border-steel-100">
-              <button
-                type="button"
-                onClick={() => toggleSection("products")}
-                aria-expanded={mobileProductsOpen}
-                className={`flex w-full items-center justify-between py-3 text-base font-medium transition-colors ${
-                  isProductsActive ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
-                }`}
-              >
-                <span>Products</span>
-                <ChevronDown
-                  className={`h-4 w-4 text-steel-500 transition-transform duration-200 ${
-                    mobileProductsOpen ? "rotate-180 text-brand" : ""
-                  }`}
-                />
-              </button>
-
-              {mobileProductsOpen ? (
-                <div className="mb-2.5 rounded-lg border-l-2 border-brand/40 bg-steel-50/70 p-2 pl-3">
-                  <Link
-                    href="/products"
-                    className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
-                      path === "/products"
-                        ? "bg-brand/10 text-brand"
-                        : "text-steel-900 hover:bg-white hover:text-brand"
+              {/* 1. Home & 2. Company Profile */}
+              {NAV.slice(0, 2).map((n) => (
+                <Link
+                  key={`${n.label}-${n.href}`}
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  className={`border-b border-steel-100 py-3 text-base font-medium transition-colors ${active(n.href) ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
                     }`}
-                    onClick={() => setOpen(false)}
-                  >
-                    All products (catalogue)
-                  </Link>
-                  <div className="my-1 border-t border-steel-200/60" />
-                  {productMenuItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`block rounded-md px-3 py-2 text-sm transition-colors ${
-                        path === item.href
-                          ? "bg-brand/10 font-medium text-brand"
-                          : "text-steel-700 hover:bg-white hover:text-brand"
+                >
+                  {n.label}
+                </Link>
+              ))}
+
+              {/* 3. Products Accordion Dropdown */}
+              <div className="border-b border-steel-100">
+                <button
+                  type="button"
+                  onClick={() => toggleSection("products")}
+                  aria-expanded={mobileProductsOpen}
+                  className={`flex w-full items-center justify-between py-3 text-base font-medium transition-colors ${isProductsActive ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
+                    }`}
+                >
+                  <span>Products</span>
+                  <ChevronDown
+                    className={`h-4 w-4 text-steel-500 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180 text-brand" : ""
                       }`}
+                  />
+                </button>
+
+                {mobileProductsOpen ? (
+                  <div className="mb-2.5 rounded-lg border-l-2 border-brand/40 bg-steel-50/70 p-2 pl-3">
+                    <Link
+                      href="/products"
+                      className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors ${path === "/products"
+                          ? "bg-brand/10 text-brand"
+                          : "text-steel-900 hover:bg-white hover:text-brand"
+                        }`}
                       onClick={() => setOpen(false)}
                     >
-                      {item.label}
+                      All products (catalogue)
                     </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
+                    <div className="my-1 border-t border-steel-200/60" />
+                    {productMenuItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block rounded-md px-3 py-2 text-sm transition-colors ${path === item.href
+                            ? "bg-brand/10 font-medium text-brand"
+                            : "text-steel-700 hover:bg-white hover:text-brand"
+                          }`}
+                        onClick={() => setOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
 
-            {/* 4. Supplier Accordion Dropdown */}
-            <div className="border-b border-steel-100">
-              <button
-                type="button"
-                onClick={() => toggleSection("supplier")}
-                aria-expanded={mobileSupplierOpen}
-                className={`flex w-full items-center justify-between py-3 text-base font-medium transition-colors ${
-                  isSupplierActive ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
-                }`}
-              >
-                <span>Supplier</span>
-                <ChevronDown
-                  className={`h-4 w-4 text-steel-500 transition-transform duration-200 ${
-                    mobileSupplierOpen ? "rotate-180 text-brand" : ""
-                  }`}
-                />
-              </button>
-
-              {mobileSupplierOpen ? (
-                <div className="mb-2.5 rounded-lg border-l-2 border-brand/40 bg-steel-50/70 p-2 pl-3">
-                  <Link
-                    href="/supplier"
-                    className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
-                      path === "/supplier"
-                        ? "bg-brand/10 text-brand"
-                        : "text-steel-900 hover:bg-white hover:text-brand"
+              {/* 4. Supplier Accordion Dropdown */}
+              <div className="border-b border-steel-100">
+                <button
+                  type="button"
+                  onClick={() => toggleSection("supplier")}
+                  aria-expanded={mobileSupplierOpen}
+                  className={`flex w-full items-center justify-between py-3 text-base font-medium transition-colors ${isSupplierActive ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
                     }`}
-                    onClick={() => setOpen(false)}
-                  >
-                    All supplier lines
-                  </Link>
-                  <div className="my-1 border-t border-steel-200/60" />
-                  {supplierMenuItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`block rounded-md px-3 py-2 text-sm transition-colors ${
-                        path === item.href
-                          ? "bg-brand/10 font-medium text-brand"
-                          : "text-steel-700 hover:bg-white hover:text-brand"
+                >
+                  <span>Supplier</span>
+                  <ChevronDown
+                    className={`h-4 w-4 text-steel-500 transition-transform duration-200 ${mobileSupplierOpen ? "rotate-180 text-brand" : ""
                       }`}
+                  />
+                </button>
+
+                {mobileSupplierOpen ? (
+                  <div className="mb-2.5 rounded-lg border-l-2 border-brand/40 bg-steel-50/70 p-2 pl-3">
+                    <Link
+                      href="/supplier"
+                      className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors ${path === "/supplier"
+                          ? "bg-brand/10 text-brand"
+                          : "text-steel-900 hover:bg-white hover:text-brand"
+                        }`}
                       onClick={() => setOpen(false)}
                     >
-                      {item.label}
+                      All supplier lines
                     </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
+                    <div className="my-1 border-t border-steel-200/60" />
+                    {supplierMenuItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block rounded-md px-3 py-2 text-sm transition-colors ${path === item.href
+                            ? "bg-brand/10 font-medium text-brand"
+                            : "text-steel-700 hover:bg-white hover:text-brand"
+                          }`}
+                        onClick={() => setOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
 
-            {/* 5. Urgent Requirement, Infrastructure, Contact */}
-            {NAV.slice(2).map((n) => (
-              <Link
-                key={`${n.label}-${n.href}`}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className={`border-b border-steel-100 py-3 text-base font-medium transition-colors ${
-                  active(n.href) ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
-                }`}
-              >
-                {n.label}
-              </Link>
-            ))}
+              {/* 5. Urgent Requirement, Infrastructure, Contact */}
+              {NAV.slice(2).map((n) => (
+                <Link
+                  key={`${n.label}-${n.href}`}
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  className={`border-b border-steel-100 py-3 text-base font-medium transition-colors ${active(n.href) ? "font-semibold text-brand" : "text-steel-800 hover:text-brand"
+                    }`}
+                >
+                  {n.label}
+                </Link>
+              ))}
 
-            {/* Action Call Button */}
-            <div className="pt-4 pb-2">
-              <a
-                href="tel:+919412236335"
-                className="group btn w-full justify-center gap-2 bg-brand-light text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white"
-              >
-                <Phone className="h-4 w-4 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
-                <span>Call Us</span>
-              </a>
+              {/* Action Call Button */}
+              <div className="pt-4 pb-2">
+                <a
+                  href="tel:+919410480440"
+                  className="group btn w-full justify-center gap-2 bg-brand-light text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white"
+                >
+                  <Phone className="h-4 w-4 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
+                  <span>Call Us</span>
+                </a>
+              </div>
             </div>
-          </div>
-        </nav>
-      </>
-    ) : null}
+          </nav>
+        </>
+      ) : null}
     </div>
   );
 }

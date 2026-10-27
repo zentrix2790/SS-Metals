@@ -96,7 +96,7 @@ export default function FaqPage() {
 
             <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 w-full mx-auto">
               <a
-                href="tel:+919412236335"
+                href="tel:+919410480440"
                 className="btn btn-outline w-full sm:w-auto inline-flex items-center justify-center gap-2 border-steel-300 bg-white text-ink shadow-2xs hover:bg-steel-50 hover:text-brand !py-2.5"
               >
                 <Phone className="h-4 w-4 text-brass-dark shrink-0" />

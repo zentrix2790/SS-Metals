@@ -24,48 +24,50 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
-      <section className="section overflow-hidden">
+      <section className="section">
         <div className="wrap grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <div data-aos="fade-right">
             <Suspense fallback={<ContactForm />}>
               <ContactFormFromQuery />
             </Suspense>
           </div>
-          <aside className="space-y-5 text-sm" data-aos="fade-left">
-            <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="100">
-              <h2 className="font-display text-xl font-semibold">Office & Works</h2>
-              <div className="mt-3 space-y-3 text-steel-700">
-                <div>
-                  <span className="font-semibold text-ink">Office:</span>
-                  <p className="mt-0.5 leading-relaxed">{SITE.officeAddress}</p>
-                </div>
-                <div className="pt-2 border-t border-steel-100">
-                  <span className="font-semibold text-ink">Works:</span>
-                  <p className="mt-0.5 leading-relaxed">{SITE.worksAddress}</p>
+          <div>
+            <aside className="space-y-5 text-sm lg:sticky lg:top-24">
+              <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="100">
+                <h2 className="font-display text-xl font-semibold">Office & Works</h2>
+                <div className="mt-3 space-y-3 text-steel-700">
+                  <div>
+                    <span className="font-semibold text-ink">Office:</span>
+                    <p className="mt-0.5 leading-relaxed">{SITE.officeAddress}</p>
+                  </div>
+                  <div className="pt-2 border-t border-steel-100">
+                    <span className="font-semibold text-ink">Works:</span>
+                    <p className="mt-0.5 leading-relaxed">{SITE.worksAddress}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="200">
-              <h2 className="font-display text-xl font-semibold">Call us</h2>
-              <p className="mt-2">
-                <a className="text-brand hover:underline" href="tel:+919410480440">
-                  +91 9410480440
+              <div className="rounded border border-steel-200 bg-white p-5 shadow-xs" data-aos="fade-left" data-aos-delay="200">
+                <h2 className="font-display text-xl font-semibold">Call us</h2>
+                <p className="mt-2">
+                  <a className="text-brand hover:underline" href="tel:+919410480440">
+                    +91 9410480440
+                  </a>
+                </p>
+                
+                <p className="mt-2 text-steel-600">{SITE.proprietor}</p>
+                <p className="mt-3">
+                  <a className="text-brand hover:underline" href={`mailto:${SITE.email}`}>
+                    {SITE.email}
+                  </a>
+                </p>
+              </div>
+              <div data-aos="fade-left" data-aos-delay="300">
+                <a href={waLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
+                  Chat on WhatsApp
                 </a>
-              </p>
-              
-              <p className="mt-2 text-steel-600">{SITE.proprietor}</p>
-              <p className="mt-3">
-                <a className="text-brand hover:underline" href={`mailto:${SITE.email}`}>
-                  {SITE.email}
-                </a>
-              </p>
-            </div>
-            <div data-aos="fade-left" data-aos-delay="300">
-              <a href={waLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
-                Chat on WhatsApp
-              </a>
-            </div>
-          </aside>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 

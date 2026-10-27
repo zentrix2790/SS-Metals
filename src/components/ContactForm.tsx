@@ -254,7 +254,21 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
       </section>
 
       <section className="space-y-4" aria-labelledby="items-heading">
-        <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 id="items-heading" className="font-display text-xl font-semibold text-ink">Materials required</h2><p className="mt-1 text-sm text-steel-600">Choose from our current ERP catalog.</p></div><button type="button" className="btn btn-outline gap-2" disabled={lines.length >= 10} onClick={() => setLines((current) => [...current, newLine("", crypto.randomUUID())])}><Plus className="h-4 w-4" />Add another item</button></div>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 id="items-heading" className="font-display text-xl font-semibold text-ink">Materials required</h2>
+            <p className="mt-1 text-sm text-steel-600">Choose from our current ERP catalog.</p>
+          </div>
+          <button
+            type="button"
+            className="btn btn-outline gap-2"
+            disabled={lines.length >= 10}
+            onClick={handleAddItem}
+          >
+            <Plus className="h-4 w-4" />
+            Add another item
+          </button>
+        </div>
         {state === "loading" && <p className="text-sm text-steel-600" role="status">Loading products…</p>}
         {state === "error" && !products.length && <div className="flex items-center gap-3 rounded border border-amber-300 bg-amber-50 p-3 text-sm" role="alert"><span>{error || "Products could not be loaded."}</span><button type="button" className="font-semibold underline" onClick={() => void loadProducts()}>Retry</button></div>}
         {state === "ready" && !products.length && <p className="text-sm text-steel-600">No products are available right now.</p>}
@@ -311,10 +325,15 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
             const specMeta = new Map(variants.flatMap((product) => product.specifications.map((spec) => [spec.key, spec] as const)));
             return (
               <div
+                id={`item-card-${line.key}`}
                 key={line.key}
                 role="group"
                 aria-label={`Item ${index + 1}`}
-                className="space-y-4 rounded-lg border border-steel-200 bg-white p-4 sm:p-5 shadow-xs"
+                className={`scroll-mt-24 space-y-4 rounded-lg border bg-white p-4 sm:p-5 shadow-xs transition-all duration-300 ${
+                  highlightedKey === line.key
+                    ? "border-brand ring-2 ring-brand/30 shadow-md"
+                    : "border-steel-200"
+                }`}
               >
                 <div className="flex items-center justify-between border-b border-steel-100 pb-2.5">
                   <h3 className="font-semibold text-ink">Item {index + 1}</h3>
@@ -449,6 +468,18 @@ export default function ContactForm({ defaultProduct = "" }: { defaultProduct?: 
             );
           })}
         </div>
+        {lines.length < 10 && lines.length > 0 && (
+          <div className="pt-1">
+            <button
+              type="button"
+              className="btn btn-outline gap-2 text-sm"
+              onClick={handleAddItem}
+            >
+              <Plus className="h-4 w-4" />
+              Add another item
+            </button>
+          </div>
+        )}
       </section>
 
       <section className="space-y-4"><h2 className="font-display text-xl font-semibold text-ink">Delivery and other details</h2><div className="grid gap-4 sm:grid-cols-2"><div><label className="label" htmlFor="deliveryDate">Required delivery date (optional)</label><input id="deliveryDate" name="deliveryDate" type="date" className="field" /></div><div className="sm:col-span-2"><label className="label" htmlFor="remarks">Commercial remarks (optional)</label><textarea id="remarks" name="remarks" className="field" rows={3} maxLength={1000} /></div></div></section>

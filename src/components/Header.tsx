@@ -38,7 +38,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:h-[4.25rem] sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center py-1">
           <Image
-            src="/logo.png"
+            src="/ss-metals-logo.png"
             alt={`${site.name} Logo`}
             width={120}
             height={120}

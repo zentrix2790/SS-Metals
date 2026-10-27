@@ -539,7 +539,7 @@ export const faqs = [
   {
     question: "What stainless steel utensils do you manufacture?",
     answer:
-      "We manufacture unfinished (Kalvat) utensils, including ice buckets, canisters, jugs, and related products.",
+      "We Also Manufacture unfinished (Kalvat) utensils, including ice buckets, canisters, jugs, and related products.",
   },
   {
     question: "Do you supply products for export markets?",

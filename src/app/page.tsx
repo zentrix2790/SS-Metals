@@ -18,11 +18,9 @@ import CountUp from "@/components/CountUp";
 import FaqSection from "@/components/FaqSection";
 import SmartImage from "@/components/SmartImage";
 import ProcessCarousel from "@/components/home/ProcessCarousel";
-import { getPopularProducts } from "@/lib/static-catalog";
 import { GRADES, INFRA, MANUFACTURED_LINES, SITE, STATS, SUPPLIED_LINES, waLink } from "@/lib/site";
 
 export default function HomePage() {
-  const popular = getPopularProducts(8);
   const yearsTrust = SITE.yearsInBusiness;
 
   return (
@@ -37,7 +35,7 @@ export default function HomePage() {
             </div>
             <h2 className="h-page mt-3">Quality Stainless Steel Raw Material Supplier & Utensils Manufacturer</h2>
             <p className="mt-5 max-w-xl text-lg text-steel-200">
-              Quality stainless steel raw materials, including coils, sheets, rods, and wires,
+              Quality stainless steel raw materials, including coils, circles, Laser Cut Designs, Blanks, sheets, rods, and wires,
               alongside precision-manufactured unfinished (Kalvat) utensils, ice buckets, canisters, jugs, and other
               stainless steel products for domestic and export markets.
             </p>
@@ -82,7 +80,7 @@ export default function HomePage() {
           <div>
             <h2 className="font-display text-2xl font-bold">Urgent Requirement?</h2>
             <p className="text-sm text-steel-700">
-             Urgent orders and bulk requirements accommodated, subject to stock availability.
+              Urgent orders and bulk requirements accommodated.
             </p>
           </div>
           <Link href="/contact?type=urgent" className="btn btn-primary shrink-0">
@@ -135,94 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section bg-white overflow-hidden">
-        <div className="wrap">
-          <div data-aos="fade-up">
-            <h2 className="h-section">Products We Deal In</h2>
-            <p className="mt-3 max-w-2xl text-steel-700">
-              Raw craftsmanship from {yearsTrust} years of manufacturing, ready for polishing, plating
-              or branding.
-            </p>
-          </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {popular.slice(0, 4).map((p, idx) => (
-              <article
-                key={p.id}
-                data-aos="fade-up"
-                data-aos-delay={(idx % 4) * 100}
-                className="overflow-hidden rounded border border-steel-200 bg-steel-50 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <SmartImage src={p.image_url} alt={p.name} className="aspect-square w-full" />
-                <div className="p-3">
-                  <p className="text-xs text-steel-500">{p.category}</p>
-                  <h3 className="font-display text-lg font-semibold leading-tight">{p.name}</h3>
-                  <a
-                    href={waLink(`Hello, I am inquiring about ${p.name}`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-block text-sm font-semibold text-brand hover:underline"
-                  >
-                    Inquire on WhatsApp
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center" data-aos="fade-up">
-            <Link href="/products" className="btn btn-primary">
-              View More Products
-            </Link>
-          </div>
-
-          <div className="mt-10 border-t border-steel-200 pt-8" data-aos="fade-up">
-            <h2 className="h-section">Products We Manufactured</h2>
-            <p className="mt-3 max-w-2xl text-steel-700">
-              Stainless steel raw materials available in multiple grades, finishes and custom sizes.
-            </p>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[
-              { name: "Patta & Patti", description: "Stainless steel strips", Icon: Layers },
-              { name: "Coils", description: "Stainless steel coils", Icon: Package },
-              { name: "Circles & Blanks", description: "Precision-cut circles and blanks", Icon: DraftingCompass },
-              { name: "Sheets", description: "Mirror, matt and PVD sheets", Icon: Boxes },
-            ].map(({ name, description, Icon }, idx) => (
-              <article
-                key={name}
-                data-aos="fade-up"
-                data-aos-delay={(idx % 4) * 100}
-                className="overflow-hidden rounded border border-steel-200 bg-steel-50 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="flex aspect-square w-full items-center justify-center bg-gradient-to-br from-steel-100 via-steel-200 to-steel-300">
-                  <Icon className="h-16 w-16 text-steel-600" strokeWidth={1.4} aria-hidden="true" />
-                </div>
-                <div className="p-3">
-                  <p className="text-xs text-steel-500">Raw Material</p>
-                  <h3 className="font-display text-lg font-semibold leading-tight">{name}</h3>
-                  <p className="mt-1 text-sm text-steel-600">{description}</p>
-                  <a
-                    href={waLink(`Hello, I am inquiring about stainless steel ${name}`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-block text-sm font-semibold text-brand hover:underline"
-                  >
-                    Inquire on WhatsApp
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-6 text-center" data-aos="fade-up">
-            <Link href="/supplier" className="btn btn-primary">
-              View More Raw Materials
-            </Link>
-          </div>
-        </div>
-      </section>
 
       <section className="section bg-white overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
@@ -261,7 +172,7 @@ export default function HomePage() {
 
       <section className="section bg-white overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-2">
-          {/* Card 1: We Also Supply */}
+          {/* Card 1: We Supply */}
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-300 bg-gradient-to-br from-steel-50 via-white to-steel-100/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-xl"
             data-aos="fade-right"
@@ -275,7 +186,7 @@ export default function HomePage() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand ring-1 ring-brand/25 shadow-xs transition-transform duration-300 group-hover:scale-110">
                     <Warehouse className="h-5 w-5 sm:h-6 sm:w-6" />
                   </span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Also Supply</h3>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Supply</h3>
                 </div>
                 <span className="badge bg-brand-light text-brand font-bold uppercase tracking-wider text-[11px]">
                   STAINLESS STEEL STOCKIST & SUPPLIER
@@ -324,8 +235,9 @@ export default function HomePage() {
                     <Package className="h-3.5 w-3.5" />
                   </span>
                   <div>
-                    <span className="font-semibold text-ink text-xs sm:text-sm">Patta & Patti</span>
-                    <p className="text-[11px] text-steel-500 mt-0.5">Stainless steel strips in various grades</p>
+                    <span className="font-semibold text-ink text-xs sm:text-sm">Circles & Farma</span>
+                    <p className="text-[11px] text-steel-500 mt-0.5">Laser-cut circles and custom utensil parts.
+</p>
                   </div>
                 </li>
               </ul>
@@ -342,7 +254,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Card 2: We Manufacture */}
+          {/* Card 2: We also Manufacture */}
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
             data-aos="fade-left"
@@ -356,7 +268,7 @@ export default function HomePage() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brass/15 text-brass-dark ring-1 ring-brass/30 shadow-xs transition-transform duration-300 group-hover:scale-110">
                     <Factory className="h-5 w-5 sm:h-6 sm:w-6" />
                   </span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Manufacture</h3>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Also Manufacture</h3>
                 </div>
                 <span className="badge bg-brass/25 text-brass-dark font-bold uppercase tracking-wider text-[11px]">
                   In-House Manufacturing
@@ -378,18 +290,6 @@ export default function HomePage() {
                     <span className="font-semibold text-ink">Stainless Steel Utensils</span>
                     <p className="text-xs text-steel-600 mt-0.5">
                       Semi-finished ice buckets, canisters, and jugs. Manufactured with precision for further finishing, branding, and domestic or export markets.
-                    </p>
-                  </div>
-                </li>
-
-                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
-                    <DraftingCompass className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <span className="font-semibold text-ink">Farma & Circles</span>
-                    <p className="text-xs text-steel-600 mt-0.5">
-                      Laser-cut farma, circles, and utensil components. Custom shapes and blanks designed for stainless steel utensil manufacturing.
                     </p>
                   </div>
                 </li>

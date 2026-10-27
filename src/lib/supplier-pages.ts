@@ -22,7 +22,7 @@ const blankPage: ProductPageContent = {
   bannerSubtitle:
     "Pre-cut blanks and flat profiles for lids, bases, partitions, and matched components — supplied from stock.",
   overview:
-    "SS Metals supplies stainless blanks (including farma-style pre-cut shapes) for utensil OEMs, exporters, and fabricators. We manufacture utensils and farma design in-house; blank and flat supply programs support your finishing, polishing, and branding lines.",
+    "SS Metals supplies stainless blanks (including farma-style pre-cut shapes) for utensil OEMs, exporters, and fabricators. We Also Manufacture utensils and farma design in-house; blank and flat supply programs support your finishing, polishing, and branding lines.",
 };
 
 const wirePage: ProductPageContent = {

@@ -18,7 +18,7 @@ interface FaqSectionProps {
 export function FaqSection({
   limit,
   showViewAll = false,
-  title = "Common questions & answers",
+  title = "Frequently Asked Questions",
   subtitle = "Browse through our most frequent inquiries below. If you don't find what you are looking for, our team is always ready to assist.",
   eyebrow = "Help & Information",
   layout = "centered",
@@ -71,15 +71,13 @@ export function FaqSection({
                           {item.question}
                         </span>
                         <ChevronDown
-                          className={`mt-0.5 h-5 w-5 shrink-0 text-steel-500 transition-transform duration-200 ${
-                            open ? "rotate-180 text-brass-dark" : ""
-                          }`}
+                          className={`mt-0.5 h-5 w-5 shrink-0 text-steel-500 transition-transform duration-200 ${open ? "rotate-180 text-brass-dark" : ""
+                            }`}
                         />
                       </button>
                       <div
-                        className={`grid transition-all duration-200 ease-out ${
-                          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                        }`}
+                        className={`grid transition-all duration-200 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          }`}
                       >
                         <div className="overflow-hidden">
                           <p className="px-5 pb-5 text-sm leading-relaxed text-steel-700 sm:px-6 sm:pb-6">
@@ -124,11 +122,10 @@ export function FaqSection({
               return (
                 <div
                   key={item.question}
-                  className={`rounded-xl border transition-all duration-200 bg-white ${
-                    open
+                  className={`rounded-xl border transition-all duration-200 bg-white ${open
                       ? "border-brass/50 shadow-sm"
                       : "border-steel-200/90 shadow-2xs hover:border-steel-300"
-                  }`}
+                    }`}
                 >
                   <button
                     type="button"
@@ -140,22 +137,19 @@ export function FaqSection({
                       {item.question}
                     </span>
                     <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${
-                        open ? "bg-brass/20 text-brass-dark" : "bg-steel-100 text-steel-600"
-                      }`}
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${open ? "bg-brass/20 text-brass-dark" : "bg-steel-100 text-steel-600"
+                        }`}
                     >
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          open ? "rotate-180" : ""
-                        }`}
+                        className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""
+                          }`}
                       />
                     </span>
                   </button>
 
                   <div
-                    className={`grid transition-all duration-200 ease-out ${
-                      open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
+                    className={`grid transition-all duration-200 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
                   >
                     <div className="overflow-hidden">
                       <div className="border-t border-steel-100 px-5 pt-3.5 pb-5 text-sm sm:text-base leading-relaxed text-steel-700 sm:px-6 sm:pb-6">

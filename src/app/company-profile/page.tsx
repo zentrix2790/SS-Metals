@@ -113,7 +113,7 @@ export default function CompanyProfilePage() {
             </p>
             <p className="leading-relaxed">
               Our unfinished Kalvat products are trusted by export trading houses, who finish them by
-              polishing, plating or branding for their own markets. We also supply pipes, tubes,
+              polishing, plating or branding for their own markets. We Supply pipes, tubes,
               flanges, and industrial metals from ready stock.
             </p>
             <div className="pt-2">
@@ -188,10 +188,10 @@ export default function CompanyProfilePage() {
         </div>
       </section>
 
-      {/* Row 3: We Manufacture & We Also Supply (Updated Version from Home) */}
+      {/* Row 3: We Also Manufacture & We Supply (Updated Version from Home) */}
       <section className="border-t border-steel-200 bg-white py-14 sm:py-16 overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-2">
-          {/* Card 1: We Also Supply */}
+          {/* Card 1: We Supply */}
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-steel-300 bg-gradient-to-br from-steel-50 via-white to-steel-100/60 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-xl"
             data-aos="fade-right"
@@ -204,7 +204,7 @@ export default function CompanyProfilePage() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand ring-1 ring-brand/25 shadow-xs transition-transform duration-300 group-hover:scale-110">
                     <Warehouse className="h-5 w-5 sm:h-6 sm:w-6" />
                   </span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Also Supply</h3>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Supply</h3>
                 </div>
                 <span className="badge bg-brand-light text-brand font-bold uppercase tracking-wider text-[11px]">
                   Direct Stockist & Supplier
@@ -272,7 +272,7 @@ export default function CompanyProfilePage() {
             </div>
           </div>
 
-          {/* Card 2: We Manufacture */}
+          {/* Card 2: We Also Manufacture */}
           <div
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brass/40 bg-gradient-to-br from-brass-light/40 via-white to-brass-light/20 p-6 sm:p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brass hover:shadow-xl"
             data-aos="fade-left"
@@ -285,7 +285,7 @@ export default function CompanyProfilePage() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brass/15 text-brass-dark ring-1 ring-brass/30 shadow-xs transition-transform duration-300 group-hover:scale-110">
                     <Factory className="h-5 w-5 sm:h-6 sm:w-6" />
                   </span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Manufacture</h3>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">We Also Manufacture</h3>
                 </div>
                 <span className="badge bg-brass/25 text-brass-dark font-bold uppercase tracking-wider text-[11px]">
                   In-House Manufacturing

@@ -77,12 +77,12 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         {/* Left: Brand Logo */}
         <Link href="/" className="flex shrink-0 items-center py-0.5" onClick={() => setOpen(false)}>
           <Image
-            src="/logo.png"
+            src="/ss-metals-logo.png"
             alt={`${SITE.name} Logo`}
             width={120}
             height={120}
             priority
-            className="h-8.5 w-auto object-contain sm:h-9.5 lg:h-10"
+            className="h-9 w-9 sm:h-10 sm:w-10 lg:h-11 lg:w-11 object-contain"
           />
         </Link>
 
@@ -173,11 +173,11 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               <div className="flex items-center justify-between border-b border-steel-200 pb-3 pt-1">
                 <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
                   <Image
-                    src="/logo.png"
+                    src="/ss-metals-logo.png"
                     alt={`${SITE.name} Logo`}
                     width={96}
                     height={96}
-                    className="h-8 w-auto object-contain"
+                    className="h-8 w-8 object-contain"
                   />
                 </Link>
                 <button

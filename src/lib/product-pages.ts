@@ -454,7 +454,7 @@ export const productPages: Record<ProductSlug, ProductPageContent> = {
         title: "Custom profile farma",
         description: "Any outline from CAD—including slots and holes.",
         fullDescription:
-          "Send DXF or PDF—we manufacture farma to profile with hole patterns for rivets, handles, or spouts pre-pierced where needed.",
+          "Send DXF or PDF—We Also Manufacture farma to profile with hole patterns for rivets, handles, or spouts pre-pierced where needed.",
       },
     ],
   },

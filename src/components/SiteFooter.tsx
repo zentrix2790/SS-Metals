@@ -11,7 +11,7 @@ export default function SiteFooter() {
         <div className="col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="50" suppressHydrationWarning>
           <Link href="/" className="mb-4 inline-block rounded-full overflow-hidden transition-opacity hover:opacity-95">
             <Image
-              src="/logo.png"
+              src="/ss-metals-logo.png"
               alt={`${SITE.name} Logo`}
               width={160}
               height={160}

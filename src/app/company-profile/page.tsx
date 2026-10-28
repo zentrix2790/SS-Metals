@@ -20,8 +20,14 @@ import {
 } from "lucide-react";
 import SmartImage from "@/components/SmartImage";
 import { GRADES, SITE } from "@/lib/site";
+import CompanyProfileExperience from "./CompanyProfile";
+import "./page.module.css";
 
-export const metadata: Metadata = { title: "Company Profile" };
+export const metadata: Metadata = {
+  title: "Company Profile | Stainless Steel Processing & Manufacturing",
+  description:
+    "Explore the journey of SS Metals, from Salem stainless-steel trading to automated processing, manufacturing capabilities, and industry relationships in Moradabad.",
+};
 
 const FACT_CARDS = [
   {
@@ -80,7 +86,9 @@ const FACT_CARDS = [
   },
 ];
 
-export default function CompanyProfilePage() {
+export default CompanyProfileExperience;
+
+export function LegacyCompanyProfilePage() {
   return (
     <>
       {/* Hero Header */}

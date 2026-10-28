@@ -137,3 +137,91 @@
 .timeline li>div{margin:0 3px;padding:9px 8px 11px;border:1px solid transparent;border-radius:10px;transition:background-color .28s ease,border-color .28s ease,box-shadow .28s ease,transform .28s ease}
 .timeline li:hover>div{background:#fff;border-color:rgba(184,146,58,.3);box-shadow:0 12px 26px rgba(7,31,43,.08);transform:translateY(3px)}
 @media(max-width:600px){.timeline li>div{margin:0;padding:3px 6px 8px}.timeline li:hover>div{background:transparent;border-color:transparent;box-shadow:none;transform:none}}
+
+/* Official association marks: logo-first cards matching the supplied composition. */
+.associationGrid article{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;min-height:230px;padding:26px 28px 24px;overflow:hidden}
+.associationGrid article:before{content:"";position:absolute;top:0;left:50%;width:0;height:3px;background:linear-gradient(90deg,var(--gold),#d7b766);transform:translateX(-50%);transition:width .32s ease}
+.associationGrid article:hover:before{width:100%}
+.wordmark{width:220px;max-width:85%;height:76px;justify-content:center;margin:0 auto;overflow:hidden}
+.associationLogo{display:block;width:100%;height:100%;object-fit:contain;filter:saturate(.96);transition:transform .3s ease,filter .3s ease}
+.associationGrid article:hover .associationLogo{transform:scale(1.055);filter:saturate(1.08)}
+.associationGrid article:nth-child(2) .associationLogo{transform:scale(1.82)}
+.associationGrid article:nth-child(2):hover .associationLogo{transform:scale(1.92)}
+.associationGrid span{margin-top:14px}
+.associationGrid p{max-width:340px;margin-inline:auto}
+@media(max-width:600px){.associationGrid article{min-height:210px;padding:24px 20px}.wordmark{height:68px;width:200px}}
+
+/* Added operating workflow: concise, sequential, and visually distinct. */
+.workflow{padding:64px 0;background:linear-gradient(135deg,var(--deep),#0b3544);color:#fff;position:relative;overflow:hidden}
+.workflow:after{content:"";position:absolute;inset:auto -8% -70% auto;width:420px;height:420px;border:1px solid rgba(184,146,58,.2);border-radius:50%;box-shadow:0 0 0 42px rgba(184,146,58,.05),0 0 0 84px rgba(184,146,58,.035);pointer-events:none}
+.workflow .sectionIntro{max-width:780px}.workflow .eyebrow{color:#b8c7cd}.workflow .sectionIntro>p{color:#b8c7cd}
+.workflowGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;position:relative;z-index:1}
+.workflowStep{list-style:none;position:relative;min-height:190px;padding:24px 25px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);transition:background-color .28s ease,transform .28s ease,border-color .28s ease}
+.workflowStep+ .workflowStep{border-left:1px solid rgba(255,255,255,.18)}
+.workflowStep>span{position:absolute;top:17px;right:20px;color:rgba(255,255,255,.25);font-family:var(--font-barlow),sans-serif;font-size:1.8rem;font-weight:700}
+.workflowStep>svg{width:28px;height:28px;color:#e0b858;transition:transform .28s ease,color .28s ease}
+.workflowStep h3{font-size:1.02rem;font-weight:700;margin-top:20px}
+.workflowStep p{color:#b8c7cd;font-size:.75rem;line-height:1.5;margin-top:8px}
+.workflowStep:hover{z-index:2;background:rgba(255,255,255,.07);border-color:rgba(224,184,88,.5);transform:translateY(-5px)}
+.workflowStep:hover>svg{color:#fff;transform:scale(1.12) rotate(-4deg)}
+@media(max-width:800px){.workflowGrid{grid-template-columns:repeat(2,1fr);gap:1px}.workflowStep{border:1px solid rgba(255,255,255,.16)}.workflowStep+ .workflowStep{border-left:1px solid rgba(255,255,255,.16)}}
+@media(max-width:600px){.workflow{padding:50px 0}.workflowGrid{grid-template-columns:1fr;margin-top:26px}.workflowStep{min-height:0;padding:20px 22px}.workflowStep h3{margin-top:14px}}
+
+/* Cinematic company story: monochrome origins evolve into full-colour manufacturing. */
+.journey{padding:68px 0 78px;background:#f5f8f9}
+.journeyStory{position:relative;display:grid;gap:18px;margin-top:42px;padding-left:52px}
+.journeyStory:before{content:"";position:absolute;top:34px;bottom:34px;left:21px;width:2px;background:linear-gradient(180deg,#a1a9ad 0%,#b8923a 42%,#0b5f7a 100%);transform-origin:top;animation:storyLine 1.4s ease-out both}
+@keyframes storyLine{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.journeyStage{list-style:none;position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);min-height:285px;overflow:hidden;color:#fff;background:var(--deep);border:1px solid rgba(184,146,58,.24);border-radius:16px;box-shadow:0 18px 44px rgba(7,31,43,.1);isolation:isolate;transition:transform .42s cubic-bezier(.2,.8,.2,1),box-shadow .42s ease,border-color .3s ease}
+.journeyStage:nth-child(even){grid-template-columns:minmax(300px,.65fr) minmax(0,1.35fr)}
+.journeyStage:nth-child(even) .journeyStageImage{grid-column:2;grid-row:1}
+.journeyStage:nth-child(even) .journeyStageContent{grid-column:1;grid-row:1}
+.journeyStage:hover{z-index:2;transform:translateY(-7px);border-color:rgba(218,177,82,.72);box-shadow:0 26px 62px rgba(7,31,43,.2)}
+@supports (animation-timeline:view()){
+  .journeyStage{animation:storyStageReveal linear both;animation-timeline:view();animation-range:entry 4% cover 28%}
+  @keyframes storyStageReveal{from{opacity:.12;clip-path:inset(8% 0 8% 0 round 16px)}to{opacity:1;clip-path:inset(0 0 0 0 round 16px)}}
+}
+.journeyProgress{position:absolute;z-index:5;top:28px;left:-52px;width:44px;height:44px;display:grid;place-items:center;color:var(--deep);background:#fff;border:2px solid var(--gold);border-radius:50%;box-shadow:0 0 0 7px #f5f8f9;transition:color .3s ease,background-color .3s ease,transform .3s ease}
+.journeyProgress b{font-size:.72rem;letter-spacing:.04em}
+.journeyStage:hover .journeyProgress{color:#fff;background:var(--teal);transform:scale(1.1) rotate(6deg)}
+.journeyStageImage{position:relative;min-height:285px;overflow:hidden}
+.journeyStageImage:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,31,43,.04),rgba(7,31,43,.66));transition:opacity .45s ease}
+.journeyStage:nth-child(even) .journeyStageImage:after{background:linear-gradient(270deg,rgba(7,31,43,.04),rgba(7,31,43,.66))}
+.journeyStageImage img{object-fit:cover;filter:grayscale(var(--story-gray,.35)) sepia(var(--story-sepia,.08)) saturate(var(--story-saturation,.78));transform:scale(1.025);transition:filter .75s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.journeyStage:hover .journeyStageImage img{filter:grayscale(0) sepia(0) saturate(1.04);transform:scale(1.075)}
+.journeyStage:hover .journeyStageImage:after{opacity:.72}
+.journeyStage[data-tone="archive"]{--story-gray:1;--story-sepia:.12;--story-saturation:.35}
+.journeyStage[data-tone="heritage"]{--story-gray:.78;--story-sepia:.08;--story-saturation:.55}
+.journeyStage[data-tone="transition"]{--story-gray:.48;--story-sepia:.03;--story-saturation:.72}
+.journeyStage[data-tone="industry"]{--story-gray:.18;--story-sepia:0;--story-saturation:.9}
+.journeyStage[data-tone="today"]{--story-gray:0;--story-sepia:0;--story-saturation:1.04}
+.journeyBadge{position:absolute;z-index:2;left:20px;bottom:18px;display:inline-flex;align-items:center;gap:8px;padding:9px 12px;color:#fff;background:rgba(7,31,43,.78);border:1px solid rgba(255,255,255,.28);border-radius:7px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(7px);transition:background-color .3s ease,transform .3s ease}
+.journeyStage:nth-child(even) .journeyBadge{left:auto;right:20px}
+.journeyBadge svg{width:17px;height:17px;color:#e1b655}
+.journeyStage:hover .journeyBadge{background:rgba(11,95,122,.9);transform:translateY(-3px)}
+.journeyStageContent{position:relative;display:flex;flex-direction:column;justify-content:center;padding:34px clamp(28px,4vw,54px);background:linear-gradient(145deg,#071f2b,#0b3544);overflow:hidden}
+.journeyStageContent:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,rgba(184,146,58,.16),transparent 42%);pointer-events:none}
+.journeyEra{position:relative;color:#d7ad4e;font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.journeyStageContent h3{position:relative;max-width:430px;font-family:var(--font-barlow),sans-serif;font-size:clamp(1.55rem,2.4vw,2.45rem);line-height:1.02;margin-top:11px}
+.journeyStageContent p{position:relative;max-width:470px;color:#c5d2d8;font-size:.83rem;line-height:1.62;margin-top:13px}
+.journeyStageContent>span:last-child{position:absolute;right:20px;bottom:-28px;color:rgba(255,255,255,.055);font-family:var(--font-barlow),sans-serif;font-size:7.5rem;font-weight:700;line-height:1;transition:color .35s ease,transform .5s ease}
+.journeyStage:hover .journeyStageContent>span:last-child{color:rgba(215,173,78,.12);transform:translate(-4px,-4px)}
+
+@media(max-width:800px){
+  .journeyStory{padding-left:43px}.journeyProgress{left:-43px;width:38px;height:38px;box-shadow:0 0 0 5px #f5f8f9}
+  .journeyStory:before{left:18px}.journeyStage,.journeyStage:nth-child(even){grid-template-columns:1fr;min-height:0}
+  .journeyStage:nth-child(even) .journeyStageImage,.journeyStage:nth-child(even) .journeyStageContent{grid-column:1}
+  .journeyStage:nth-child(even) .journeyStageImage{grid-row:1}.journeyStage:nth-child(even) .journeyStageContent{grid-row:2}
+  .journeyStageImage{min-height:250px}.journeyStageContent{min-height:205px;padding:29px 26px}
+  .journeyStageImage:after,.journeyStage:nth-child(even) .journeyStageImage:after{background:linear-gradient(180deg,transparent 35%,rgba(7,31,43,.62))}
+  .journeyStage:nth-child(even) .journeyBadge{left:20px;right:auto}
+}
+@media(max-width:600px){
+  .journey{padding:50px 0}.journeyStory{gap:14px;margin-top:30px;padding-left:34px}.journeyStory:before{left:14px}
+  .journeyProgress{top:20px;left:-34px;width:30px;height:30px;border-width:1px;box-shadow:0 0 0 4px #f5f8f9}.journeyProgress b{font-size:.58rem}
+  .journeyStage{border-radius:12px}.journeyStageImage{min-height:205px}.journeyStageContent{min-height:190px;padding:25px 21px}
+  .journeyStageContent h3{font-size:1.65rem}.journeyStageContent p{font-size:.78rem}.journeyBadge{left:14px!important;right:auto!important;bottom:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .journeyStory:before{animation:none}.journeyStage{animation:none!important;opacity:1!important;clip-path:none!important}.journeyStage,.journeyProgress,.journeyStageImage img,.journeyBadge,.journeyStageContent>span:last-child{transition:none!important;transform:none!important}
+}

@@ -98,7 +98,7 @@ export default function HomePage() {
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               {[
-                [`Since ${SITE.est}`, "Reliable experience in stainless steel trading & utensils manufacturing."],
+                [`Recycling Expertise`, "Reliable experience in stainless steel trading, recycling & utensils manufacturing."],
                 ["ISO 9001:2015", " certified for consistent quality and customer satisfaction."],
                 ["Export quality", "Stainless steel raw materials and Kalvat utensils for diverse business need."],
               ].map(([t, d], idx) => (

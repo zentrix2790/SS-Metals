@@ -73,29 +73,29 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
 
   return (
     <div className="border-b border-steel-200 bg-white">
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-3.5">
         {/* Left: Brand Logo */}
-        <Link href="/" className="flex shrink-0 items-center py-0.5" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex shrink-0 items-center py-1" onClick={() => setOpen(false)}>
           <Image
             src="/ss-metals-logo.png"
             alt={`${SITE.name} Logo`}
-            width={120}
-            height={120}
+            width={160}
+            height={160}
             priority
-            className="h-9 w-9 sm:h-10 sm:w-10 lg:h-11 lg:w-11 object-contain"
+            className="h-11 w-11 sm:h-13 sm:w-13 lg:h-16 lg:w-16 object-contain transition-transform duration-200 hover:scale-105"
           />
         </Link>
 
         {/* Center: Main Navigation in one clean line */}
-        <nav className="hidden items-center gap-0.5 whitespace-nowrap lg:flex xl:gap-1.5" aria-label="Main">
+        <nav className="hidden items-center gap-1 whitespace-nowrap lg:flex xl:gap-2" aria-label="Main">
           {NAV.slice(0, 2).map((n) => (
             <Link
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${active(n.href)
-                  ? "bg-brand-light text-brand-dark"
-                  : "text-steel-700 hover:bg-steel-50 hover:text-brand"
+              className={`rounded-lg px-2.5 py-1.5 text-[15px] font-semibold transition-all duration-150 xl:px-3.5 xl:py-2 ${active(n.href)
+                  ? "bg-brand-light text-brand-dark shadow-2xs"
+                  : "text-steel-700 hover:bg-steel-100/70 hover:text-brand"
                 }`}
             >
               {n.label}
@@ -120,9 +120,9 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               key={`${n.label}-${n.href}`}
               href={n.href}
               aria-current={active(n.href) ? "page" : undefined}
-              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors xl:px-3 xl:py-1.5 ${active(n.href)
-                  ? "bg-brand-light text-brand-dark"
-                  : "text-steel-700 hover:bg-steel-50 hover:text-brand"
+              className={`rounded-lg px-2.5 py-1.5 text-[15px] font-semibold transition-all duration-150 xl:px-3.5 xl:py-2 ${active(n.href)
+                  ? "bg-brand-light text-brand-dark shadow-2xs"
+                  : "text-steel-700 hover:bg-steel-100/70 hover:text-brand"
                 }`}
             >
               {n.label}
@@ -134,9 +134,9 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         <div className="hidden shrink-0 items-center lg:flex">
           <a
             href="tel:+919410480440"
-            className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-light px-3.5 py-1.5 text-xs font-semibold text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white active:scale-[0.98] sm:text-sm"
+            className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-light px-4 py-2 text-sm font-semibold text-brand-dark shadow-2xs transition-all duration-200 hover:bg-ink hover:text-white active:scale-[0.98] xl:px-5 xl:py-2.5 xl:text-base"
           >
-            <Phone className="h-3.5 w-3.5 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
+            <Phone className="h-4 w-4 text-brand-dark transition-colors duration-200 group-hover:text-brass" />
             <span>Call</span>
           </a>
         </div>
@@ -144,13 +144,13 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         {/* Mobile menu 3-bar icon button */}
         <button
           type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-steel-300 bg-white text-steel-700 transition hover:bg-steel-50 hover:text-brand focus:outline-hidden lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-steel-300 bg-white text-steel-700 transition hover:bg-steel-50 hover:text-brand focus:outline-hidden lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen(!open)}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 

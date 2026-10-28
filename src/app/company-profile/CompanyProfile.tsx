@@ -11,7 +11,7 @@ const styleNames = [
   "associationGrid", "associationLogo", "beginning", "beginningImage", "capabilities", "chapter", "chapterCopy",
   "chapterImage", "credibility", "credibilityGrid", "cta", "ctaInner", "darkButton", "disclaimer",
   "editorialCopy", "eyebrow", "eyebrowLight", "founderLine", "goldButton", "hero", "heroActions",
-  "heroCopy", "heroCopyInner", "heroImage", "heroText", "heroTitle", "infrastructure",
+  "heroCopy", "heroCopyInner", "heroImage", "heroImageInner", "heroText", "heroTitle", "infrastructure",
   "infrastructureHeader", "joined", "journey", "leaderCopy", "leaderGrid", "leadership", "locationCard",
   "journeyBadge", "journeyEra", "journeyProgress", "journeyStage", "journeyStageContent", "journeyStageImage", "journeyStory",
   "machineGrid", "machineImage", "monogram", "page", "philosophy", "primaryButton", "quoteBlock",
@@ -184,7 +184,6 @@ export default function CompanyProfileExperience() {
     <section className={styles.leadership}><div className={styles.wrap}>
       <div className={styles.sectionIntroLeft} data-aos="fade-up"><Eyebrow>Leadership Behind SS Metals</Eyebrow><h2>The People Driving Our Journey.</h2></div>
       <div className={styles.leaderGrid}>{leaders.map(([initials, name, role, text, note], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.monogram}>{initials}</div><div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.role}>{role}</p>{note && <span className={styles.joined}>{note}</span>}<p>{text}</p></div></article>)}</div>
-      <p className={styles.disclaimer}>Monograms are used until approved leadership portraits and the official designation for Mr. Sarvesh Kumar are supplied.</p>
     </div></section>
 
     <section className={styles.credibility} aria-label="Company credibility"><div className={styles.credibilityGrid}>

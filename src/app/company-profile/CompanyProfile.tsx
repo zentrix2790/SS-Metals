@@ -8,10 +8,10 @@ import {
 import "./page.module.css";
 
 const styleNames = [
-  "associationGrid", "beginning", "beginningImage", "capabilities", "chapter", "chapterCopy",
+  "associationGrid", "beginning", "beginningImage", "beginningImageInner", "capabilities", "chapter", "chapterCopy",
   "chapterImage", "credibility", "credibilityGrid", "cta", "ctaInner", "darkButton", "disclaimer",
   "editorialCopy", "eyebrow", "eyebrowLight", "founderLine", "goldButton", "hero", "heroActions",
-  "heroCopy", "heroCopyInner", "heroImage", "heroText", "heroTitle", "infrastructure",
+  "heroCopy", "heroCopyInner", "heroImage", "heroImageInner", "heroText", "heroTitle", "infrastructure",
   "infrastructureHeader", "joined", "journey", "leaderCopy", "leaderGrid", "leadership", "locationCard",
   "machineGrid", "machineImage", "monogram", "page", "philosophy", "primaryButton", "quoteBlock",
   "relationships", "role", "secondaryButton", "sectionIntro", "sectionIntroLeft", "timeline",
@@ -71,14 +71,18 @@ export default function CompanyProfileExperience() {
         </div>
       </div></div>
       <div className={styles.heroImage} data-aos="fade-left">
-        <Image src="/about/ss-metals-showcase.png" alt="Illustrative stainless-steel processing facility with coils and production machinery" fill priority sizes="(max-width: 900px) 100vw, 52vw" />
+        <div className={styles.heroImageInner}>
+          <Image src="/about/ss-metals-showcase.png" alt="Illustrative stainless-steel processing facility with coils and production machinery" fill priority sizes="(max-width: 900px) 100vw, 52vw" />
+        </div>
         <div className={styles.locationCard} data-aos="fade-up" data-aos-delay="280"><MapPin /><div><strong>Moradabad, Uttar Pradesh</strong><span>Stainless Steel · Processing · Manufacturing</span></div></div>
       </div>
     </section>
 
     <section className={styles.beginning}><div className={styles.wrapGrid}>
       <figure className={styles.beginningImage} data-aos="fade-right">
-        <Image src="/about/plant-overview.jpg" alt="Illustrative industrial view representing the company’s early stainless-steel trading story" fill sizes="(max-width: 900px) 100vw, 48vw" />
+        <div className={styles.beginningImageInner}>
+          <Image src="/about/plant-overview.jpg" alt="Illustrative industrial view representing the company’s early stainless-steel trading story" fill sizes="(max-width: 900px) 100vw, 48vw" />
+        </div>
         <figcaption><span>Our Beginning</span>Starting with Salem Stainless Coils</figcaption>
       </figure>
       <div className={styles.editorialCopy} data-aos="fade-left"><Eyebrow>Our Beginning</Eyebrow><h2>A Foundation Built Around Quality.</h2>
@@ -123,7 +127,6 @@ export default function CompanyProfileExperience() {
     <section className={styles.leadership}><div className={styles.wrap}>
       <div className={styles.sectionIntroLeft} data-aos="fade-up"><Eyebrow>Leadership Behind SS Metals</Eyebrow><h2>The People Driving Our Journey.</h2></div>
       <div className={styles.leaderGrid}>{leaders.map(([initials, name, role, text, note], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.monogram}>{initials}</div><div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.role}>{role}</p>{note && <span className={styles.joined}>{note}</span>}<p>{text}</p></div></article>)}</div>
-      <p className={styles.disclaimer}>Monograms are used until approved leadership portraits and the official designation for Mr. Sarvesh Kumar are supplied.</p>
     </div></section>
 
     <section className={styles.credibility} aria-label="Company credibility"><div className={styles.credibilityGrid}>

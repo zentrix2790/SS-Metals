@@ -64,7 +64,7 @@ const FACT_CARDS = [
     icon: Layers,
     label: "Raw Materials",
     value: "Coils, Sheets & Blanks",
-    sub: "Patta, patti, coil, circles, sheets and farma tooling",
+    sub: "coil, Blanks, circles, sheets and farma tooling",
   },
   {
     icon: ShieldCheck,

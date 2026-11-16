@@ -56,7 +56,7 @@ export default function HomePage() {
                   key={g}
                   data-aos="zoom-in"
                   data-aos-delay={idx * 50}
-                  className="bg-ink px-3 py-5 text-center font-display text-1.8xl font-bold text-brass"
+                  className="bg-ink px-3 py-5 text-center font-display text-sm font-bold text-brass"
                 >
                   {g}
                 </li>

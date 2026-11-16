@@ -1,21 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowDown, ArrowRight, Boxes, Building2, CalendarDays, CircleDot,
-  ClipboardCheck, Gem, Handshake, MapPin, MessageSquareText, Repeat2, Ruler, Scissors, Settings,
-  ShieldCheck, Sprout, Target, TrendingUp, Truck, UserRound,
+  ArrowDown, ArrowRight, Award, BadgeCheck, Boxes, Briefcase, Building2, CalendarDays, CircleDot,
+  ClipboardCheck, Gem, Handshake, Layers, MapPin, MessageSquareText, Repeat2, Ruler, Scissors, Settings,
+  ShieldCheck, Sprout, Target, TrendingUp, Truck, User, UserRound, Utensils,
 } from "lucide-react";
+import { GRADES, SITE } from "@/lib/site";
 import "./page.module.css";
 
 const styleNames = [
   "associationGrid", "associationLogo", "beginning", "beginningImage", "capabilities", "chapter", "chapterCopy",
   "chapterImage", "credibility", "credibilityGrid", "cta", "ctaInner", "darkButton", "disclaimer",
-  "editorialCopy", "eyebrow", "eyebrowLight", "founderLine", "goldButton", "hero", "heroActions",
+  "editorialCopy", "eyebrow", "eyebrowLight", "factCard", "factCardHeader", "factCardsGrid", "factContent",
+  "factIconWrap", "factLabel", "factSub", "factValue", "founderLine", "goldButton", "hero", "heroActions",
   "heroCopy", "heroCopyInner", "heroImage", "heroImageInner", "heroText", "heroTitle", "infrastructure",
-  "infrastructureHeader", "joined", "journey", "leaderCopy", "leaderGrid", "leadership", "locationCard",
+  "infrastructureHeader", "joined", "journey", "leaderCopy", "leaderGrid", "leadership", "leaderCard", "leaderMedia", "leaderImg", "leaderPlaceholder", "locationCard",
   "journeyBadge", "journeyEra", "journeyProgress", "journeyStage", "journeyStageContent", "journeyStageImage", "journeyStory",
   "machineGrid", "machineImage", "monogram", "page", "philosophy", "primaryButton", "quoteBlock",
-  "relationships", "role", "secondaryButton", "sectionIntro", "sectionIntroLeft", "timeline",
+  "relationships", "role", "secondaryButton", "sectionIntro", "sectionIntroLeft", "specifications", "timeline",
   "timelineIcon", "timelineNumber", "valueGrid", "wordmark", "wrap", "wrapGrid",
   "workflow", "workflowGrid", "workflowStep",
 ] as const;
@@ -83,6 +85,63 @@ const associations = [
   ["Jindal Stainless Limited", "Industry Association", "SS Metals maintains an industry relationship with Jindal Stainless Limited.", "/images/company-profile/jindal-stainless-official-logo.png"],
 ] as const;
 
+const factCards = [
+  {
+    icon: Building2,
+    label: "Company",
+    value: SITE.name,
+    sub: "Est. 1987 · 39+ Years in Business",
+  },
+  {
+    icon: User,
+    label: "Proprietor",
+    value: SITE.proprietor,
+    sub: "Executive Leadership & Operations",
+  },
+  {
+    icon: Briefcase,
+    label: "Business Type",
+    value: "Manufacturer & Stockist",
+    sub: "Manufacturer, exporter, supplier and raw material stockist",
+  },
+  {
+    icon: MapPin,
+    label: "Office & Works",
+    value: "Moradabad, Uttar Pradesh",
+    sub: `Office: ${SITE.officeAddress}\nWorks: ${SITE.worksAddress}`,
+  },
+  {
+    icon: Utensils,
+    label: "Specialisation",
+    value: "Utensils & Farma Design",
+    sub: "Unfinished (Kalvat) stainless steel utensils, barware, bathware & farma profiles",
+  },
+  {
+    icon: Layers,
+    label: "Raw Materials",
+    value: "Coils, Sheets & Blanks",
+    sub: "Patta, patti, coil, circles, sheets and farma tooling",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Steel Grades",
+    value: GRADES.join(" · "),
+    sub: "High-grade stainless steel with MTC compliance",
+  },
+  {
+    icon: Award,
+    label: "Certification & Standards",
+    value: "ISO Aligned Systems",
+    sub: "Comprehensive metallurgical and dimensional inspection",
+  },
+  {
+    icon: BadgeCheck,
+    label: "QUALITY ASSURANCE",
+    value: "Consistent Quality & Precision",
+    sub: "Precision Inspection for Consistent Quality & Reliability.",
+  },
+] as const;
+
 const values = [
   [Gem, "Quality First", "Material and processing decisions guided by consistency and customer expectations."],
   [Handshake, "Long-Term Relationships", "Building dependable connections through service and reliability."],
@@ -91,9 +150,27 @@ const values = [
 ] as const;
 
 const leaders = [
-  ["RA", "Mr. Raman Lal Agarwal (CA)", "Founder", "Set the original direction for dependable stainless-steel trade and disciplined business conduct.", ""],
-  ["SK", "Mr. Sarvesh Kumar", "Founding Associate", "Contributed to the organisation’s formative commercial development.", ""],
-  ["PA", "Mr. Pulkit Agarwal (CA)", "Next-Generation Leadership", "Guides the shift toward modern equipment, stronger workflows, and scalable execution.", "Part of the business since 2013"],
+  {
+    initials: "RA",
+    name: "Mr. Raman Lal Agarwal (CA)",
+    role: "Founder",
+    note: "",
+    image: "", // Blank image as requested
+  },
+  {
+    initials: "SK",
+    name: "Mr. Sarvesh Kumar",
+    role: "Founding Associate",
+    note: "",
+    image: "", // Blank image as requested
+  },
+  {
+    initials: "PA",
+    name: "Mr. Pulkit Agarwal (CA)",
+    role: "Next-Generation Leadership",
+    note: "Part of the business since 2013",
+    image: "", // Blank image as requested
+  },
 ] as const;
 
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
@@ -128,6 +205,33 @@ export default function CompanyProfileExperience() {
         <p>SS Metals began its journey under the leadership of <strong>Mr. Raman Lal Agarwal (CA)</strong>, along with <strong>Mr. Sarvesh Kumar</strong>, starting with Salem stainless steel coils.</p>
         <p>From the beginning, the philosophy was simple — source dependable material, maintain consistency, and deliver the best possible quality to every customer.</p>
         <small>The image is an illustrative industrial view, not presented as an archival company photograph.</small>
+      </div>
+    </div></section>
+
+    {/* Leadership Section shifted above "From Legacy to Innovation" (Journey) */}
+    <section className={styles.leadership}><div className={styles.wrap}>
+      <div className={styles.sectionIntro} data-aos="fade-up">
+        <Eyebrow>Leadership Behind SS Metals</Eyebrow>
+        <h2>The People Driving Our Journey.</h2>
+        <p>Meet the visionary leaders steering SS Metals with rich experience, strategic growth, and modern engineering.</p>
+      </div>
+      <div className={styles.leaderGrid}>
+        {leaders.map(({ initials, name, role, note, image }, index) => (
+          <article key={name} className={styles.leaderCard} data-aos="fade-up" data-aos-delay={index * 80}>
+            <div className={styles.leaderMedia}>
+              {image ? (
+                <Image src={image} alt={name} fill className={styles.leaderImg} sizes="(max-width: 768px) 100vw, 380px" />
+              ) : (
+                <div className={styles.leaderPlaceholder} aria-hidden="true" />
+              )}
+            </div>
+            <div className={styles.leaderCopy}>
+              <h3>{name}</h3>
+              <p className={styles.role}>{role}</p>
+              {note && <span className={styles.joined}>{note}</span>}
+            </div>
+          </article>
+        ))}
       </div>
     </div></section>
 
@@ -171,6 +275,53 @@ export default function CompanyProfileExperience() {
       <ol className={styles.workflowGrid}>{workflow.map(([Icon, title, text], index) => <li className={styles.workflowStep} key={title} data-aos="fade-up" data-aos-delay={index * 70}><span>{String(index + 1).padStart(2, "0")}</span><Icon /><h3>{title}</h3><p>{text}</p></li>)}</ol>
     </div></section>
 
+    {/* Corporate Information & Facilities Section exactly matching the layout & Tailwind classes */}
+    <section className="border-t border-steel-200 bg-steel-50 py-14 sm:py-16 overflow-hidden">
+      <div className="wrap" data-aos="fade-up">
+        <div className="mb-8">
+          <span className="badge bg-brand-light text-brand font-semibold text-xs uppercase tracking-wider">
+            Quick Specifications
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink mt-1.5">
+            Corporate Information &amp; Facilities
+          </h2>
+          <p className="mt-1 text-sm text-steel-600">
+            Verified operating details, production lines, and supply specifications.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {factCards.map((item, idx) => (
+            <div
+              key={item.label}
+              data-aos="fade-up"
+              data-aos-delay={(idx % 3) * 80}
+              className="group relative rounded-xl border border-steel-200 bg-white p-5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md"
+            >
+              <div className="flex items-start gap-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20 transition-transform duration-200 group-hover:scale-105">
+                  <item.icon className="h-5 w-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-steel-500">
+                    {item.label}
+                  </span>
+                  <p className="font-display text-base font-bold text-ink mt-0.5 leading-snug">
+                    {item.value}
+                  </p>
+                  {item.sub && (
+                    <p className="text-xs text-steel-600 mt-1 leading-relaxed whitespace-pre-line">
+                      {item.sub}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section className={styles.relationships}><div className={styles.wrap}>
       <div className={styles.sectionIntroLeft} data-aos="fade-up"><Eyebrow>Industry Relationships</Eyebrow><h2>Associations That Strengthen Our Supply Chain.</h2><p>Connections across the sector broaden access to established material and product ecosystems.</p></div>
       <div className={styles.associationGrid}>{associations.map(([name, label, text, logo], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.wordmark}><Image className={styles.associationLogo} src={logo} alt={`${name} logo`} width={240} height={90} sizes="220px" unoptimized /></div><span>{label}</span><p>{text}</p></article>)}</div>
@@ -179,11 +330,6 @@ export default function CompanyProfileExperience() {
     <section className={styles.philosophy}><div className={styles.wrap}>
       <div className={styles.quoteBlock} data-aos="fade-up"><Eyebrow>Our Philosophy</Eyebrow><h2>One Principle Has Remained Unchanged.</h2><blockquote>“Deliver the Best Quality Possible to the Customer.”</blockquote></div>
       <div className={styles.valueGrid}>{values.map(([Icon, title, text], index) => <article key={title} data-aos="fade-up" data-aos-delay={index * 70}><Icon /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
-    </div></section>
-
-    <section className={styles.leadership}><div className={styles.wrap}>
-      <div className={styles.sectionIntroLeft} data-aos="fade-up"><Eyebrow>Leadership Behind SS Metals</Eyebrow><h2>The People Driving Our Journey.</h2></div>
-      <div className={styles.leaderGrid}>{leaders.map(([initials, name, role, text, note], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.monogram}>{initials}</div><div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.role}>{role}</p>{note && <span className={styles.joined}>{note}</span>}<p>{text}</p></div></article>)}</div>
     </div></section>
 
     <section className={styles.credibility} aria-label="Company credibility"><div className={styles.credibilityGrid}>

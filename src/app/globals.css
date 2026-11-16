@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme inline {
@@ -16,8 +17,8 @@
   --color-brass: #b8923a;
   --color-brass-dark: #8f7029;
   --color-brass-light: #f3e9cf;
-  --font-display: var(--font-barlow), "Arial Narrow", sans-serif;
-  --font-body: var(--font-ibm-plex), system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', var(--font-barlow), "Arial Narrow", sans-serif;
+  --font-body: 'IBM Plex Sans', var(--font-ibm-plex), system-ui, sans-serif;
 }
 
 html {

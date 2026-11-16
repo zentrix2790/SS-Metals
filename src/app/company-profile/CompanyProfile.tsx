@@ -80,7 +80,7 @@ const workflow = [
 const associations = [
   ["VINOD", "Historical Distribution Association", "Previously worked as a distributor for VINOD, serving Western Uttar Pradesh.", "/images/company-profile/vinod-logo.png"],
   ["Bansal Wire Industries", "Industry Relationship", "Associated with Bansal Wire Industries for stainless-steel wire and rod products.", "/images/company-profile/bansal-wire-logo-alt.png"],
-  ["Jindal Stainless Limited", "Industry Association", "SS Metals maintains an industry relationship with Jindal Stainless Limited.", "/images/company-profile/jindal-stainless-logo.png"],
+  ["Jindal Stainless Limited", "Industry Association", "SS Metals maintains an industry relationship with Jindal Stainless Limited.", "/images/company-profile/jindal-stainless-official-logo.png"],
 ] as const;
 
 const values = [
@@ -173,7 +173,7 @@ export default function CompanyProfileExperience() {
 
     <section className={styles.relationships}><div className={styles.wrap}>
       <div className={styles.sectionIntroLeft} data-aos="fade-up"><Eyebrow>Industry Relationships</Eyebrow><h2>Associations That Strengthen Our Supply Chain.</h2><p>Connections across the sector broaden access to established material and product ecosystems.</p></div>
-      <div className={styles.associationGrid}>{associations.map(([name, label, text, logo], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.wordmark}><Image className={styles.associationLogo} src={logo} alt={`${name} logo`} width={240} height={90} sizes="220px" /></div><span>{label}</span><p>{text}</p></article>)}</div>
+      <div className={styles.associationGrid}>{associations.map(([name, label, text, logo], index) => <article key={name} data-aos="fade-up" data-aos-delay={index * 80}><div className={styles.wordmark}><Image className={styles.associationLogo} src={logo} alt={`${name} logo`} width={240} height={90} sizes="220px" unoptimized /></div><span>{label}</span><p>{text}</p></article>)}</div>
     </div></section>
 
     <section className={styles.philosophy}><div className={styles.wrap}>

@@ -101,7 +101,6 @@
 .journey{position:relative;background:
   radial-gradient(circle at 50% 0,rgba(11,95,122,.08),transparent 35%),
   linear-gradient(180deg,#f4fafc 0%,#fff 100%)}
-.journey:before{content:"OUR STORY";position:absolute;top:18px;left:50%;transform:translateX(-50%);color:rgba(14,36,49,.025);font-family:var(--font-barlow),sans-serif;font-size:clamp(5rem,12vw,11rem);font-weight:700;letter-spacing:.12em;white-space:nowrap;pointer-events:none}
 .sectionIntro{position:relative;z-index:1}
 .timeline li{border:1px solid transparent;border-radius:12px;padding-bottom:15px;transition:transform .28s ease,background-color .28s ease,border-color .28s ease,box-shadow .28s ease}
 .timeline li:hover{z-index:2;transform:translateY(-7px);background:rgba(255,255,255,.92);border-color:rgba(184,146,58,.35);box-shadow:0 16px 34px rgba(7,31,43,.09)}
@@ -123,7 +122,6 @@
 .primaryButton:focus-visible,.secondaryButton:focus-visible,.goldButton:focus-visible,.darkButton:focus-visible{outline:3px solid rgba(184,146,58,.45);outline-offset:3px}
 
 @media(max-width:600px){
-  .journey:before{top:32px;font-size:4.5rem}
   .timeline li{padding:0 8px 23px 0;border:0;background:transparent!important;box-shadow:none!important;transform:none!important}
   .timelineNumber{top:-5px;left:34px;width:22px;height:22px}
   .timeline li:hover .timelineIcon{transform:none}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -86,7 +87,11 @@ const FACT_CARDS = [
   },
 ];
 
-export default CompanyProfileExperience;
+// The Company Profile content is now presented on the homepage. Keep this
+// route unavailable so visitors cannot access a duplicate standalone page.
+export default function CompanyProfilePageDisabled() {
+  notFound();
+}
 
 export function LegacyCompanyProfilePage() {
   return (

@@ -107,7 +107,7 @@ export default function ReadyStockPage() {
         />
         <StockTable
           title="Raw material"
-          note="Stainless steel circles, sheets, patta, patti and coil in JSLU, J4, 304, 316, 410 and 430 grades."
+          note="Stainless steel circles, sheets, strips and coil in JSLU, J4, 304, 316, 410 and 430 grades."
           rows={all.filter((i) => i.kind === "raw")}
         />
       </div>

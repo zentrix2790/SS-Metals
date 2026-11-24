@@ -77,7 +77,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
         {/* Left: Brand Logo */}
         <Link href="/" className="flex shrink-0 items-center py-1" onClick={() => setOpen(false)}>
           <Image
-            src="/ss-metals-logo.png"
+            src="/ss-metals-logo-new.png"
             alt={`${SITE.name} Logo`}
             width={160}
             height={160}
@@ -173,7 +173,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
               <div className="flex items-center justify-between border-b border-steel-200 pb-3 pt-1">
                 <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
                   <Image
-                    src="/ss-metals-logo.png"
+                    src="/ss-metals-logo-new.png"
                     alt={`${SITE.name} Logo`}
                     width={96}
                     height={96}
@@ -190,7 +190,7 @@ function MainNavContent({ isUrgent }: { isUrgent: boolean }) {
                 </button>
               </div>
 
-              {/* 1. Home & 2. Company Profile */}
+              {/* Primary mobile navigation links */}
               {NAV.slice(0, 2).map((n) => (
                 <Link
                   key={`${n.label}-${n.href}`}

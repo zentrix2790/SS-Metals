@@ -19,7 +19,7 @@ export function FaqSection({
   limit,
   showViewAll = false,
   title = "Frequently Asked Questions",
-  subtitle = "Browse through our most frequent inquiries below. If you don't find what you are looking for, our team is always ready to assist.",
+  subtitle,
   eyebrow = "Help & Information",
   layout = "centered",
   bgClassName = "bg-white",
@@ -38,9 +38,11 @@ export function FaqSection({
                 {eyebrow}
               </span>
               <h2 className="h-section mt-3 text-ink">{title}</h2>
-              <p className="mt-4 text-sm sm:text-base leading-relaxed text-steel-700">
-                {subtitle}
-              </p>
+              {subtitle && (
+                <p className="mt-4 text-sm sm:text-base leading-relaxed text-steel-700">
+                  {subtitle}
+                </p>
+              )}
 
               {showViewAll && (
                 <div className="mt-6 hidden sm:block">
@@ -109,9 +111,11 @@ export function FaqSection({
           <h2 className="h-section mt-3 text-ink">
             {title}
           </h2>
-          <p className="mt-3 text-steel-600 text-sm sm:text-base leading-relaxed">
-            {subtitle}
-          </p>
+          {subtitle && (
+            <p className="mt-3 text-steel-600 text-sm sm:text-base leading-relaxed">
+              {subtitle}
+            </p>
+          )}
         </div>
 
         {/* FAQ Accordion: Centered Below Heading */}

@@ -7,6 +7,7 @@ import {
   DraftingCompass,
   Factory,
   Layers,
+  MapPin,
   Package,
   PackageCheck,
   ShieldCheck,
@@ -18,157 +19,62 @@ import CountUp from "@/components/CountUp";
 import FaqSection from "@/components/FaqSection";
 import SmartImage from "@/components/SmartImage";
 import ProcessCarousel from "@/components/home/ProcessCarousel";
-import { GRADES, INFRA, MANUFACTURED_LINES, SITE, STATS, SUPPLIED_LINES, waLink } from "@/lib/site";
+import CompanyStorySections from "@/components/home/CompanyStorySections";
+import BeginningSection from "@/components/home/BeginningSection";
+import JourneySection from "@/components/home/JourneySection";
+import PhilosophySection from "@/components/home/PhilosophySection";
+import { INFRA, MANUFACTURED_LINES, STATS, SUPPLIED_LINES, waLink } from "@/lib/site";
 
 export default function HomePage() {
-  const yearsTrust = SITE.yearsInBusiness;
-
   return (
     <>
-      <section className="bg-ink text-white overflow-hidden">
-        <div className="wrap grid items-center gap-8 pt-6 pb-12 sm:py-16 lg:py-20 lg:grid-cols-[1.3fr_1fr]">
-          <div data-aos="fade-right">
-            <div className="flex flex-wrap gap-3">
-              <p className="inline-flex items-center justify-center gap-2 rounded bg-brass px-3.5 py-2 text-[clamp(14.5px,3.8vw,24px)] font-semibold tracking-tight text-ink whitespace-nowrap sm:px-5 sm:py-3">
-                Established {SITE.est} · {yearsTrust}+ years of trust
-              </p>
-            </div>
-            <h2 className="h-page mt-3">Quality Stainless Steel Raw Material Supplier & Utensils Manufacturer</h2>
-            <p className="mt-5 max-w-xl text-lg text-steel-200">
-              Quality stainless steel raw materials, including coils, circles, Laser Cut Designs, Blanks, sheets, rods, and wires,
-              alongside precision-manufactured unfinished (Kalvat) utensils, ice buckets, canisters, jugs, and other
-              stainless steel products for domestic and export markets.
+      <section className="relative bg-white">
+        <div className="grid min-h-[520px] lg:grid-cols-[48%_52%]">
+          <div className="flex items-center bg-[repeating-linear-gradient(130deg,transparent_0,transparent_22px,rgba(15,45,64,0.045)_23px,transparent_24px)] px-6 py-12 sm:px-12 lg:px-[clamp(3rem,7vw,9rem)]" data-aos="fade-right">
+            <div>
+            <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.8rem,4.25vw,4.65rem)] font-bold leading-[0.94] tracking-tight text-ink">Built on Trust.<span className="block text-[#08708d]">Evolved through Manufacturing.</span></h1>
+            <p className="mt-5 max-w-xl text-[0.96rem] leading-relaxed text-steel-700">
+              From stainless steel trading to modern bulk processing, SS Metals has evolved through industry experience, customer trust, and a constant focus on quality.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact?type=urgent" className="btn btn-dark-outline">
-                Send Your Enquiry
+            <p className="mt-3 max-w-xl text-sm text-steel-700">Founded by <strong className="text-[#96701f]">Mr. Raman Lal Agarwal (CA)</strong> along with <strong className="text-[#96701f]">Mr. Sarvesh Kumar</strong> <strong className="text-[ink]">in 1987</strong> </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="#journey" className="btn btn-primary">
+                Our Journey
               </Link>
+              <Link href="/infrastructure" className="btn btn-outline">See Our Plant</Link>
+            </div>
             </div>
           </div>
-
-          <div data-aos="fade-left" className="rounded border border-white/20 bg-white/5 p-6">
-            <p className="font-display text-xl font-semibold text-steel-200">
-              Steel Grades We Deal In
-            </p>
-            <ul className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded bg-white/15">
-              {GRADES.map((g, idx) => (
-                <li
-                  key={g}
-                  data-aos="zoom-in"
-                  data-aos-delay={idx * 50}
-                  className="bg-ink px-3 py-5 text-center font-display text-sm font-bold text-brass"
-                >
-                  {g}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-steel-300">
-              Circles, Sheets and Blanks in any size & design at competitive prices.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-4 inline-block text-sm font-semibold text-white underline underline-offset-4"
+          <div className="relative min-h-[360px] lg:min-h-[520px]" data-aos="fade-left">
+            <SmartImage src="/images/company-profile/hero-steel-coils-generated.png" alt="Stainless-steel processing facility" className="h-full min-h-[360px] w-full object-cover lg:min-h-[520px]" />
+            <div className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#0e2e49]/85 to-transparent" />
+            <div
+              className="absolute z-10 -bottom-5 left-[14%] flex items-center gap-3 rounded-[10px] border border-white/80 bg-white/95 px-[18px] py-3.5 shadow-[0_16px_36px_rgba(7,31,43,0.18),0_4px_12px_rgba(7,31,43,0.08)] backdrop-blur-sm"
+              data-aos="fade-up"
+              data-aos-delay="280"
             >
-              Any Other Grade ?
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-brass-light" data-aos="fade-up">
-        <div className="wrap flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
-          <div>
-            <h2 className="font-display text-2xl font-bold">Urgent Requirement?</h2>
-            <p className="text-sm text-steel-700">
-              Urgent orders and bulk requirements accommodated.
-            </p>
-          </div>
-          <Link href="/contact?type=urgent" className="btn btn-primary shrink-0">
-            Share Your Requirement
-          </Link>
-        </div>
-      </section>
-
-      <section className="section overflow-hidden">
-        <div className="wrap grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div data-aos="fade-right">
-            <h2 className="h-section">Leading Stainless Steel Raw Material Supplier & Utensils Manufacturer</h2>
-            <p className="mt-4 text-steel-700">
-              {SITE.name} is a trusted supplier of stainless steel raw materials, including coils, sheets, mirror, matt and PVD sheets, rods, and wires. We also manufacture unfinished (Kalvat) stainless steel utensils, ice buckets, canisters, and jugs for domestic and export markets. Our commitment to quality and reliable service makes us a dependable partner for industrial buyers and utensil manufacturers.
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {[
-                [`Recycling Expertise`, "Reliable experience in stainless steel trading, recycling & utensils manufacturing."],
-                ["ISO 9001:2015", " certified for consistent quality and customer satisfaction."],
-                ["Export quality", "Stainless steel raw materials and Kalvat utensils for diverse business need."],
-              ].map(([t, d], idx) => (
-                <div key={t} data-aos="fade-up" data-aos-delay={idx * 100} className="border-l-4 border-brass pl-3">
-                  <p className="font-display text-xl font-semibold">{t}</p>
-                  <p className="text-sm text-steel-700">{d}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/company-profile" className="btn btn-outline">
-                Full company profile
-              </Link>
-              <Link href="/infrastructure" className="btn btn-outline">
-                Factory tour
-              </Link>
-            </div>
-          </div>
-          <div className="relative" data-aos="fade-left">
-            <SmartImage
-              src={INFRA[1].src}
-              alt="SS Metals factory floor"
-              className="aspect-[4/3] w-full rounded"
-            />
-            <div className="absolute -bottom-5 left-4 rounded bg-ink px-5 py-3 text-white shadow-lg" data-aos="zoom-in" data-aos-delay="200">
-              <p className="font-display text-2xl font-bold text-brass">
-                Automated Production
-              </p>
-              <p className="text-xs text-steel-200">Higher efficiency with optimized manpower.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      <section className="section bg-white overflow-hidden">
-        <div className="wrap grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <div data-aos="fade-right">
-            <h2 className="h-section">Stainless Steel Raw Material Supplier</h2>
-            <p className="mt-3 text-steel-700">
-              Supplying stainless steel coils, sheets, mirror, matt and PVD sheets, rods, wires, and circles for diverse industrial and commercial requirements.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn btn-primary">
-                Send Your Enquiry
-              </Link>
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-3" data-aos="fade-left">
-            {["Coil", "Sheets", "Decorative Sheets", "Rods & Wires", "Circles", "Laser-Cut Farma"].map((x, idx) => (
-              <div
-                key={x}
-                data-aos="zoom-in"
-                data-aos-delay={idx * 50}
-                className="rounded border border-steel-200 bg-white p-4 text-center font-display text-lg font-semibold shadow-xs"
-              >
-                {x}
+              <MapPin className="w-[27px] h-[27px] text-[#b8923a] shrink-0" />
+              <div>
+                <strong className="block text-[0.85rem] font-bold text-ink leading-tight">
+                  Moradabad, Uttar Pradesh
+                </strong>
+                <span className="block text-[0.68rem] text-[#647581] mt-[3px] leading-tight">
+                  Stainless Steel · Processing · Manufacturing
+                </span>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5-Step Production & Supply Workflow Carousel */}
-      <section className="section bg-steel-50 border-y border-steel-200 overflow-hidden">
-        <div className="wrap">
-          <ProcessCarousel />
-        </div>
-      </section>
+      <BeginningSection />
+
+      <CompanyStorySections section="leadership" />
+
+
+
+      <JourneySection />
+
 
       <section className="section bg-white overflow-hidden">
         <div className="wrap grid gap-8 lg:grid-cols-2">
@@ -293,6 +199,17 @@ export default function HomePage() {
                     </p>
                   </div>
                 </li>
+                <li className="flex items-start gap-3 rounded-xl bg-white/80 p-3.5 ring-1 ring-brass/25 shadow-xs transition-all hover:bg-white hover:shadow-md">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brass/15 text-brass-dark ring-1 ring-brass/30">
+                    <Package className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <span className="font-semibold text-ink">Stainless Steel Article</span>
+                    <p className="text-xs text-steel-600 mt-0.5">
+                      Elegantly crafted stainless steel articles that bring lasting strength, refined finish, and everyday functionality to every space.
+                    </p>
+                  </div>
+                </li>
               </ul>
             </div>
 
@@ -306,6 +223,13 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+            {/* 5-Step Production & Supply Workflow Carousel */}
+      <section className="section bg-steel-50 border-y border-steel-200 overflow-hidden">
+        <div className="wrap">
+          <ProcessCarousel />
         </div>
       </section>
 
@@ -334,13 +258,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      <CompanyStorySections section="closing" />
+
+      <PhilosophySection />
+
       {/* Frequently Asked Questions (Top 4) */}
       <FaqSection limit={4} showViewAll bgClassName="bg-white" />
 
       <section className="bg-ink text-white overflow-hidden">
         <div className="wrap py-14 text-center" data-aos="zoom-in" suppressHydrationWarning>
-          <h2 className="h-section mx-auto max-w-2xl">
-            Partner with India&apos;s leading Kalvat manufacturer
+          <h2 className="h-section mx-auto max-w-4xl text-balance">
+            Partner with leading stainless steel, raw material supplier & products manufacturer
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-steel-300">
             Custom-dimension unfinished utensils, Urgent Requirement dispatch or raw steel coils and

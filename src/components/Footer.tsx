@@ -11,7 +11,7 @@ export function Footer() {
           <div className="mb-4">
             <Link href="/" className="inline-block rounded-full overflow-hidden transition-opacity hover:opacity-95">
               <Image
-                src="/ss-metals-logo.png"
+                src="/ss-metals-logo-new.png"
                 alt={site.name}
                 width={160}
                 height={160}

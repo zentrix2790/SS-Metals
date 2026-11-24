@@ -80,7 +80,6 @@ export default function FaqPage() {
       <FaqSection
         layout="centered"
         title="Frequently Asked Questions"
-        subtitle="Browse through our most frequent inquiries below. If you don't find what you are looking for, our team is always ready to assist."
       />
 
       {/* Support & Assistance CTA */}

@@ -11,7 +11,7 @@ export default function SiteFooter() {
         <div className="col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="50" suppressHydrationWarning>
           <Link href="/" className="mb-4 inline-block rounded-full overflow-hidden transition-opacity hover:opacity-95">
             <Image
-              src="/ss-metals-logo.png"
+              src="/ss-metals-logo-new.png"
               alt={`${SITE.name} Logo`}
               width={160}
               height={160}
@@ -20,7 +20,7 @@ export default function SiteFooter() {
           </Link>
           <p className="mt-3 text-xs sm:text-sm leading-relaxed text-steel-400">
             Manufacturers of stainless steel unfinished (Kalvat) utensils, barwares, bathwares and
-            kitchenware. Stockiest of patta, patti, coil, circles, sheets and farma. Suppliers of
+            kitchenware. Stockiest of coils, circles, blanks, sheets and farma. Suppliers of
             pipes, tubes, flanges, and industrial metals.
           </p>
         </div>

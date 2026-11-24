@@ -37,7 +37,6 @@ export const SUPPLIED_LINES = [
 
 export const NAV = [
   { href: "/", label: "Home" },
-  { href: "/company-profile", label: "Company Profile" },
   { href: "/contact?type=urgent", label: "Urgent Requirement" },
   { href: "/infrastructure", label: "Infrastructure" },
   { href: "/contact", label: "Contact" },

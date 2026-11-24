@@ -51,7 +51,7 @@ export const productPages: Record<ProductSlug, ProductPageContent> = {
       "SS Metals stocks and supplies stainless steel coils with consistent thickness, clean edges, and reliable mechanical properties for kitchenware, utensils, and industrial fabrication across India and export markets.",
     details: [
       `Available grades: ${sharedGrades}`,
-      "Widths and thicknesses tailored for patta/patti splitting and circle cutting.",
+      "Widths and thicknesses tailored for strip splitting and circle cutting.",
       "Surface finishes including 2B, BA, and matte as per application.",
       "Mill test certificates and dimensional checks before dispatch.",
     ],
@@ -384,9 +384,9 @@ export const productPages: Record<ProductSlug, ProductPageContent> = {
     bannerSubtitle:
       "Pre-cut farma pieces for lids, bottoms, and matched utensil components.",
     overview:
-      "Farma (pre-formed flat or shallow blanks) speeds up utensil assembly by supplying ready shapes for lids, dividers, and structural inserts used alongside circles and patta.",
+      "Farma (pre-formed flat or shallow blanks) speeds up utensil assembly by supplying ready shapes for lids, dividers, and structural inserts used alongside circles and sheets.",
     details: [
-      "Cut from coil, sheet, or patti per drawing.",
+      "Cut from coil, sheet, or strip blanks per drawing.",
       "Tolerance control for press-fit and welding operations.",
       `Grades: ${sharedGrades}`,
       "Volume programs for repeat export buyers.",

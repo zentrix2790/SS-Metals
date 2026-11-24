@@ -519,7 +519,7 @@ export const faqs = [
   {
     question: "What products does SS Metals supply?",
     answer:
-      "We supply stainless steel coils, sheets, rods, wires, circles, patta, patti, and decorative sheets in various grades.",
+      "We supply stainless steel coils, sheets, rods, wires, circles, blanks, and decorative sheets in various grades.",
   },
   {
     question: "Do you provide mill test certificates (MTC)?",

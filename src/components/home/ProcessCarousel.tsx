@@ -110,7 +110,7 @@ export default function ProcessCarousel() {
   return (
     <div className="w-full">
       {/* Centered Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14" data-aos="fade-up">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight font-display">
           Our Working Process
         </h2>
@@ -123,6 +123,8 @@ export default function ProcessCarousel() {
       <div
         className="overflow-hidden"
         ref={emblaRef}
+        data-aos="fade-up"
+        data-aos-delay="100"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleMouseEnter}

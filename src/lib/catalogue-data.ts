@@ -74,7 +74,7 @@ const STOCK_ROWS: [
   ["raw", "Circle", "Circles", "304", '10" x 0.6 mm', 2500, "kg", 500],
   ["raw", "Circle", "Circles", "J4", '12" x 0.5 mm', 1800, "kg", 500],
   ["raw", "Sheet", "Sheets", "316", "4 x 8 ft x 1.0 mm", 40, "sheets", 50],
-  ["raw", "Patta / Patti", "Patta", "430", "25 mm x 1.2 mm", 3200, "kg", 500],
+  ["raw", "Flat Strip / Flat Bar", "Strips", "430", "25 mm x 1.2 mm", 3200, "kg", 500],
   ["raw", "Coil", "Coil", "JSLU", "1250 mm x 0.6 mm", 0, "kg", 1000],
 ];
 
